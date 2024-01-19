@@ -2,27 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" a href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
     <!--Bootstrap Css and Js links-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <title>FootballOurPassion</title>
     <link rel="icon" href="assets/logo.jpeg">
 </head>
-    <header class="p-3 bg-dark text-white">
+<header class="p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="index.html" class="nav-link px-2 text-secondary" id="Head_btn1">Home</a></li>
-                <li><a href="ranks.html" class="nav-link px-2 text-white" id="Head_btn2">Ranks</a></li>
-                <li><a href="news.html" class="nav-link px-2 text-white" id="Head_btn3">News</a></li>
-                <li><a href="faqs.html" class="nav-link px-2 text-white" id="Head_btn4">FAQs</a></li>
-                <li><a href="about.html" class="nav-link px-2 text-white " id="Head_btn5">About</a></li>
-                <li><a href="chat.html" class="nav-link px-2 text-white " id="Head_btn6">Chat</a></li>
+                <li><a href="index.html" class="nav-link px-2 text-secondary" id="home-btn">Home</a></li>
+                <li><a href="about.html" class="nav-link px-2 text-white " id="about-btn">About</a></li>
+                <li><a href="chat.html" class="nav-link px-2 text-white " id="chat-btn">Chat</a></li>
+                <li><a href="chat.html" class="nav-link px-2 text-white " id="gbm-btn">Game by numbers</a></li>
 
             </ul>
 
@@ -31,16 +34,43 @@
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#login-modal">
+                    Login
+                </button>
+                <button type="button" class="btn btn-outline-light">Sign-up</button>
+                <!--Modal for login form-->
+                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-title"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 text-dark font-weight-bold">Login</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="emailUsername" class="form-label">Email address</label>
+                                    <input type="text" class="form-control validate" id="emailUsername"
+                                           placeholder="Enter your mail or username">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control validate" id="password"
+                                           placeholder="Enter your password" onclick="login()">
+                                </div>
+                            </form>
+                                <div class="modal-footer"> </div>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+    </div>
     </div>
 </header>
 <body>
 
-    <div class="h1 text-primary text-centere" >
-        <h1> TEST_HTML ON EXPRESS</h1>
-    </div>
 </body>
 </html>
