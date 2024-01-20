@@ -14,7 +14,7 @@ const Schema = mongoose.Schema;
  *  					type:string
  * @type {Schema}
  */
-const userSchema = new Schema({
+var userSchema = new Schema({
 	username: String,
 	password: String
 });
