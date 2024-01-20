@@ -1,44 +1,41 @@
+const axios = require("axios");
+const User = require('../../models/user')
 function init(){
     try {
-        const button = document.getElementById('LoginForm');
-        button.onclick = onSubmit;
+        const loginBtn = document.getElementById('LoginForm');
+        loginBtn.onclick = onLogin;
+        const  signBtn = document.getElementById('signup-modal')
+        signBtn.onclick = onSignUp;
     } catch (e){};
-}
-/**
- * it sends an Ajax query using axios
- * @param url the url to send to
- * @param data the data to send (e.g. a Javascript structure)
- */
-function sendAxiosQuery(url, data) {
-    axios.post(url , data)
-        .then (function (dataR) {
-            document.getElementById('results').innerHTML= "The result is: "+JSON.stringify(dataR.data);
-            document.getElementById('results').style.display='block';
-            document.getElementById('xForm').style.display='none';
-        })
-        .catch( function (response) {
-            alert (JSON.stringify(response));
-        })
 }
 
 /**
  * called when the submit button is pressed
  * @param event the submission event
  */
-function onSubmit(event) {
-    onSubmitAux(event, '/login')
+function onLogin(event) {
+    onLoginAux(event, '/login')
 }
 
-function onSubmitAux(event, url){
-    // The .serializeArray() method creates a JavaScript array of objects
-    // https://api.jquery.com/serializearray/
-    const formArray= $("form").stringify(); //.serializeArray();
-    const data={};
-    for (let index in formArray){
-        data[formArray[index].name]= formArray[index].value;
+function onSignUp(event){
+    onSignUpAux(event,'/insert')
+}
+
+async function onSignUpAux(event,url) {
+    const username = event.username;
+    const password = event.password;
+
+    try {
+        const response = await axios.post(url, {
+            username: username,
+            password: password
+        });
+        console.log(response);
+    } catch(error) {
+        console.error(error);
     }
-    // const data = JSON.stringify($(this).serializeArray());
-    sendAxiosQuery(url, data);
-    // prevent the form from reloading the page (normal behaviour for forms)
-    event.preventDefault()
+
+}
+
+function onLoginAux(event, url){
 }

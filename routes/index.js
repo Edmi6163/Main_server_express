@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
+const axios = require('axios');
+const controller = require("../controllers/singUp");
 
 /* GET home page. */
 
 /**
- * Login route to authenticate user using passport js
- * saving session as way of login, to mantain user logged in thourghout state
- *
+ * @swagger
+ * tags:
+ *  name: Authentication
+ *    descriptionLogin route to authenticate user using passport js inserting in mongodb credentials
  * @type {Router}
  */
 router.route('/')
@@ -34,5 +37,16 @@ router.route('/')
 
       }
     });
+
+router.post('/insert', async (req,res) => {
+  try {
+    const results = await controller.insert(req.body);
+    res.json(results)
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+});
+
   module.exports = router;
+
 
