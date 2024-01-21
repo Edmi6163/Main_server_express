@@ -11,7 +11,7 @@
             crossorigin="anonymous"></script>
     <title>FootballOurPassion</title>
     <link rel="icon" href="assets/logo.jpeg">
-    <script src="javascripts/index.js"></script>
+    <script type="module" src="javascripts/index.js"></script>
 </head>
 
 <body onload="init()">
@@ -28,7 +28,7 @@
                 <li><a href="index.html" class="nav-link px-2 text-secondary" id="home-btn">Home</a></li>
                 <li><a href="about.html" class="nav-link px-2 text-white " id="about-btn">About</a></li>
                 <li><a href="chat.html" class="nav-link px-2 text-white " id="chat-btn">Chat</a></li>
-                <li><a href="chat.html" class="nav-link px-2 text-white " id="gbm-btn">Game by numbers</a></li>
+                <li><a href="analysis.html" class="nav-link px-2 text-white " id="gbm-btn">Game by numbers</a></li>
 
             </ul>
 
@@ -37,18 +37,17 @@
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#login-modal">
+                <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#LoginForm">
                     Login
                 </button>
                 <button type="button" class="btn btn-outline-light" data-bs-target="#signup-modal" data-bs-toggle="modal">Sign-up</button>
-                <!------>
 
                 <!--- Signup-modal--->
                 <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signup-modal-modal-title"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header text-center">
+                        <div class="modal-header text-center">
                                 <h4 class="modal-title w-100 text-dark font-weight-bold">Sign-up</h4>
                             </div>
                             <div class="modal-body">
@@ -60,7 +59,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
+                                        <label for="Spassword" class="form-label">Password</label>
                                         <input type="password" class="form-control validate" id="Spassword"
                                                placeholder="Enter your password">
                                     </div>
