@@ -1,12 +1,26 @@
-const axios = require("axios");
-const User = require('../../models/user')
 function init(){
     try {
         const loginBtn = document.getElementById('LoginForm');
         loginBtn.onclick = onLogin;
-        const  signBtn = document.getElementById('signup-modal')
+        const  signBtn = document.getElementById('credentials-btn')
         signBtn.onclick = onSignUp;
-    } catch (e){};
+    } catch (e){
+        console.log(e);
+    }
+}
+
+
+
+function saveCredentials(url,data){
+    axios.post(url,data)
+      .then(response => {
+          console.log(response.data);
+      })
+      .catch(error => {
+          console.error(error);
+      });
+
+
 }
 
 /**
@@ -18,22 +32,26 @@ function onLogin(event) {
 }
 
 function onSignUp(event){
+    console.log('sign up button pressed')
     onSignUpAux(event,'/insert')
 }
 
-async function onSignUpAux(event,url) {
-    const username = event.username;
-    const password = event.password;
 
-    try {
-        const response = await axios.post(url, {
-            username: username,
-            password: password
-        });
-        console.log(response);
-    } catch(error) {
-        console.error(error);
+/**
+ * called when the submit button is pressed
+ * @param event
+ * @param url
+ * @returns {Promise<void>}
+ */
+async function onSignUpAux(event,url) {
+    // insert username and password got from the Signup form into the mongodb database
+    const formData = new FormData(document.getElementById('SignupForm'));
+    const data = {};
+    for (let entry of formData.entries()) {
+        data[entry[0]] = entry[1];
     }
+    saveCredentials(url,data);
+    event.preventDefault();
 
 }
 

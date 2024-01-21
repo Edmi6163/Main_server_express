@@ -14,4 +14,4 @@ connection = mongoose.connect(mongoDb, {
 
 }) .catch((error) => {
 	console.log('error connecting to mongodb' + JSON.stringify(error));
-}
+});
