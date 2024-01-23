@@ -9,9 +9,11 @@ function insert(body) {
 
 		userObj.save()
 			.then(result => {
+				console.log('insert result', result)
 				resolve(result);
 			})
 			.catch(error => {
+				console.error('error saving user in mongodb', error)
 				reject(error);
 			});
 	});

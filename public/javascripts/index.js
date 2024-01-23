@@ -58,7 +58,6 @@ async function onSignUpAux(event,url) {
         data[inputId] = document.getElementById(inputId).value;
     });
 
-    console.log('Serialized data: ', data)
 
     saveCredentials(url,data);
     // event.preventDefault();
