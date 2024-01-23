@@ -37,7 +37,6 @@ function onLogin(event) {
 }
 
 function onSignUp(event){
-    console.log('sign up button pressed')
     onSignUpAux(event,'/insert')
 }
 
@@ -62,7 +61,7 @@ async function onSignUpAux(event,url) {
     console.log('Serialized data: ', data)
 
     saveCredentials(url,data);
-    event.preventDefault();
+    // event.preventDefault();
 
 }
 

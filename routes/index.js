@@ -10,8 +10,8 @@ router.use( bodyParser.json() );
 
 router.post('/insert', async (req,res) => {
   try {
-    console.log('inserting', req.body)
-    const results = await controller.insert(req.body);
+    const labelData = req.body;
+    const results = await controller.insert(labelData);
     res.json(results)
   } catch (error) {
     res.status(500).json({error: error.message});
