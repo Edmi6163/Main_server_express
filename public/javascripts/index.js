@@ -1,5 +1,4 @@
 function init(){
-    console.log("initializing....")
     try {
         const loginBtn = document.getElementById('LoginBtn');
         loginBtn.onclick = onLogin;
@@ -18,7 +17,6 @@ function init(){
 
 
 function saveCredentials(url,data){
-    console.log('data in saveCredentials: ',data)
     axios.post(url,data)
       .then(response => {
           console.log(response.data);
@@ -52,11 +50,17 @@ function onSignUp(event){
  */
 async function onSignUpAux(event,url) {
     // insert username and password got from the Signup form into the mongodb database
-    const credentialsForm = $("form").serializeArray();
+    const labels = document.querySelectorAll("#SignupForm .form-label");
+
     const data = {};
-    for (let index in credentialsForm){
-        data[credentialsForm[index].name]= credentialsForm[index].value;
-    }
+
+    labels.forEach(label => {
+        const inputId = label.getAttribute('for')
+        data[inputId] = document.getElementById(inputId).value;
+    });
+
+    console.log('Serialized data: ', data)
+
     saveCredentials(url,data);
     event.preventDefault();
 

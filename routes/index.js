@@ -10,6 +10,7 @@ router.use( bodyParser.json() );
 
 router.post('/insert', async (req,res) => {
   try {
+    console.log('inserting', req.body)
     const results = await controller.insert(req.body);
     res.json(results)
   } catch (error) {
