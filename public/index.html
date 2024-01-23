@@ -10,6 +10,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>FootballOurPassion</title>
     <link rel="icon" href="assets/logo.jpeg">
     <script src="javascripts/index.js"></script>
@@ -34,7 +35,7 @@
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                <input type="search" id="search-bar" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
             </form>
 
             <div class="text-end">
@@ -62,12 +63,12 @@
                                     <div class="mb-3">
                                         <label for="Spassword" class="form-label">Password</label>
                                         <input type="password" class="form-control validate" id="Spassword"
-                                               placeholder="Enter your password">
+                                               placeholder="Enter your password" autocomplete="off">
                                     </div>
 
                                 </form>
                                 <div class="modal-footer"> </div>
-                                <button id="credentials-btn" type="submit" class="btn btn-primary">Sign-up</button>
+                                <button id="CredentialBtn" type="submit" class="btn btn-primary" onclick="onSignUp()">Sign-up</button>
                             </div>
                         </div>
                     </div>
@@ -93,7 +94,7 @@
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <input type="password" class="form-control validate" id="password"
-                                               placeholder="Enter your password" >
+                                               placeholder="Enter your password" autocomplete="on">
                                     </div>
                                 </form>
                                 <div class="modal-footer"> </div>

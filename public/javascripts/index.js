@@ -1,17 +1,24 @@
 function init(){
+    console.log("initializing....")
     try {
-        const loginBtn = document.getElementById('LoginForm');
+        const loginBtn = document.getElementById('LoginBtn');
         loginBtn.onclick = onLogin;
-        const  signBtn = document.getElementById('credentials-btn')
-        signBtn.onclick = onSignUp;
+
     } catch (e){
-        console.log(e);
+        console.error(e);
+    }
+    try {
+    const  signBtn = document.getElementById('CredentialBtn')
+    signBtn.onclick = onSignUp;
+    } catch(e) {
+        console.error(e);
     }
 }
 
 
 
 function saveCredentials(url,data){
+    console.log('data in saveCredentials: ',data)
     axios.post(url,data)
       .then(response => {
           console.log(response.data);
@@ -45,10 +52,10 @@ function onSignUp(event){
  */
 async function onSignUpAux(event,url) {
     // insert username and password got from the Signup form into the mongodb database
-    const formData = new FormData(document.getElementById('SignupForm'));
+    const credentialsForm = $("form").serializeArray();
     const data = {};
-    for (let entry of formData.entries()) {
-        data[entry[0]] = entry[1];
+    for (let index in credentialsForm){
+        data[credentialsForm[index].name]= credentialsForm[index].value;
     }
     saveCredentials(url,data);
     event.preventDefault();

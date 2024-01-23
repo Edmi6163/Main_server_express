@@ -1,6 +1,5 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const Schema = mongoose.Schema;
 // hash password before saving into database
 
 /**
@@ -39,9 +38,5 @@ User.pre('save', function(next) {
 User.methods.validPassword = function(password) {
 	return bcrypt.compareSync(password, this.password);
 }
-
-
-User.set('toObject',{getters:true,virtuals:false});
-
 
 module.exports = mongoose.model('User', User);

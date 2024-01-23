@@ -9,13 +9,15 @@ var session = require('express-session');
 var authController = require('./controllers/login');
 var User = require('./models/user');
 var routtes = require('./routes')
-
+const mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 app = express();
 app.set('axios', axios);
 
+
+require('./connection/dbconnection')(mongoose)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -33,6 +35,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 var login_routes = require('./controllers/login')
+var signup_routes = require('./controllers/singUp')
 app.use('/',login_routes)
 
 // catch 404 and forward to error handler
