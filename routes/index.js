@@ -1,26 +1,23 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const passport = require('passport');
+const axios = require('axios');
+const controller = require("../controllers/singUp");
+var bodyParser = require('body-parser');
+router.use( bodyParser.json() );
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+
+
+router.post('/insert', async (req,res) => {
+  try {
+    const labelData = req.body;
+    const results = await controller.insert(labelData);
+    res.json(results)
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
 });
 
-/**
- * Login route to authenticate user using passport js
- * saving session as way of login, to mantain user logged in thourghout state
- *
- * @type {Router}
- */
-router.get('/login', (req,res) => {
-  res.render('login');
-})
-
-router.post('/login',passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
   module.exports = router;
+
 

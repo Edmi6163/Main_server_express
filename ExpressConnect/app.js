@@ -3,21 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var passport = require('passport');
-const axios = require('axios');
-var session = require('express-session');
-var authController = require('./controllers/login');
-var User = require('./models/user');
-var routtes = require('./routes')
-const mongoose = require('mongoose')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-app = express();
-app.set('axios', axios);
+var app = express();
 
-
-require('./connection/dbconnection')(mongoose)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -28,15 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({secret:'secret-key',resave:true,saveUninitialized:true}));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-var login_routes = require('./controllers/login')
-var signup_routes = require('./controllers/singUp')
-app.use('/',login_routes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,7 +36,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-
 });
 
 module.exports = app;

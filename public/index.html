@@ -9,10 +9,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>FootballOurPassion</title>
     <link rel="icon" href="assets/logo.jpeg">
+    <script src="javascripts/index.js"></script>
 </head>
-<header class="p-3 bg-dark text-white">
+
+<body onload="init">
+<nav class="navbar p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -25,20 +30,55 @@
                 <li><a href="index.html" class="nav-link px-2 text-secondary" id="home-btn">Home</a></li>
                 <li><a href="about.html" class="nav-link px-2 text-white " id="about-btn">About</a></li>
                 <li><a href="chat.html" class="nav-link px-2 text-white " id="chat-btn">Chat</a></li>
-                <li><a href="chat.html" class="nav-link px-2 text-white " id="gbm-btn">Game by numbers</a></li>
+                <li><a href="analysis.html" class="nav-link px-2 text-white " id="gbm-btn">Game by numbers</a></li>
 
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                <input type="search" id="search-bar" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
             </form>
+
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#login-modal">
+                <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#LoginForm">
                     Login
                 </button>
-                <button type="button" class="btn btn-outline-light">Sign-up</button>
-                <!-- Modal for login form -->
-                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-title" aria-hidden="true">
+                <button type="button" class="btn btn-outline-light" data-bs-target="#signup-modal" data-bs-toggle="modal">Sign-up</button>
+
+                <!--- Signup-modal--->
+                <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signup-modal-modal-title"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 text-dark font-weight-bold">Sign-up</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="SignupForm">
+                                    <div class="mb-3">
+                                        <label for="SemailUsername" class="form-label">Email address</label>
+                                        <input type="text" class="form-control validate" id="SemailUsername"
+                                               placeholder="Enter your mail or username">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="Spassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control validate" id="Spassword"
+                                               placeholder="Enter your password" autocomplete="off">
+                                    </div>
+
+                                </form>
+                                <div class="modal-footer"> </div>
+                                <button id="CredentialBtn" type="submit" class="btn btn-primary" onclick="onSignUp()">Sign-up</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!--Modal for login form-->
+                <div class="modal fade" id="LoginForm" tabindex="-1" role="dialog" aria-labelledby="login-modal-title"
+                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header text-center">
@@ -48,25 +88,27 @@
                                 <form>
                                     <div class="mb-3">
                                         <label for="emailUsername" class="form-label">Email address</label>
-                                        <input type="text" class="form-control validate" id="emailUsername" placeholder="Enter your mail or username">
+                                        <input type="text" class="form-control validate" id="emailUsername"
+                                               placeholder="Enter your mail or username">
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control validate" id="password" placeholder="Enter your password" onclick="login()">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- Your modal footer content goes here -->
-                                        <button type="submit" class="btn btn-primary">Login</button>
+                                        <input type="password" class="form-control validate" id="password"
+                                               placeholder="Enter your password" autocomplete="on">
                                     </div>
                                 </form>
+                                <div class="modal-footer"> </div>
+                                <button type="submit" class="btn btn-primary" id="LoginBtn">Login</button>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-</header>
-<body onload="init()">
+</nav>
 
 </body>
 </html>
