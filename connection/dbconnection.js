@@ -1,4 +1,4 @@
-const mongoDb = 'mongodb://localhost:27017/Credentials';
+const mongoDb = 'mongodb://root:credential_password@localhost:27018/';
 
 
 module.exports = (mongoose) => {
