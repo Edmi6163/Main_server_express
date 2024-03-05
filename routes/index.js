@@ -1,38 +1,23 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const passport = require('passport');
-
-/* GET home page. */
-
-/**
- * Login route to authenticate user using passport js
- * saving session as way of login, to mantain user logged in thourghout state
- *
- * @type {Router}
- */
-router.route('/')
-    .get (function(req, res) {
-      res.render('index', {title: 'Express'});
-    })
+const axios = require('axios');
+const controller = require("../controllers/singUp");
+var bodyParser = require('body-parser');
+router.use( bodyParser.json() );
 
 
-    .post(function  (req, res) {
-      let username = req.head;
-      let password = req.body.no2;
-      if (isNaN(username) || isNaN(password)) {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(403).json({error: 403, reason: 'Username or Password are invalid'});
-      } else {
-        axios.post('http://localhost:3001/add',
-            {username: username, password: password})
-            .then(json =>
-                res.json(json.data.result))
-            .catch(err => {
-              res.setHeader('Content-Type', 'application/json');
-              res.status(505).json(err)
-            })
 
-      }
-    });
+router.post('/insert', async (req,res) => {
+  try {
+    const labelData = req.body;
+    const results = await controller.insert(labelData);
+    res.json(results)
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+});
+
   module.exports = router;
+
 

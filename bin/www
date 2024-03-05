@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+app = require('../app');
 var debug = require('debug')('mainserver:server');
 var http = require('http');
 
@@ -88,7 +88,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
+// Import and use your Socket.io code from 'socket.io/socket.io.js'
 const socketIO = require('socket.io');
 const io = socketIO(server);
 require('../socket.io/socket.io')(io);
