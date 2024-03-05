@@ -4,30 +4,29 @@ const passport = require('passport');
 const axios = require('axios');
 const controller = require("../controllers/singUp");
 var bodyParser = require('body-parser');
-router.use( bodyParser.json() );
+router.use(bodyParser.json());
 
 
-
-router.post('/insert', async (req,res) => {
-  try {
-    const labelData = req.body;
-    const results = await controller.insert(labelData);
-    res.json(results)
-  } catch (error) {
-    res.status(500).json({error: error.message});
-  }
+router.post('/insert', async (req, res) => {
+	try {
+		const labelData = req.body;
+		const results = await controller.insert(labelData);
+		res.json(results)
+	} catch (error) {
+		res.status(500).json({error: error.message});
+	}
 });
 
-router.post('/login', async (req,res) => {
- try {
-   const loginData = req.body;
-   const loginRes = await controller.login(loginData);
-   res.json(loginRes);
-  } catch(error) {
-   res.status(500).json({error: error.message});
- }
+router.post('/login', async (req, res) => {
+	try {
+		const loginData = req.body;
+		const loginRes = await controller.login(loginData);
+		res.json(loginRes);
+	} catch (error) {
+		res.status(500).json({error: error.message});
+	}
 });
 
-  module.exports = router;
+module.exports = router;
 
 

@@ -1,21 +1,26 @@
 const passport = require('passport');
 const User = require('../models/user');
 
-function login(req,res,next){
-	passport.authenticate('local', function(err,user,info) {
-		if (err) {
-			return next(err);
+async function login(req, res, next) {
+	try {
+		const { username, password } = req.body;
+
+		const { user, info } = await passport.authenticate('local')(req, res, next);
+
+		if (info) {
+			return res.status(401).json({ success: false, message: info.message });
 		}
-		if(!user){
-			return res.status(401).json({success: false, message: info.message});
-		}
-		req.logIn(user,function(err){
-			if(err){
-				return next(err);
+
+		await req.logIn(user, (err) => {
+			if (err) {
+				next(err);
+			} else {
+				return res.status(200).json({ success: true, message: 'Login successful' });
 			}
-			return res.status(200).json({success: true, message: 'Login successful'})
 		});
-	})(req,res,next);
+	} catch (error) {
+		next(error);
+	}
 }
 
 module.exports.login = login;

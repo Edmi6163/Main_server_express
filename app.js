@@ -8,7 +8,7 @@ const axios = require('axios');
 var session = require('express-session');
 var authController = require('./controllers/login');
 var User = require('./models/user');
-var routtes = require('./routes')
+var routes = require('./routes')
 const mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -35,10 +35,11 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-var login_routes = require('./controllers/login')
-var signup_routes = require('./controllers/singUp')
-app.use('/',login_routes)
-app.use('/',signup_routes)
+const login_routes = require('./controllers/login')
+const signup_routes = require('./controllers/singUp')
+app.post('/login',login_routes.login)
+app.post('/insert',signup_routes.insert)
+// app.use('/insert',signup_routes.insert)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
