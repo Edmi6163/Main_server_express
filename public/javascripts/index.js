@@ -30,7 +30,7 @@ function saveCredentials(url,data){
 
 
 async function onLogin(event) {
-    onLoginAux(event, '/login')
+    await onLoginAux(event, '/login')
 }
 
 /**
@@ -64,6 +64,12 @@ async function onSignUpAux(event,url) {
 
 }
 
+/**
+ * query the server for the login credentials
+ * @param event
+ * @param url
+ * @returns {Promise<void>}
+ */
 async function onLoginAux(event, url){
     const username = document.getElementById("emailUsername").value;
     const password = document.getElementById("password").value;
@@ -81,9 +87,4 @@ async function onLoginAux(event, url){
         console.error(error);
         // TODO return a visual error that the user isn't logged
     }
-
-
-
-
-
 }

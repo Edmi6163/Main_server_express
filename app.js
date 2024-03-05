@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var passport = require('passport');
+const passport = require('passport');
+const session = require('express-session');
 const axios = require('axios');
-var session = require('express-session');
 var authController = require('./controllers/login');
 var User = require('./models/user');
 var routes = require('./routes')
@@ -29,17 +29,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({secret:'secret-key',resave:true,saveUninitialized:true}));
+app.use(session({secret:'secret-key', resave:true, saveUninitialized:true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-const login_routes = require('./controllers/login')
-const signup_routes = require('./controllers/singUp')
-app.post('/login',login_routes.login)
-app.post('/insert',signup_routes.insert)
-// app.use('/insert',signup_routes.insert)
+const login_routes = require('./controllers/login');
+const signup_routes = require('./controllers/singUp');
+app.post('/login',login_routes.login);
+app.post('/insert',signup_routes.insert);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
