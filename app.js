@@ -18,6 +18,7 @@ app.set('axios', axios);
 
 
 require('./connection/dbconnection')(mongoose)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -37,6 +38,7 @@ app.use('/users', usersRouter);
 var login_routes = require('./controllers/login')
 var signup_routes = require('./controllers/singUp')
 app.use('/',login_routes)
+app.use('/',signup_routes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

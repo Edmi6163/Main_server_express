@@ -17,6 +17,7 @@
     "bcrypt": "^5.1.1",
     "mongoose": "^5.11.15",
     "axios": "^1.6.5",
-    "jquery": "^3.7.1"
+    "swagger": "^0.7.5",
+    "swagger-ui-express": "^5.0.0"
   }
 }
