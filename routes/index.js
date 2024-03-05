@@ -18,6 +18,16 @@ router.post('/insert', async (req,res) => {
   }
 });
 
+router.post('/login', async (req,res) => {
+ try {
+   const loginData = req.body;
+   const loginRes = await controller.login(loginData);
+   res.json(loginRes);
+  } catch(error) {
+   res.status(500).json({error: error.message});
+ }
+});
+
   module.exports = router;
 
 
