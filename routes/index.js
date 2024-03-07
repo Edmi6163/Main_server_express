@@ -20,9 +20,7 @@ router.post('/insert', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	try {
-		const loginData = req.body;
-		console.log(loginData);
-		const loginRes = await controllerLogin.login(loginData);
+		const loginRes = await controllerLogin.login(req,res);
 		res.json(loginRes);
 	} catch (error) {
 		res.status(500).json({error: error.message});

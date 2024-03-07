@@ -29,8 +29,8 @@ function saveCredentials(url,data){
 }
 
 
-async function onLogin(event) {
-    await onLoginAux(event, '/login')
+ function onLogin(event) {
+     onLoginAux(event, '/login')
 }
 
 /**
@@ -80,8 +80,6 @@ async function onLoginAux(event, url){
 
     try {
         const response = await axios.post(url,userData);
-        console.log(response.data);
-
         //TODO return a visual thing that the user logged successfully
     } catch (error) {
         console.error(error);

@@ -1,18 +1,17 @@
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const passport = require('passport');
-const session = require('express-session');
-const axios = require('axios');
 var authController = require('./controllers/login');
 var User = require('./models/user');
 var routes = require('./routes')
 const mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+const passport = require('./passport-config');
+const session = require('express-session');
+const axios = require('axios');
 app = express();
 app.set('axios', axios);
 
@@ -21,11 +20,11 @@ require('./connection/dbconnection')(mongoose)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -35,10 +34,10 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-const login_routes = require('./controllers/login');
-const signup_routes = require('./controllers/singUp');
-app.post('/login',login_routes.login);
-app.post('/insert',signup_routes.insert);
+const loginRoute = require('./controllers/login');
+const signUpRoute = require('./controllers/singUp');
+app.use('/login',loginRoute.login);
+app.use('/insert',signUpRoute.insert);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,30 +1,26 @@
 const passport = require('passport');
-const User = require('../models/user');
+const AuthService = require('../services/auth');
 
-async function login(req, res, next) {
+async function login(req, res) {
 	try {
-		const { username, password } = req.body;
+		const { usernameToLog, passwordToLog } = req.body;
 
+		const user = await AuthService.login(usernameToLog, passwordToLog);
 
-		console.log("About to authenticate user: ", username, " with password: ", password)
-		const { user, info } = await passport.authenticate('local')(req, res, next);
-		console.log("user after authentication: ", user);
-
-		if (info) {
-			return res.status(401).json({ success: false, message: info.message });
+		if (!user) {
+			return res.status(401).json({ success: false, message: 'Invalid credentials' });
 		}
 
-		await req.logIn(user, (err) => {
+		req.logIn(user, (err) => {
 			if (err) {
-				console.log('Error in login function in login.js: ', err);
-				next(err);
-			} else {
-				return res.status(200).json({ success: true, message: 'Login successful' });
+				return res.status(500).json({ success: false, message: 'An error occurred' });
 			}
+
+			return res.status(200).json({ success: true, message: 'Login successful' });
 		});
 	} catch (error) {
-		next(error);
+		return res.status(500).json({ success: false, message: 'An error occurred' });
 	}
 }
 
-module.exports.login = login;
+module.exports =  { login };
