@@ -1,0 +1,48 @@
+#https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
+
+name: Accessibility Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies (axe-core)
+        run: npm install axe-core
+
+      - name: Use a cache for axe-core
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+      - name: Find changed HTML files
+        run: |
+          git diff --name-only --diff-filter=d HEAD^ | grep -E '\.html?$' > changed_files.txt
+
+      - name: Run axe-core on changed HTML files (if any)
+        run: |
+          if [ -f changed_files.txt ]; then
+            html_files=( $(cat changed_files.txt) )
+            for file in "${html_files[@]}"; do
+              npx axe "$file" \
+                --reporter json \
+                --output "./axe-reports/$file.json" \
+                --level AAA  # WCAG 2.1 AAA compliance level
+            done
+          else
+            echo "No HTML files changed in this pull request. Skipping accessibility check."
+          fi
+
+      - name: Upload accessibility reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: axe-reports
+          path: ./axe-reports
