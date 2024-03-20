@@ -13,17 +13,42 @@
     <link rel="icon" href="assets/logo.jpeg">
     <title>Chat</title>
 </head>
-<body >
-    <div class="container" id="message_container" >
-        <ul id="messages" style="background-color: rosybrown"></ul>
-        <div class ="row">
-            <label for ="message_input" class="me-4">chat</label>
-            <input id ="message_input" autocomplete="off" class="w-20"/>
-            <button id="send_btn" class="btn btn-primary">Send</button>
+<body onload="init_chat()">
 
-        </div>
+<div class="container mt-5 w-100">
+    <div class="row">
+        <h1 id="welcome" class="col-md-10">Welcome!</h1>
+        <button id="logout" class="btn btn-small btn-danger col-md-2">Logout</button>
     </div>
+</div>
 
+<div class="container mt-5 w-100" id="form_container">
+    <form id="form">
+        <div class="row">
+            <label for="name">Name:</label>
+            <input id="name" name="name" type="text" class="w-75">
+        </div>
+        <div class="row">
+            <label for="surname">Surname:</label>
+            <input id="surname" name="surname" type="text" class="w-75">
+        </div>
+        <div class="row">
+            <label for="room">Join room:</label>
+            <input id="room" name="room" type="text" class="w-75">
+        </div>
+        <div class="row">
+            <button id="form-btn" class="btn btn-primary mt-4">Submit</button>
+        </div>
+    </form>
+</div>
+<div class="container mt-5 w-100" id="message_container">
+    <ul id="messages" style="background-color: bisque"></ul>
+    <div class="row">
+        <label for="messageInput" class="me-4">Chat</label>
+        <input id="messageInput" autocomplete="off" class="w-75"/>
+        <button id="messageButton" class="w-25">Send</button>
+    </div>
+</div>
 
 
 </body>

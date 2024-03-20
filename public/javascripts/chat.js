@@ -1,59 +1,79 @@
 const socket = io();
-let Username="";
-let date_snd="";
-let currentroom="";
-function init() {
-    const messages = document.getElementById('messages');
-    const message_input = document.getElementById('message_input');
-    const send_message_btn = document.getElementById('send_btn');
+let myName = "";
+let mySurname ="";
+let currentRoom ="";
 
-    send_message_btn.addEventListener('click', function () {
-        socket.emit('chat message', currentroom, message_input.value, Username);
-        message_input.value = '';
+function init_chat() {
+    const messages = document.getElementById('messages');
+    const messageInput = document.getElementById('messageInput');
+    const messageButton = document.getElementById('messageButton');
+    const formButton = document.getElementById("form-btn");
+
+    messageButton.addEventListener('click', () => {
+        socket.emit('chat message', currentRoom, messageInput.value, getMyFullName());
+        messageInput.value = '';
     });
 
-    let logout_btn = document.getElementById('logout_btn');
-    logout_btn.addEventListener('click', function (event) {
+
+    formButton.addEventListener('click', (event) => {
+        myName = document.getElementById("name").value;
+        mySurname = document.getElementById("surname").value;
+        currentRoom = document.getElementById("room").value;
+        document.getElementById("form_container").style.display = 'none';
+        document.getElementById("message_container").style.display = 'block';
+        socket.emit('create or join conversation', currentRoom, myName);
+        localStorage.setItem('my_name', myName);
+        localStorage.setItem('my_surname', mySurname);
+        localStorage.setItem('room', currentRoom);
+        document.getElementById('welcome').innerHTML= "Welcome to room "+currentRoom;
+        document.getElementById('logout').style.display='block';
+        event.preventDefault()
+    });
+
+    let logoutButton = document.getElementById('logout');
+    logoutButton.addEventListener('click', (event) => {
         localStorage.clear();
+        // or localstorage.removeItem('my_name');
         document.getElementById("form_container").style.display = 'block';
         document.getElementById("message_container").style.display = 'none';
-        socket.emit('leave room ', currentroom, Username);
-        currentroom = null;
-    });
-
-    let field = document.getElementById('message_input');
-    field.addEventListener('keypress',(event)=>{
-        if(event.key ==='Enter')
-        {
-            socket.emit('chat message ',currentroom,message_input.value , Username); //send the message
-            message_input.value = ''; //reset the message string
+        socket.emit('leave room', currentRoom, getMyFullName()); // Send a leave room event
+        currentRoom = null;
+    })
+    let field = document.getElementById('messageInput');
+    field.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            socket.emit('chat message', currentRoom, messageInput.value, getMyFullName());
+            messageInput.value = '';
             return false;
         }
     });
-    //who send the message + message text
-    socket.on('chat message ',(msg,username)=>{
-       let who = (name === Username) ? "Me" :name;
-       const li =document.getElementById('li');
-       li.textContent = who +"-"+msg;
-       messages.appendChild(li);
-    });
-    //user enter  the conversation
-    socket.on('create or join conversation',(name)=>{
-        if(name ===Username) return ;
-        const li =document.getElementById('li');
-        li.textContent = "User :" +name + "has joined the room";
+    socket.on('chat message', (msg, name) => {
+        let who = (name === getMyFullName()) ? "Me" : name;
+        const li = document.createElement('li');
+        li.textContent = who + ": " + msg;
         messages.appendChild(li);
     });
-    //get this information from browser memeory
-    Username = localStorage.getItem('my_name');
-    currentroom = localStorage.getItem('room');
-    if(Username)
-    {
-         //Take the username from Login or Signup Form
-         document.getElementById('SemailUsername').value =Username;
-         document.getElementById('emailUsername').value =Username;
+
+    socket.on('create or join conversation', (name) => {
+        if (name === myName) return;
+        const li = document.createElement('li');
+        li.textContent = name + ": " + "has joined the conversation";
+        messages.appendChild(li);
+    });
+
+
+    myName = localStorage.getItem('my_name');
+    mySurname = localStorage.getItem('my_surname');
+    currentRoom= localStorage.getItem('room');
+    if (myName) {
+        document.getElementById('name').value= myName;
+        document.getElementById('surname').value= mySurname;
     }
     document.getElementById("form_container").style.display = 'block';
-    document.getElementById("message_container").style.display='none';
+    document.getElementById("message_container").style.display = 'none';
     document.getElementById('logout').style.display='none';
+}
+
+function getMyFullName(){
+    return myName+" "+mySurname
 }
