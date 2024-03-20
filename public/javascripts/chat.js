@@ -14,22 +14,6 @@ function init_chat() {
         messageInput.value = '';
     });
 
-
-    formButton.addEventListener('click', (event) => {
-        myName = document.getElementById("name").value;
-        mySurname = document.getElementById("surname").value;
-        currentRoom = document.getElementById("room").value;
-        document.getElementById("form_container").style.display = 'none';
-        document.getElementById("message_container").style.display = 'block';
-        socket.emit('create or join conversation', currentRoom, myName);
-        localStorage.setItem('my_name', myName);
-        localStorage.setItem('my_surname', mySurname);
-        localStorage.setItem('room', currentRoom);
-        document.getElementById('welcome').innerHTML= "Welcome to room "+currentRoom;
-        document.getElementById('logout').style.display='block';
-        event.preventDefault()
-    });
-
     let logoutButton = document.getElementById('logout');
     logoutButton.addEventListener('click', (event) => {
         localStorage.clear();
@@ -73,7 +57,19 @@ function init_chat() {
     document.getElementById("message_container").style.display = 'none';
     document.getElementById('logout').style.display='none';
 }
-
+function room_generate(currentRoom) {
+    myName = document.getElementById("name").value;
+    mySurname = document.getElementById("surname").value;
+    document.getElementById("form_container").style.display = 'none';
+    document.getElementById("message_container").style.display = 'block';
+    socket.emit('create or join conversation', currentRoom, myName);
+    localStorage.setItem('my_name', myName);
+    localStorage.setItem('my_surname', mySurname);
+    localStorage.setItem('room', currentRoom);
+    document.getElementById('welcome').innerHTML= "Welcome to room "+currentRoom;
+    document.getElementById('logout').style.display='block';
+    event.preventDefault();
+}
 function getMyFullName(){
     return myName+" "+mySurname
 }
