@@ -67,15 +67,26 @@ async function onSignUpAux(event,url) {
 function onLoginAux(event, url){
 }
 
-function openModal(id) {
-    var modal = new bootstrap.Modal(document.getElementById('modalSignin'), {
+function openSignupModal(id) {
+    var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
         backdrop: false
     });
     modal.show();
     }
 
-function closeModal(id) {
-    var modal = bootstrap.Modal.getInstance(document.getElementById('modalSignin'));
+function closeSignupModal(id) {
+    var modal = bootstrap.Modal.getInstance(document.getElementById('SignupModalSignin'));
     modal.hide();
     }
 
+function openLoginModal(id) {
+        var modal = new bootstrap.Modal(document.getElementById('LoginModalSignin'), {
+            backdrop: false
+        });
+        modal.show();
+        }
+    
+function closeLoginModal(id) {
+        var modal = bootstrap.Modal.getInstance(document.getElementById('LoginModalSignin'));
+        modal.hide();
+        }
