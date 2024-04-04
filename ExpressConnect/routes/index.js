@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const importController = require('../controller/importController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,4 +9,5 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-router.post('/insert', )
+router.post('/import',importController.importData );
+
