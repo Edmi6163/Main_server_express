@@ -11,7 +11,7 @@ module.exports = (mongoose) => {
 		checkServerIdentity: false,
 		family: 4
 	}).then(() => {
-		console.log('connected to mongodb');
+		console.log('connected to mongodb for credentials');
 
 	}).catch((error) => {
 		console.log('error connecting to mongodb' + JSON.stringify(error));
