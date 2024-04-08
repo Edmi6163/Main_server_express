@@ -1,15 +1,11 @@
-const url = "mongodb://root:credential_password@localhost:27018/"
+const url = "mongodb://root:other_data_password@localhost:27019"
 
 module.exports = (mongoose) => {
 	mongoose.Promise = global.Promise;
-
 	connection = mongoose.connect(url, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-		checkServerIdentity: false,
 		family: 4
 	}).then(() => {
-		console.log('connected to mongodb for credentials');
+		console.log('connected to mongodb for data');
 	}).catch((error) => {
 		console.log('error connecting to mongodb' + JSON.stringify(error));
 	});
