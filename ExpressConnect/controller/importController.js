@@ -1,12 +1,12 @@
 const csvtojson = require('csvtojson');
-const Games = require('../models/games');
+const GamesEvents = require('../models/games');
 
-const file_path = '../Assignment_Data_2023-2024/game_events.csv'
+const file_path = '/home/francesco/Documents/Università/3_Anno/IUM&TWEB/Eleonora_Francesco_Riccardo/Assignment_Data_2023-2024/game_events.csv'
 
 const importData = async (req, res) => {
 	try {
 		const games = await  csvtojson().fromFile(file_path);
-		await  Games.insertMany(games);
+		await  GamesEvents.insertMany(games);
 		res.status(200).json({
 			status: 'success',
 			data: games,
