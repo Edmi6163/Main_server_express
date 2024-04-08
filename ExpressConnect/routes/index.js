@@ -9,5 +9,5 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-router.post('/import',importController.importData );
+router.post('/import',importController.importData);
 

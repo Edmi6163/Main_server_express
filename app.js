@@ -16,7 +16,7 @@ app = express();
 app.set('axios', axios);
 
 
-require('./connection/dbconnection')(mongoose)
+require('./connection/dbConnection')(mongoose)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
