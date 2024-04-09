@@ -1,15 +1,15 @@
 const csvtojson = require('csvtojson');
-const GamesEvents = require('../models/games');
+const GamesEvents = require('../models/gamesEvents');
 
-const file_path = '/home/francesco/Documents/Università/3_Anno/IUM&TWEB/Eleonora_Francesco_Riccardo/Assignment_Data_2023-2024/game_events.csv'
+const game_events = '/home/francesco/Documents/Università/3_Anno/IUM&TWEB/Eleonora_Francesco_Riccardo/Assignment_Data_2023-2024/game_events.csv'
 
-const importData = async (req, res) => {
+const importGamesEvents = async (req, res) => {
 	try {
-		const games = await  csvtojson().fromFile(file_path);
-		await  GamesEvents.insertMany(games);
+		const gamesEvents = await  csvtojson().fromFile(game_events);
+		await  GamesEvents.insertMany(gamesEvents);
 		res.status(200).json({
 			status: 'success',
-			data: games,
+			data: gamesEvents,
 		});
 	} catch (err) {
 		res.status(500).json({
@@ -20,4 +20,4 @@ const importData = async (req, res) => {
 
 };
 
-module.exports = {importData};
+module.exports = {importData: importGamesEvents};
