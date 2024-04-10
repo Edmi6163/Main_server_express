@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const importController = require('../controller/importController');
+const importController = require('../controller/gameEventsController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

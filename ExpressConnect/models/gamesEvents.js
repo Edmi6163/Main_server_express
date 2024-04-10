@@ -13,4 +13,4 @@ const gamesEventsSchema = new mongoose.Schema({
 	player_assist_id: Number
 });
 
-module.exports = mongoose.model('Games', gamesEventsSchema)
+module.exports = mongoose.model('GamesEvents', gamesEventsSchema)

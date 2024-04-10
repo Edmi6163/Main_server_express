@@ -20,4 +20,5 @@ const importGamesEvents = async (req, res) => {
 
 };
 
+
 module.exports = {importData: importGamesEvents};
