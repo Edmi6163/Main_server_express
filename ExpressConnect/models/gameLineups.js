@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const gameLineupsSchema = new mongoose.Schema({
 	game_lineups_id:String,

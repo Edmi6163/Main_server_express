@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const importController = require('../controller/gameEventsController');
+const importGameEventsController = require('../controller/gameEventsController');
+const importGameLineUpController = require('../controller/gameLineUpsController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,5 +10,7 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-router.post('/importGameEvents',importController.importData);
+router.post('/importGameEvents',importGameEventsController.importData);
+
+router.post('/importGameLineUp',importGameLineUpController.importData);
 

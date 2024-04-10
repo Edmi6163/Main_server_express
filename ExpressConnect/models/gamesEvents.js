@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const gamesEventsSchema = new mongoose.Schema({
 	game_event_id: String,
