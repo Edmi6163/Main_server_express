@@ -17,7 +17,7 @@ const gamesSchema = new mongoose.Schema({
 	stadium:String,
 	attendance:Number,
 	referee:String,
-	url:URL,
+	url:String,
 	home_club_formation:String,
 	away_club_formation:String,
 	home_club_name:String,
