@@ -6,7 +6,7 @@ const games_path = '/home/francesco/Documents/Università/3_Anno/IUM&TWEB/Eleono
 const importGames = async (req,res) => {
 	try {
 		const games = await csvtojson().fromFile(games_path);
-		await Games.insertMany(games_path);
+		await Games.insertMany(games);
 		res.status(200).json({
 			status: 'success',
 			data: games_path,
