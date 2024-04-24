@@ -56,4 +56,11 @@ app.use(function(err, req, res, next) {
 
 });
 
+app.use(session({
+  secret: 'ium_tweb_final_assignment',
+  resave: false,
+  saveUninitialized: true,
+  cookie: true,
+}));
+
 module.exports = app;
