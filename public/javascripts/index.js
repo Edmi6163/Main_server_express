@@ -27,7 +27,28 @@ function saveCredentials(url,data){
 
 
 }
+/**
+ * query the server for the login credentials
+ * @param event
+ * @param url
+ * @returns {Promise<void>}
+ */
+async function onLoginAux(event, url){
+    const username = document.getElementById("emailUsername").value;
+    const password = document.getElementById("password").value;
+    const userData = {
+        usernameToLog: username,
+        passwordToLog: password
+    };
 
+    try {
+        const response = await axios.post(url,userData);
+        //TODO return a visual thing that the user logged successfully
+    } catch (error) {
+        console.error(error);
+        // TODO return a visual error that the user isn't logged
+    }
+}
 
  function onLogin(event) {
      onLoginAux(event, '/login')
@@ -64,25 +85,4 @@ async function onSignUpAux(event,url) {
 
 }
 
-/**
- * query the server for the login credentials
- * @param event
- * @param url
- * @returns {Promise<void>}
- */
-async function onLoginAux(event, url){
-    const username = document.getElementById("emailUsername").value;
-    const password = document.getElementById("password").value;
-    const userData = {
-        usernameToLog: username,
-        passwordToLog: password
-    };
 
-    try {
-        const response = await axios.post(url,userData);
-        //TODO return a visual thing that the user logged successfully
-    } catch (error) {
-        console.error(error);
-        // TODO return a visual error that the user isn't logged
-    }
-}
