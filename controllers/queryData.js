@@ -1,7 +1,5 @@
-/** controller that send to query data to another server and return the response use axios
- * the query to send is generic, the other server will decide how to handle and request the correct data to mongodb
- */
-async function query(req,res){
+
+async function queryInfo(req,res){
 		try {
 				const data = req.body;
 				const response = await axios.post('http://localhost:3001/query/',data);
@@ -11,6 +9,6 @@ async function query(req,res){
 		}
 	}
 
-module.exports =  { query };
+module.exports =  { queryInfo };
 
 
