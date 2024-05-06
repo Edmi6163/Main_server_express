@@ -16,3 +16,13 @@ router.post('/importGameEvents',importGameEventsController.importData);
 router.post('/importGameLineUp',importGameLineUpController.importData);
 
 router.post('/importGames',importGamesController.importData);
+
+//when arrive the rout from another server \query, it shunt to the right mongodb query
+router.get('/query', async (req, res) => {
+  try {
+    const queryRes = await queryData.query(req,res);
+    res.json(queryRes);
+  } catch(error) {
+    res.status(500).json({error: error.message});
+  }
+});

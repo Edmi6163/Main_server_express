@@ -28,6 +28,15 @@ router.post('/login', async (req, res) => {
 });
 
 
+router.post('/query', async (req, res) => {
+	try {
+		const queryRes = await queryData.query(req,res);
+		res.json(queryRes);
+	} catch(error) {
+		res.status(500).json({error: error.message});
+	}
+});
+
 
 module.exports = router;
 
