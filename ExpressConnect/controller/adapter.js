@@ -2,7 +2,7 @@ const Games = require('../models/games')
 const GameEvents = require('../models/gamesEvents')
 const GameLineUps = require('../models/gameLineups')
 
-const dispatcher = async (req, res) => {
+const adapter = async (req, res) => {
 	const {model, ...query} = req.query;
 	let result;
 
@@ -23,4 +23,4 @@ const dispatcher = async (req, res) => {
 	res.json(result)
 };
 
-module.exports = dispatcher;
+module.exports = adapter;
