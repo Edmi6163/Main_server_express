@@ -1,6 +1,6 @@
-const GameLineUps = require('gameLineups')
-const Games = require('games')
-const GamesEvents = require('gamesEvents')
+const GameLineUps = require('../models/gameLineups')
+const Games = require('../models/games')
+const GamesEvents = require('../models/gamesEvents')
 
 async function executeQuery(query,type) {
 	try {
