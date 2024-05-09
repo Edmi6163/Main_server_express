@@ -5,7 +5,7 @@ const SqlModel = require('../models/SqlModels');
 async function query(req,res) {
 	try {
 		let result;
-		const {query,type} = req.query;
+		const {query,type} = req.body;
 		if(type === 'sql'){
 			result = await SqlModel.executeSqlQuery(query);
 		} else if(type === 'nosql'){

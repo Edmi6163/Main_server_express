@@ -4,7 +4,7 @@ const passport = require('passport');
 const axios = require('axios');
 const controllerSignUp = require("../controllers/singUp");
 const controllerLogin = require("../controllers/login");
-const queryController = require("../controllers/adapter");
+const queryAdapter = require("../controllers/adapter");
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
@@ -29,7 +29,7 @@ router.post('/login', async (req, res) => {
 });
 
 
-router.post('/query',queryController.query);
+router.post('/query',queryAdapter.query);
 
 
 
