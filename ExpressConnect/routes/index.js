@@ -20,9 +20,9 @@ router.post('/importGames',importGamesController.importData);
 
 router.post('/query', async (req,res,next) =>{
   try {
-    console.log("req.body is: ");
     await  queryController.executeQuery(req,res);
   } catch (err) {
+    console.error(err);
     res.status(500).json({success: false, error: err.message});
   }
 });
