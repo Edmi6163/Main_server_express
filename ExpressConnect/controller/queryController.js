@@ -4,11 +4,12 @@ async function executeQuery(req,res) {
 	try {
 		const {query,type} = req.body;
 
-		const res = await queryModel.executeQuery(query,type);
-		res.json({success: true, result});
+		const res = await queryModel.queryIdentifier(query,type);
+		console.log("res received is: ", res);
+		res.json({success: true, res});
 
 	} catch (error){
-		res.stat(500).json({success: false, error: error.message});
+		res.status(500).json({success: false, error: error.message});
 	}
 
 }

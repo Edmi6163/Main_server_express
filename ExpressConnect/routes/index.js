@@ -18,5 +18,12 @@ router.post('/importGameLineUp',importGameLineUpController.importData);
 
 router.post('/importGames',importGamesController.importData);
 
-router.post('/query',queryController.executeQuery);
+router.post('/query', async (req,res,next) =>{
+  try {
+    console.log("req.body is: ");
+    await  queryController.executeQuery(req,res);
+  } catch (err) {
+    res.status(500).json({success: false, error: err.message});
+  }
+});
 

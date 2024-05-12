@@ -2,7 +2,7 @@ const GameLineUps = require('../models/gameLineups')
 const Games = require('../models/games')
 const GamesEvents = require('../models/gamesEvents')
 
-async function executeQuery(query,type) {
+async function queryIdentifier(query, type) {
 	try {
 		let res;
 		switch (type){
@@ -25,4 +25,4 @@ async function executeQuery(query,type) {
 	}
 }
 
-module.exports = { executeQuery }
+module.exports = { queryIdentifier }

@@ -12,6 +12,8 @@ var usersRouter = require('./routes/users');
 const passport = require('./passport-config');
 const session = require('express-session');
 const axios = require('axios');
+const loginRoute = require('./controllers/login');
+const signUpRoute = require('./controllers/singUp');
 app = express();
 app.set('axios', axios);
 
@@ -34,8 +36,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-const loginRoute = require('./controllers/login');
-const signUpRoute = require('./controllers/singUp');
+
 app.use('/login',loginRoute.login);
 app.use('/insert',signUpRoute.insert);
 
