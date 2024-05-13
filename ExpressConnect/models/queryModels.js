@@ -5,8 +5,6 @@ const GamesEvents = require('../models/gamesEvents')
 async function queryIdentifier(req) {
 	try {
 		const { collection, query} = req.body.query;
-		console.log("collection in queryIdentifier is: ", collection);
-		console.log("query in queryIdentifier is: ", query);
 		let res;
 		switch (collection){
 			case 'games':

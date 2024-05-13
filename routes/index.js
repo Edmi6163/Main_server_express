@@ -47,6 +47,11 @@ router.route('/query').post(
 	}
 );
 
+router.post('/queryReceived', async (req, res) => {
+
+	console.log(req.body);
+
+});
 
 
 module.exports = router;
