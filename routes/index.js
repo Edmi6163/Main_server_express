@@ -36,7 +36,7 @@ router.route('/query').post(
 		if(!body.query || !body.type) {
 			res.status(400).json({success: false, error: 'Invalid request'});
 		} else {
-			axios.post('http://localhost:3001/query', {query: body, type: type})
+			axios.post('http://localhost:3001/executeQuery', {query: body, type: type})
 				.then(response => {
 					res.json(response.data);
 				})

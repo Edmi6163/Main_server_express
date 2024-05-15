@@ -18,7 +18,7 @@ router.post('/importGameLineUp',importGameLineUpController.importData);
 
 router.post('/importGames',importGamesController.importData);
 
-router.post('/query', async (req,res,next) =>{
+router.post('/executeQuery', async (req, res, next) =>{
   try {
     await  queryController.executeQuery(req,res);
   } catch (err) {

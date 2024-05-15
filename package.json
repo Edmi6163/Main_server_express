@@ -18,6 +18,7 @@
     "mongoose": "^5.11.15",
     "axios": "^1.6.5",
     "swagger": "^0.7.5",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "html": "^1.0.0"
   }
 }
