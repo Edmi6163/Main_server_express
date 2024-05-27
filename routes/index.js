@@ -47,9 +47,17 @@ router.route('/query').post(
 	}
 );
 
+
+
 router.post('/queryReceived', async (req, res) => {
 
-	console.log(req.body);
+	console.log("Query received is: ", req.body);
+
+	try {
+		res.status(200).json({success: true, message: 'Query received'});
+	} catch (error) {
+		res.status(500).json({error: error.message});
+	}
 
 });
 
