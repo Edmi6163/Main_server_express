@@ -38,13 +38,6 @@ function init_chat() {
         messages.appendChild(li);
     });
 
-    const chatNameElement = document.getElementById('welcome');
-
-    chatNameElement.addEventListener('click', () => {
-        const currentRoom = chatNameElement.textContent; 
-        room_generate(currentRoom);
-    });
-
 
     socket.on('create or join conversation', (name) => {
         if (name === myName) return;
@@ -65,7 +58,9 @@ function init_chat() {
     document.getElementById("message_container").style.display = 'none';
     document.getElementById('logout').style.display='none';
 }
-function room_generate(currentRoom) {
+function room_generate() {
+    const currentRoom = document.getElementById('room');
+    console.log("room_generate() è stata chiamata con currentRoom:", currentRoom);
     myName = document.getElementById("name").value;
     mySurname = document.getElementById("surname").value;
     document.getElementById("form_container").style.display = 'none';
@@ -74,7 +69,7 @@ function room_generate(currentRoom) {
     localStorage.setItem('my_name', myName);
     localStorage.setItem('my_surname', mySurname);
     localStorage.setItem('room', currentRoom);
-    document.getElementById('welcome').innerHTML= "Welcome to room "+currentRoom;
+    document.getElementById('welcome').innerHTML= "Welcome to room "+currentRoom.value;
     document.getElementById('logout').style.display='block';
     event.preventDefault();
 }
