@@ -69,7 +69,7 @@ function room_generate() {
     localStorage.setItem('my_name', myName);
     localStorage.setItem('my_surname', mySurname);
     localStorage.setItem('room', currentRoom);
-    document.getElementById('welcome').innerHTML= "Welcome to room "+currentRoom.value;
+    document.getElementById('welcome').innerHTML= currentRoom.value;
     document.getElementById('logout').style.display='block';
     event.preventDefault();
 }
