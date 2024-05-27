@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
 	}
 });
 
-
+/*
 router.route('/query').post(
 	function(req,res) {
 		let body = req.body;
@@ -46,7 +46,25 @@ router.route('/query').post(
 		}
 	}
 );
+*/
 
+router.route('/query').post(
+ function(req,res) {
+  let body = req.body;
+  let type = body.type; // Changed from req.type to body.type
+  if(!body.query || !type) {
+   res.status(400).json({success: false, error: 'Invalid request'});
+  } else {
+   axios.post('http://localhost:3001/executeQuery', {query: body, type: type})
+    .then(response => {
+     res.json(response.data);
+    })
+    .catch(error => {
+     res.status(500).json({success: false, error: error.message});
+    });
+  }
+ }
+);
 
 
 router.post('/queryReceived', async (req, res) => {

@@ -2,7 +2,7 @@ const NoSqlModel = require('../models/NoSqlModels');
 const SqlModel = require('../models/SqlModels');
 
 
-async function query(req,res) {
+async function executeQuery(req,res) {
 	try {
 		let result;
 		const {query,type} = req.body;
@@ -19,4 +19,4 @@ async function query(req,res) {
 	}
 }
 
-module.exports = {query};
+module.exports = {executeQuery};
