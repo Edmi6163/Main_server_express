@@ -38,6 +38,14 @@ function init_chat() {
         messages.appendChild(li);
     });
 
+    const chatNameElement = document.getElementById('welcome');
+
+    chatNameElement.addEventListener('click', () => {
+        const currentRoom = chatNameElement.textContent; 
+        room_generate(currentRoom);
+    });
+
+
     socket.on('create or join conversation', (name) => {
         if (name === myName) return;
         const li = document.createElement('li');
