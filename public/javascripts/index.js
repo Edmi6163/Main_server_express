@@ -49,15 +49,23 @@ function onSignUp(event){
  */
 async function onSignUpAux(event,url) {
     // insert username and password got from the Signup form into the mongodb database
-    const labels = document.querySelectorAll("#SignupForm .form-label");
+    /*const labels = document.querySelectorAll("#SignupForm .form-label");
 
     const data = {};
 
     labels.forEach(label => {
         const inputId = label.getAttribute('for')
         data[inputId] = document.getElementById(inputId).value;
-    });
+        alert(document.getElementById(inputId).value)
+    });*/
 
+    const mail =document.getElementById('mail').value;
+    const password= document.getElementById('password').value;
+
+    let data = {};
+    data["nickname"] = mail;
+    data["password"]= password;
+    //alert(JSON.stringify(data));
 
     saveCredentials(url,data);
     // event.preventDefault();
