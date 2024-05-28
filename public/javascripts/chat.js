@@ -81,7 +81,7 @@ function getMyFullName(){
 function search() {
     let elems = document.querySelectorAll(".Cname");
     let searchValue = document.getElementById("search").value;
-    let anyMatch = false; // Verifica se c'è almeno un match
+    let anyMatch = false;
 
     for (let i = 0; i < elems.length; i++) {
       if (searchValue && elems[i].innerText.toLowerCase().includes(searchValue)) {
@@ -93,7 +93,7 @@ function search() {
       }
     }
     if (!searchValue) {
-        // Se non c'è nessun testo nella barra di ricerca, mostra tutti gli elementi
+        
         for (let i = 0; i < elems.length; i++) {
             elems[i].style.display = 'block';
         }
