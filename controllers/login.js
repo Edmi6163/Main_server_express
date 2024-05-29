@@ -1,36 +1,32 @@
-var passport = require('passport');
-var router = require('express')
-var User = require('../models/user');
-var LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+const AuthService = require('../services/auth');
 
-const users = [
-	{id: 1, username: 'admin', password: 'admin'},
-	{id: 2, username: 'guest', password: 'guest'}
-]
+async function login(req, res) {
+	try {
+		const { usernameToLog, passwordToLog } = req.body;
 
-passport.serializeUser((user, done) => {
-	done(null, user.id);
-});
+		const user = await AuthService.login(usernameToLog, passwordToLog);
 
-passport.deserializeUser(function(id, done) {
-	User.findby(id, function(err, user) {
-		done(err, user);
-	});
-});
+		if (!user) {
+			return res.status(401).json({ success: false, message: 'Invalid credentials' });
+		}
 
-passport.use(new LocalStrategy(
-	function (username, password, done) {
-		User.findOne({username: username}, function(err, user) {
-			if (err) {return done(err);}
-			if (!user) {
-				return done(null, false, {message: 'Incorrect username.'});
+		req.logIn(user, (err) => {
+			if (err) {
+				return res.status(500).json({ success: false, message: 'An error occurred' });
 			}
-			if (!user.validPassword(password)) {
-				return done(null, false, {message: 'Incorrect password.'});
-			}
-			return done(null, user);
+
+			return {
+				success:true,
+				message:'Login successful'
+			};
 		});
+	} catch (error) {
+		return {
+			success: false,
+			message: err.message
+		};
 	}
-));
+}
 
-module.exports = router;
+module.exports =  { login };

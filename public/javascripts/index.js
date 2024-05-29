@@ -27,15 +27,37 @@ function saveCredentials(url,data){
 
 
 }
-
 /**
- * called when the submit button is pressed
- * @param event the submission event
+ * query the server for the login credentials
+ * @param event
+ * @param url
+ * @returns {Promise<void>}
  */
-function onLogin(event) {
-    onLoginAux(event, '/login')
+async function onLoginAux(event, url){
+    const username = document.getElementById("emailUsername").value;
+    const password = document.getElementById("password").value;
+    const userData = {
+        usernameToLog: username,
+        passwordToLog: password
+    };
+
+    try {
+        const response = await axios.post(url,userData);
+        //TODO return a visual thing that the user logged successfully
+    } catch (error) {
+        console.error(error);
+        // TODO return a visual error that the user isn't logged
+    }
 }
 
+ function onLogin(event) {
+     onLoginAux(event, '/login')
+}
+
+/**
+ * called when the Sign-up  button is pressed
+ * @param event the submission event
+ */
 function onSignUp(event){
     onSignUpAux(event,'/insert')
 }
@@ -48,7 +70,6 @@ function onSignUp(event){
  * @returns {Promise<void>}
  */
 async function onSignUpAux(event,url) {
-    // insert username and password got from the Signup form into the mongodb database
     const labels = document.querySelectorAll("#SignupForm .form-label");
 
     const data = {};
