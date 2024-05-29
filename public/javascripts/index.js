@@ -71,6 +71,14 @@ async function onSignUpAux(event,url) {
 }
 
 function onLoginAux(event, url){
+
+    const mail =document.getElementById('mailLog').value;
+    const password= document.getElementById('passwordLog').value;
+
+    let data = {};
+    data["usernameToLog"] = mailLog;
+    data["passwordToLog"] = passwordLog;
+    saveCredentials(url,data);
 }
 
 function openSignupModal(id) {
