@@ -19,67 +19,8 @@ router.post('/insert', async (req, res) => {
 	}
 });
 
-router.post('/login', async (req, res) => {
-	try {
-		const loginRes = await controllerLogin.login(req,res);
-		res.json(loginRes);
-	} catch (error) {
-		res.status(500).json({error: error.message});
-	}
-});
-
-/*
-router.route('/query').post(
-	function(req,res) {
-		let body = req.body;
-		let type = req.type;
-		if(!body.query || !body.type) {
-			res.status(400).json({success: false, error: 'Invalid request'});
-		} else {
-			axios.post('http://localhost:3001/executeQuery', {query: body, type: type})
-				.then(response => {
-					res.json(response.data);
-				})
-				.catch(error => {
-					res.status(500).json({success: false, error: error.message});
-				});
-		}
-	}
-);
-*/
-
-router.route('/query').post(
- function(req,res) {
-  let body = req.body;
-  let type = body.type; // Changed from req.type to body.type
-  if(!body.query || !type) {
-   res.status(400).json({success: false, error: 'Invalid request'});
-  } else {
-   axios.post('http://localhost:3001/executeQuery', {query: body, type: type})
-    .then(response => {
-     res.json(response.data);
-    })
-    .catch(error => {
-     res.status(500).json({success: false, error: error.message});
-    });
-  }
- }
-);
 
 
-router.post('/queryReceived', async (req, res) => {
-
-	console.log("Query received is: ", req.body);
-
-	try {
-		res.status(200).json({success: true, message: 'Query received'});
-	} catch (error) {
-		res.status(500).json({error: error.message});
-	}
-
-});
-
-
-module.exports = router;
+  module.exports = router;
 
 

@@ -85,4 +85,18 @@ async function onSignUpAux(event,url) {
 
 }
 
+function onLoginAux(event, url){
+}
+
+function openModal(id) {
+    var modal = new bootstrap.Modal(document.getElementById('modalSignin'), {
+        backdrop: false
+    });
+    modal.show();
+    }
+
+function closeModal(id) {
+    var modal = bootstrap.Modal.getInstance(document.getElementById('modalSignin'));
+    modal.hide();
+    }
 
