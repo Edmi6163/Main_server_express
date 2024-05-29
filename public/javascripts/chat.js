@@ -3,15 +3,20 @@ let myName = "";
 let mySurname ="";
 let currentRoom ="";
 
+
 function init_chat() {
     const messages = document.getElementById('messages');
-    const messageInput = document.getElementById('messageInput');
-    const messageButton = document.getElementById('messageButton');
-    const formButton = document.getElementById("form-btn");
 
+
+    const messageButton = document.getElementById('messageButton');
     messageButton.addEventListener('click', () => {
-        socket.emit('chat message', currentRoom, messageInput.value, getMyFullName());
-        messageInput.value = '';
+        /*let messageText = document.getElementById("messageInput").value;
+        let messageList = document.getElementById("messages");
+        let newMessage = document.createElement("li");
+        newMessage.textContent = messageText;
+        messageList.appendChild(newMessage);*/
+        document.getElementById("messageInput").value = "";
+        sendMessage();
     });
 
     let logoutButton = document.getElementById('logout');
@@ -20,15 +25,15 @@ function init_chat() {
         // or localstorage.removeItem('my_name');
         document.getElementById("form_container").style.display = 'block';
         document.getElementById("message_container").style.display = 'none';
+        document.getElementById("chat_container").style.display = 'none';
         socket.emit('leave room', currentRoom, getMyFullName()); // Send a leave room event
         currentRoom = null;
     })
     let field = document.getElementById('messageInput');
     field.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
-            socket.emit('chat message', currentRoom, messageInput.value, getMyFullName());
-            messageInput.value = '';
-            return false;
+            sendMessage();
+            event.preventDefault();
         }
     });
     socket.on('chat message', (msg, name) => {
@@ -49,32 +54,42 @@ function init_chat() {
 
     myName = localStorage.getItem('my_name');
     mySurname = localStorage.getItem('my_surname');
-    currentRoom= localStorage.getItem('room');
+    currentRoom = localStorage.getItem('room');
     if (myName) {
-        document.getElementById('name').value= myName;
-        document.getElementById('surname').value= mySurname;
+        document.getElementById('name').value = myName;
+        document.getElementById('surname').value = mySurname;
+        document.getElementById('room').value = currentRoom;
     }
-    document.getElementById("form_container").style.display = 'block';
-    document.getElementById("message_container").style.display = 'none';
-    document.getElementById('logout').style.display='none';
+        document.getElementById("form_container").style.display = 'block';
+        document.getElementById("message_container").style.display = 'none';
+        document.getElementById("chat_container").style.display = 'none';
+        document.getElementById('logout').style.display = 'none';
 }
+
 function room_generate() {
-    const currentRoom = document.getElementById('room');
+    event.preventDefault();
+    let currentRoom = document.getElementById('room');
     console.log("room_generate() è stata chiamata con currentRoom:", currentRoom);
     myName = document.getElementById("name").value;
     mySurname = document.getElementById("surname").value;
     document.getElementById("form_container").style.display = 'none';
     document.getElementById("message_container").style.display = 'block';
+    document.getElementById("chat_container").style.display = 'block';
     socket.emit('create or join conversation', currentRoom, myName);
     localStorage.setItem('my_name', myName);
     localStorage.setItem('my_surname', mySurname);
     localStorage.setItem('room', currentRoom);
     document.getElementById('welcome').innerHTML= currentRoom.value;
     document.getElementById('logout').style.display='block';
-    event.preventDefault();
 }
 function getMyFullName(){
-    return myName+" "+mySurname
+    return myName+" "+mySurname;
+}
+
+function sendMessage() {
+    const messageInput = document.getElementById('messageInput');
+    socket.emit('chat message', currentRoom, messageInput.value, getMyFullName());
+    messageInput.value = '';
 }
 
 
