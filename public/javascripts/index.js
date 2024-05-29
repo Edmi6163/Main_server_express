@@ -63,12 +63,10 @@ async function onSignUpAux(event,url) {
     const password= document.getElementById('password').value;
 
     let data = {};
-    data["nickname"] = mail;
-    data["password"]= password;
-    //alert(JSON.stringify(data));
-
+    data["SemailUsername"] = mail;
+    data["Spassword"]= password;
     saveCredentials(url,data);
-    // event.preventDefault();
+    event.preventDefault();
 
 }
 
