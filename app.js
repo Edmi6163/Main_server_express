@@ -14,6 +14,9 @@ const session = require('express-session');
 const axios = require('axios');
 const loginRoute = require('./controllers/login');
 const signUpRoute = require('./controllers/singUp');
+const swaggerUi = require('swagger-ui-express');
+const openApiDocumentation = require('./swagger/swaggerDocumentation.json');
+
 app = express();
 app.set('axios', axios);
 
@@ -35,6 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
 
 app.use('/login',loginRoute.login);
