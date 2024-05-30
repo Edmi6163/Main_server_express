@@ -6,10 +6,10 @@ async function executeQuery(req,res) {
 		const res = await queryModel.queryIdentifier(req);
 		console.log("res in query controller is: ", res)
 		const send = await axios.post('http://localhost:3000/queryReceived', {data: res});
-		return ({success: true, data: send.data});
+		res.json({success: true, send});
 
 	} catch (error){
-		throw  error;
+		res.status(500).json({success: false, error: error.message});
 	}
 
 }
