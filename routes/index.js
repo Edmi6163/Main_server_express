@@ -20,6 +20,7 @@ router.post('/insert', async (req, res) => {
 	}
 });
 
+//TODO a good comment of this route using swagger style
 router.post('/login', async (req, res) => {
 	try {
 		const loginRes = await controllerLogin.login(req,res);
@@ -49,6 +50,7 @@ router.route('/query').post(
 );
 */
 
+//TODO a good comment of this route using swagger style
 router.route('/query').post(
  function(req,res) {
   let body = req.body;
@@ -67,6 +69,7 @@ router.route('/query').post(
  }
 );
 
+//TODO a good comment of this route using swagger style
 
 router.post('/queryReceived', async (req, res) => {
 
@@ -80,8 +83,11 @@ router.post('/queryReceived', async (req, res) => {
 
 });
 
+//TODO a good comment of this route using swagger style
+/**
+ *
+ */
 router.post('/askJava', async (req,res) => {
-	console.log("Query received is: ", req.body);
 	try {
 		const {table, endpoint, params} = req.body;
 		if (!table || !endpoint || !params) {
