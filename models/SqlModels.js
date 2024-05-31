@@ -1,16 +1,20 @@
 const axios = require('axios')
 const https = require('https')
 
-const SPRING_BOOT_URL = 'http://localhost:8081'
 
 
-async function executeSqlQuery(query) {
+async function executeSqlQuery(table, endpoint,params) {
 	try {
-		const res = await axios.post(SPRING_BOOT_URL, {params: {query}});
+		const queryParams = new URLSearchParams(params);
+		const url = `http://localhost:8082/${table}/${endpoint}?${queryParams}`;
+		const res = await axios.post(url);
+		console.log("received response: ", res.data);
 		return res.data;
 	} catch (error) {
 		throw error;
 	}
+
+
 }
 
 module.exports = { executeSqlQuery }

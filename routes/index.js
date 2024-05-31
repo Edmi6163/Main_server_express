@@ -5,6 +5,7 @@ const axios = require('axios');
 const controllerSignUp = require("../controllers/singUp");
 const controllerLogin = require("../controllers/login");
 const queryAdapter = require("../controllers/adapter");
+const sqlQuery = require('../models/SqlModels');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
@@ -82,6 +83,21 @@ router.post('/queryReceived', async (req, res) => {
 	}
 
 });
+
+router.post('/askJava', async (req,res) => {
+	console.log("Query received is: ", req.body);
+	try {
+		const {table, endpoint, params} = req.body;
+		if (!table || !endpoint || !params) {
+			res.status(400).json({success: false, error: 'Invalid request'});
+		}
+		const result = await sqlQuery.executeSqlQuery(table, endpoint, params);
+		res.json(result);
+	} catch (error) {
+		res.status(500).json({success: false, error: error.message});
+	}
+})
+
 
 
 module.exports = router;
