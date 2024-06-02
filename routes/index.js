@@ -100,6 +100,35 @@ router.post('/askJava', async (req,res) => {
 	}
 })
 
+router.post('/playersJupyter', async (req,res) => {
+	try {
+		const result = await axios.post('http://localhost:5000/players');
+		res.json(result.data);
+	} catch (error) {
+		res.status(500).json({success: false, error: error.message});
+	}
+})
+
+
+router.post('/clubsJupyter', async (req,res) => {
+	try {
+		const result = await axios.post('http://localhost:5000/clubs');
+		res.json(result.data);
+	} catch (error) {
+		res.status(500).json({success: false, error: error.message});
+	}
+})
+
+router.post('/scoreJupyter', async (req,res) => {
+	try {
+		const result = await axios.post('http://localhost:5000/score');
+		res.json(result.data);
+	} catch (error) {
+		res.status(500).json({success: false, error: error.message});
+	}
+})
+
+
 
 
 module.exports = router;
