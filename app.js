@@ -1,4 +1,4 @@
-var createError = require('http-errors');
+const createError = require('http-errors');
 const express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -58,8 +58,8 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-
 });
+
 
 app.use(session({
   secret: 'ium_tweb_final_assignment',
