@@ -3,6 +3,7 @@ var router = express.Router();
 const importGameEventsController = require('../controller/gameEventsController');
 const importGameLineUpController = require('../controller/gameLineUpsController');
 const importGamesController = require('../controller/gamesController');
+const importClubsController= require('../controller/clubsController');
 const queryController = require('../controller/queryController')
 
 /* GET home page. */
@@ -17,6 +18,8 @@ router.post('/importGameEvents',importGameEventsController.importData);
 router.post('/importGameLineUp',importGameLineUpController.importData);
 
 router.post('/importGames',importGamesController.importData);
+
+router.post('/importClubs',importClubsController.importData);
 
 router.post('/executeQuery', async (req, res, next) =>{
   try {
