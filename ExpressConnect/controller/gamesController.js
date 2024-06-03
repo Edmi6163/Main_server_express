@@ -1,7 +1,7 @@
 const csvtojson = require('csvtojson')
 const Games = require('../models/games')
 
-const games_path = '/home/francesco/Documents/Università/3_Anno/IUM&TWEB/Eleonora_Francesco_Riccardo/Assignment_Data_2023-2024/games.csv'
+const games_path = '/Users/eleonoravaleri/Downloads/Assignment\ Data\ 2023-2024/games.csv'
 
 const importGames = async (req,res) => {
 	try {
