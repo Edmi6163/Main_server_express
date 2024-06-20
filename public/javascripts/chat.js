@@ -15,8 +15,8 @@ function init_chat() {
     let logoutButton = document.getElementById('logout');
     logoutButton.addEventListener('click', (event) => {
         localStorage.clear();
-        document.getElementById("form_container").style.display = 'block';
-        document.getElementById("message_container").style.display = 'none';
+        document.getElementById('form_container').style.display = 'block';
+        document.getElementById('message_container').style.display = 'none';
         socket.emit('leave room', currentRoom, getMyFullName()); // Send a leave room event
         currentRoom = null;
     });
