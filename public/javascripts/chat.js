@@ -15,7 +15,7 @@ function init_chat() {
         let newMessage = document.createElement("li");
         newMessage.textContent = messageText;
         messageList.appendChild(newMessage);*/
-        document.getElementById("messageInput").value = "";
+        document.getElementById('messageInput').value = "";
         sendMessage();
     });
 
@@ -81,7 +81,9 @@ function room_generate() {
     mySurname = document.getElementById('surname').value;
     document.getElementById('form_container').style.display = 'none';
     document.getElementById('message_container').style.display = 'block';
+    roomElement = document.getElementById('room');
     //document.getElementById("chat_container").style.display = 'block';
+    currentRoom =roomElement.value;
     socket.emit('create or join conversation', currentRoom, myName);
     localStorage.setItem('my_name', myName);
     localStorage.setItem('my_surname', mySurname);
@@ -97,13 +99,14 @@ function getMyFullName(){
 function sendMessage() {
     const messageInput = document.getElementById('messageInput');
     socket.emit('chat message', currentRoom, messageInput.value, getMyFullName());
+   console.log("Message is :" , messageInput.value,"from", getMyFullName());
     messageInput.value = '';
 }
 
 
 function search() {
     let elems = document.querySelectorAll(".Cname");
-    let searchValue = document.getElementById("search").value;
+    let searchValue = document.getElementById('search').value;
     let anyMatch = false;
 
     for (let i = 0; i < elems.length; i++) {

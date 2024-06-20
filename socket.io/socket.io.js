@@ -3,7 +3,7 @@ module.exports = (io) => {
         console.log('A user connected');
 
         socket.on('chat message', (room, msg, name) => {
-            if(!name || !room)
+            if(!name)
             {
                 console.log("name or room is not defined")
                 return;
