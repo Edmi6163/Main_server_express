@@ -67,8 +67,8 @@ function init_chat() {
         document.getElementById('surname').value = mySurname;
         document.getElementById('room').value = currentRoom;
     }
-        document.getElementById("form_container").style.display = 'block';
-        document.getElementById("message_container").style.display = 'none';
+        document.getElementById('form_container').style.display = 'block';
+        document.getElementById('message_container').style.display = 'none';
         //document.getElementById('chat_container').style.display = 'none';
         document.getElementById('logout').style.display = 'none';
 }
@@ -77,10 +77,10 @@ function room_generate() {
     event.preventDefault();
     let currentRoom = document.getElementById('room');
     console.log("room_generate() è stata chiamata con currentRoom:", currentRoom);
-    myName = document.getElementById("name").value;
-    mySurname = document.getElementById("surname").value;
-    document.getElementById("form_container").style.display = 'none';
-   // document.getElementById("message_container").style.display = 'none';
+    myName = document.getElementById('name').value;
+    mySurname = document.getElementById('surname').value;
+    document.getElementById('form_container').style.display = 'none';
+    document.getElementById('message_container').style.display = 'block';
     //document.getElementById("chat_container").style.display = 'block';
     socket.emit('create or join conversation', currentRoom, myName);
     localStorage.setItem('my_name', myName);
