@@ -25,7 +25,7 @@ function init_chat() {
         // or localstorage.removeItem('my_name');
         document.getElementById("form_container").style.display = 'block';
         document.getElementById("message_container").style.display = 'none';
-        document.getElementById("chat_container").style.display = 'none';
+       // document.getElementById("chat_container").style.display = 'none';
         socket.emit('leave room', currentRoom, getMyFullName()); // Send a leave room event
         currentRoom = null;
     })
@@ -50,6 +50,13 @@ function init_chat() {
         li.textContent = name + ": " + "has joined the conversation";
         messages.appendChild(li);
     });
+    socket.on('disconnect', (name) => {
+        if (name === myName) return;
+        const li = document.createElement('li');
+        li.textContent = name + ": " + "has left the conversation";
+        console.log("name: ", name + " has left the conversation");
+        messages.appendChild(li);
+    });
 
 
     myName = localStorage.getItem('my_name');
@@ -62,7 +69,7 @@ function init_chat() {
     }
         document.getElementById("form_container").style.display = 'block';
         document.getElementById("message_container").style.display = 'none';
-        document.getElementById("chat_container").style.display = 'none';
+        //document.getElementById('chat_container').style.display = 'none';
         document.getElementById('logout').style.display = 'none';
 }
 
@@ -73,8 +80,8 @@ function room_generate() {
     myName = document.getElementById("name").value;
     mySurname = document.getElementById("surname").value;
     document.getElementById("form_container").style.display = 'none';
-    document.getElementById("message_container").style.display = 'block';
-    document.getElementById("chat_container").style.display = 'block';
+   // document.getElementById("message_container").style.display = 'none';
+    //document.getElementById("chat_container").style.display = 'block';
     socket.emit('create or join conversation', currentRoom, myName);
     localStorage.setItem('my_name', myName);
     localStorage.setItem('my_surname', mySurname);
@@ -85,6 +92,7 @@ function room_generate() {
 function getMyFullName(){
     return myName+" "+mySurname;
 }
+
 
 function sendMessage() {
     const messageInput = document.getElementById('messageInput');
