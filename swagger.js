@@ -1,5 +1,5 @@
 /**
- * following this docs:
+ * following these docs:
  * https://swagger-autogen.github.io/docs/getting-started/quick-start
  */
 

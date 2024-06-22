@@ -9,6 +9,10 @@
     {
       "url": "http://localhost:3000/",
       "description": "Main server express"
+    },
+    {
+      "url": "http://localhost:3001/",
+      "description": "Express server to connect to mongodb that stores data"
     }
   ],
   "paths": {
