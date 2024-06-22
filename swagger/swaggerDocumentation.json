@@ -18,10 +18,10 @@
   "paths": {
     "/insert": {
       "post": {
-        "description": "",
+        "description": "Create a new user",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK, new user saved in database"
           },
           "500": {
             "description": "Internal Server Error"
@@ -31,10 +31,10 @@
     },
     "/login": {
       "post": {
-        "description": "",
+        "description": "Route to login a user",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK, user logged in"
           },
           "401": {
             "description": "Unauthorized"
