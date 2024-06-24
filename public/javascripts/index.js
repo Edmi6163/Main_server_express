@@ -82,6 +82,47 @@ async function onSignUpAux(event,url) {
 
     saveCredentials(url,data);
     // event.preventDefault();
+}
+
+
+
+function loadDataAux(event, url) {
+    const data = {
+        "collection": "games",
+        "query": {
+            "away_club_name": "Olympique de Marseille",
+            "competition_type": "domestic_league",
+            "home_club_goals": 4
+        },
+        "type": "nosql"
+    }
+    axios.post(url,data)
+      .then(response => {
+          console.log(response.data);
+          const div = document.getElementById('dataRequest');
+          div.innerText = JSON.stringify(response.data);
+      })
+      .catch(error => {
+          console.error(error);
+      });
+    event.preventDefault();
+
+}
+/**
+ * ask for data to routes /data and the json returned will be displayed in div with id dataRequest, use this json as body for the request:
+ * {
+ *     "collection": "games",
+ *     "query": {
+ *         "away_club_name": "Olympique de Marseille",
+ *         "competition_type": "domestic_league",
+ *         "home_club_goals": 4
+ *     },
+ *     "type": "nosql"
+ * }
+ */
+
+async function loadData(event){
+    loadDataAux(event,'/query')
 
 }
 

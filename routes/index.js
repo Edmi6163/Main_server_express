@@ -76,7 +76,7 @@ router.post('/queryReceived', async (req, res) => {
 	console.log("Query received is: ", req.body);
 
 	try {
-		res.status(200).json({success: true, message: 'Query received'});
+		res.status(200).json(req.body);
 	} catch (error) {
 		res.status(500).json({error: error.message});
 	}
