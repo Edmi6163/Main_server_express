@@ -126,4 +126,26 @@ async function loadData(event){
 
 }
 
+function openSignupModal(id) {
+    var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
+        backdrop: false
+    });
+    modal.show();
+}
 
+function closeSignupModal(id) {
+    var modal = bootstrap.Modal.getInstance(document.getElementById('SignupModalSignin'));
+    modal.hide();
+}
+
+function openLoginModal(id) {
+    var modal = new bootstrap.Modal(document.getElementById('LoginModalSignin'), {
+        backdrop: false
+    });
+    modal.show();
+}
+
+function closeLoginModal(id) {
+    var modal = bootstrap.Modal.getInstance(document.getElementById('LoginModalSignin'));
+    modal.hide();
+}
