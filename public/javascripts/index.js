@@ -128,7 +128,7 @@ async function loadData(event){
 
 function openSignupModal(id) {
     var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
-        backdrop: false
+        backdrop: true
     });
     modal.show();
 }
@@ -140,7 +140,7 @@ function closeSignupModal(id) {
 
 function openLoginModal(id) {
     var modal = new bootstrap.Modal(document.getElementById('LoginModalSignin'), {
-        backdrop: false
+        backdrop: true
     });
     modal.show();
 }
