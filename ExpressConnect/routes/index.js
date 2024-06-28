@@ -4,6 +4,7 @@ const importGameEventsController = require('../controller/gameEventsController')
 const importGameLineUpController = require('../controller/gameLineUpsController');
 const importGamesController = require('../controller/gamesController');
 const queryController = require('../controller/queryController')
+const scoreBoardController = require('../controller/scoreboardsController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,3 +28,15 @@ router.post('/executeQuery', async (req, res, next) =>{
     res.status(500).json({success: false, error: err.message});
   }
 });
+
+
+
+router.get('/scoreBoard', async (req,res) => {
+  try {
+    const result = await scoreBoardController.calculateScore();
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({success: false, error: err.message});
+  }
+}
