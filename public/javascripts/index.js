@@ -158,18 +158,38 @@ function closeLoginModal(event) {
         modal.hide();
     }
 }
-
 async function loadScoreboards() {
     try {
-        const response = await axios.get('/getScoreBoard');
-        const data = response.data;
+        console.log('Fetching scoreboards...');
+        const response = await axios.get('/getScoreBoard'); // Cambiato da POST a GET
+        console.log('Data fetched:', response.data);
+
+        const { success, data } = response.data;
+        if (!success) {
+            console.error('Failed to fetch scoreboards');
+            return;
+        }
+
+        const leagueData = data;
+        console.log('Parsed data:', leagueData);
 
         const carouselInner = document.getElementById('carousel-inner');
+        if (!carouselInner) {
+            console.error('Element with ID "carousel-inner" not found.');
+            return;
+        }
+
         carouselInner.innerHTML = '';
 
-        Object.keys(data).forEach((league, leagueIndex) => {
-            const leagueData = data[league];
-
+        Object.keys(leagueData).forEach((league, leagueIndex) => {
+            const leagueTeams = leagueData[league];
+            console.log(`League: ${league}, Data:`, leagueTeams);
+            /*
+            if (!Array.isArray(leagueTeams)) {
+                console.error(`Data for league ${league} is not an array:`, leagueTeams);
+                return;
+            }
+    */
             const carouselItem = document.createElement('div');
             carouselItem.className = `carousel-item ${leagueIndex === 0 ? 'active' : ''}`;
 
@@ -178,21 +198,21 @@ async function loadScoreboards() {
 
             const thead = document.createElement('thead');
             thead.innerHTML = `
-        <tr>
-          <th>Position</th>
-          <th>Team</th>
-          <th>Played</th>
-          <th>Won</th>
-          <th>Drawn</th>
-          <th>Lost</th>
-          <th>Points</th>
-        </tr>
-      `;
+                <tr>
+                  <th>Position</th>
+                  <th>Team</th>
+                  <th>Played</th>
+                  <th>Won</th>
+                  <th>Drawn</th>
+                  <th>Lost</th>
+                  <th>Points</th>
+                </tr>
+            `;
             table.appendChild(thead);
 
             const tbody = document.createElement('tbody');
 
-            leagueData.forEach((team, index) => {
+            leagueTeams.forEach((team, index) => {
                 const row = document.createElement('tr');
 
                 const positionCell = document.createElement('td');

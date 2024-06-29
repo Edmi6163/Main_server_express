@@ -1,3 +1,4 @@
+const axios = require('axios');
 var express = require('express');
 var router = express.Router();
 const importGameEventsController = require('../controller/gameEventsController');
@@ -35,7 +36,7 @@ router.get('/scoreBoard', async (req,res) => {
     const result = await scoreBoardController.calculateScore();
     console.log(result);
     //write result in to route /showScoreBoard so it receive the scoreboard and it will show it in front end
-    await axios.post('http://localhost:3000/showScoreBoard', {data: result});
+    //await axios.post('http://localhost:3000/showScoreBoard', {data: result});
     res.json(result);
   } catch (err) {
     console.error(err);

@@ -103,9 +103,12 @@ router.post('/askJava', async (req,res) => {
 
 router.get('/getScoreBoard', async (req,res) => {
 	try {
+
 		const response = await axios.get('http://localhost:3001/scoreBoard');
-		res.json(response);
+		console.log('Data fetched:', response.data);
+		res.json(response.data);
 	} catch(err) {
+		console.error(err);
 		res.status(500).send(err.message);
 	}
 });
