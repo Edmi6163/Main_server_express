@@ -111,3 +111,8 @@ function search() {
         }
     }
 }
+function setChannel(text)
+{
+    const box = document.getElementById('room');
+    box.value = text;
+}
