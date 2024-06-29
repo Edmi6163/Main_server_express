@@ -11,7 +11,7 @@
     <link rel="icon" href="assets/logo.jpeg">
 
 </head>
-<body  onload="loadScoreboard()">
+<body  onload="init()">
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -120,8 +120,8 @@
                 <ul class="dropdown-menu text-small shadow bg-white rounded p-2 ">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item"  onclick="openSignupModal()">Sign up</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="openLoginModal()">Login</a></li>
+                    <li><a id="OpenSignupModal" class="dropdown-item" onclick="openSignupModal()">Sign up</a></li>
+                    <li><a id="OpenLoginModal" class="dropdown-item" onclick="openLoginModal()">Login</a></li>
                     <li><a class="dropdown-item" href="#">Sign out</a></li>
                 </ul>
             </div>
@@ -164,22 +164,23 @@
                 </ul>
 -->
 
-<!--        create a table with bootstrap that displays the scoreboard of the same football league got from database in json -->
 
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators" id="carousel-indicators"></ol>
-            <div class="carousel-inner" id="carousel-inner"></div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+        <div class="container">
+            <h1 class="text-center my-4">Football League Scoreboard</h1>
+            <div id="scoreboardCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" id="carousel-inner">
+
+                </div>
+                <a class="carousel-control-prev" href="#scoreboardCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#scoreboardCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
-
-
 </div>
 </div>
             <div class=" justify-content-center" id="container-signup-moldal">
@@ -188,7 +189,7 @@
                         <div class="modal-content rounded-4 shadow">
                             <div class="modal-header p-5 pb-4 border-bottom-0 border border-primary">
                                 <h1 class="fw-bold mb-0 fs-2">Sign up</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeSignupModal()"></button>
+                                <button id="CloseSignupModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeSignupModal()"></button>
                             </div>
 
 
@@ -218,7 +219,7 @@
                         <div class="modal-content rounded-4 shadow">
                             <div class="modal-header p-5 pb-4 border-bottom-0">
                                 <h1 class="fw-bold mb-0 fs-2">Login</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeLoginModal()"></button>
+                                <button id="CloseLoginModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeLoginModal()"></button>
                             </div>
 
                             <div class="modal-body p-5 pt-0">
@@ -243,7 +244,7 @@
 </div>
 
 <div>
-    <button class="btn btn-primary" id="dataRequest" onclick="loadData()">Click me to get information</button>
+    <button class="btn btn-primary" id="DataBtn" >Click me to get information</button>
 </div>
 
 <div class="container border border-primary">

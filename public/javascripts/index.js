@@ -1,4 +1,11 @@
+import axios from "axios";
+
 function init(){
+    try {
+        loadScoreboards();
+    } catch (e) {
+        console.error(e);
+    }
     try {
         const loginBtn = document.getElementById('LoginBtn');
         loginBtn.onclick = onLogin;
@@ -12,6 +19,37 @@ function init(){
     } catch(e) {
         console.error(e);
     }
+    try {
+        const dataBtn = document.getElementById('DataBtn');
+        dataBtn.onclick = loadData;
+    } catch (e) {
+        console.error(e);
+    }
+    try {
+        const signupBtn = document.getElementById('OpenSignupModal');
+        signupBtn.onclick = openSignupModal;
+    } catch (e) {
+        console.error(e);
+    }
+    try {
+        const closeSignupBtn = document.getElementById('CloseSignupModal');
+        closeSignupBtn.onclick = closeSignupModal;
+    } catch (e) {
+        console.error(e);
+    }
+    try {
+        const loginBtn = document.getElementById('OpenLoginModal');
+        loginBtn.onclick = openLoginModal;
+    } catch (e) {
+        console.error(e);
+    }
+    try {
+        const closeLoginBtn = document.getElementById('CloseLoginModal');
+        closeLoginBtn.onclick = closeLoginModal;
+    } catch (e) {
+        console.error(e);
+    }
+
 }
 
 
@@ -123,29 +161,105 @@ function loadDataAux(event, url) {
 
 async function loadData(event){
     loadDataAux(event,'/query')
-
 }
 
-function openSignupModal(id) {
-    var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
+function openSignupModal() {
+    var modal = new bootstrap.Modal(document.getElementById('OpenSignupModal'), {
         backdrop: true
     });
     modal.show();
 }
 
-function closeSignupModal(id) {
-    var modal = bootstrap.Modal.getInstance(document.getElementById('SignupModalSignin'));
+function closeSignupModal() {
+    var modal = bootstrap.Modal.getInstance(document.getElementById('OpenSignupModal'));
     modal.hide();
 }
 
 function openLoginModal(id) {
-    var modal = new bootstrap.Modal(document.getElementById('LoginModalSignin'), {
+    var modal = new bootstrap.Modal(document.getElementById('CloseLoginModal'), {
         backdrop: true
     });
     modal.show();
 }
 
-function closeLoginModal(id) {
-    var modal = bootstrap.Modal.getInstance(document.getElementById('LoginModalSignin'));
+function closeLoginModal() {
+    var modal = bootstrap.Modal.getInstance(document.getElementById('CloseLoginModal'));
     modal.hide();
+}
+
+
+async function loadScoreboards() {
+    try {
+        const response = await axios.get('/getScoreBoard');
+        const data = response.data;
+
+        const carouselInner = document.getElementById('carousel-inner');
+        carouselInner.innerHTML = '';
+
+        Object.keys(data).forEach((league, leagueIndex) => {
+            const leagueData = data[league];
+
+            const carouselItem = document.createElement('div');
+            carouselItem.className = `carousel-item ${leagueIndex === 0 ? 'active' : ''}`;
+
+            const table = document.createElement('table');
+            table.className = 'table table-striped';
+
+            const thead = document.createElement('thead');
+            thead.innerHTML = `
+        <tr>
+          <th>Position</th>
+          <th>Team</th>
+          <th>Played</th>
+          <th>Won</th>
+          <th>Drawn</th>
+          <th>Lost</th>
+          <th>Points</th>
+        </tr>
+      `;
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+
+            leagueData.forEach((team, index) => {
+                const row = document.createElement('tr');
+
+                const positionCell = document.createElement('td');
+                positionCell.textContent = index + 1;
+                row.appendChild(positionCell);
+
+                const teamCell = document.createElement('td');
+                teamCell.textContent = team.team;
+                row.appendChild(teamCell);
+
+                const playedCell = document.createElement('td');
+                playedCell.textContent = team.played;
+                row.appendChild(playedCell);
+
+                const wonCell = document.createElement('td');
+                wonCell.textContent = team.won;
+                row.appendChild(wonCell);
+
+                const drawnCell = document.createElement('td');
+                drawnCell.textContent = team.drawn;
+                row.appendChild(drawnCell);
+
+                const lostCell = document.createElement('td');
+                lostCell.textContent = team.lost;
+                row.appendChild(lostCell);
+
+                const pointsCell = document.createElement('td');
+                pointsCell.textContent = team.points;
+                row.appendChild(pointsCell);
+
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+            carouselItem.appendChild(table);
+            carouselInner.appendChild(carouselItem);
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }

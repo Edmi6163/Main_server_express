@@ -34,9 +34,10 @@ router.post('/executeQuery', async (req, res, next) =>{
 router.get('/scoreBoard', async (req,res) => {
   try {
     const result = await scoreBoardController.calculateScore();
+    console.log(result);
     res.json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({success: false, error: err.message});
   }
-}
+});
