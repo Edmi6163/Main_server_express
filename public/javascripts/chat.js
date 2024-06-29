@@ -17,6 +17,7 @@ function init_chat() {
         localStorage.clear();
         document.getElementById('form_container').style.display = 'block';
         document.getElementById('message_container').style.display = 'none';
+        document.getElementById('welcome').innerHTML = " ";
         socket.emit('leave room', currentRoom, getMyFullName()); // Send a leave room event
         currentRoom = null;
     });
