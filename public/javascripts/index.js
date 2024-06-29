@@ -161,16 +161,16 @@ function closeLoginModal(event) {
 async function loadScoreboards() {
     try {
         console.log('Fetching scoreboards...');
-        const response = await axios.get('/getScoreBoard'); // Cambiato da POST a GET
+        const response = await axios.get('/getScoreBoard');
         console.log('Data fetched:', response.data);
 
         const { success, data } = response.data;
-        if (!success) {
-            console.error('Failed to fetch scoreboards');
+        if (!success || !data) {
+            console.error('Failed to fetch scoreboards or data is missing.');
             return;
         }
 
-        const leagueData = data;
+        const leagueData = data; // Accedere ai dati delle leghe correttamente
         console.log('Parsed data:', leagueData);
 
         const carouselInner = document.getElementById('carousel-inner');
@@ -184,12 +184,12 @@ async function loadScoreboards() {
         Object.keys(leagueData).forEach((league, leagueIndex) => {
             const leagueTeams = leagueData[league];
             console.log(`League: ${league}, Data:`, leagueTeams);
-            /*
+
             if (!Array.isArray(leagueTeams)) {
                 console.error(`Data for league ${league} is not an array:`, leagueTeams);
                 return;
             }
-    */
+
             const carouselItem = document.createElement('div');
             carouselItem.className = `carousel-item ${leagueIndex === 0 ? 'active' : ''}`;
 
