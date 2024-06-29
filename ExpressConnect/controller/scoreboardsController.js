@@ -1,4 +1,24 @@
 const Games = require('../models/games')
+
+function quickSort(arr,compare){
+	if(arr.length <= 1){
+		return arr;
+	}
+
+	const pivot = arr[arr.length -1];
+	const left = [];
+	const right = [];
+
+	for(let i = 0; i < arr.length -1; i++){
+		if(compare(arr[i],pivot) < 0){
+			left.push(arr[i]);
+		} else {
+			right.push(arr[i]);
+		}
+	}
+	return [...quickSort(left,compare),pivot,...quickSort(right,compare)];
+}
+
 const calculateScore = async() => {
 	const games = await Games.find();
 	const board = {};
@@ -25,7 +45,8 @@ const calculateScore = async() => {
 			board[home_club_name].drawn++;
 			board[away_club_name].drawn++;
 		}
-		return Object.values(board).sort((a,b) => b.points - a.points); //TODO maybe here we can implement a quicksort to reduce sorting time
+		const boardArray = Object.values(board)
+		return quickSort(boardArray, (a, b) => b.points - a.points);
 
 	})
 }
