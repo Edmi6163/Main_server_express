@@ -104,3 +104,16 @@ function closeLoginModal(id) {
         var modal = bootstrap.Modal.getInstance(document.getElementById('LoginModalSignin'));
         modal.hide();
         }
+
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("teams").style.top = "-10px";
+        document.getElementById("phrase").style.top = "-100px";
+        document.getElementById("phrase").style.fontSize = "20px";
+    } else {
+        document.getElementById("teams").style.top = "0";
+        document.getElementById("phrase").style.top = "0";
+        document.getElementById("phrase").style.fontSize = "30px";
+    }
+}
