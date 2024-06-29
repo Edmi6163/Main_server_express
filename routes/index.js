@@ -110,6 +110,14 @@ router.get('/getScoreBoard', async (req,res) => {
 	}
 });
 
+router.post('/showScoreBoard', async (req,res) => {
+	try {
+		const data = req.body;
+		res.json(data);
+	} catch(err) {
+		res.status(500).send(err.message);
+	}
+});
 module.exports = router;
 
 

@@ -1,4 +1,5 @@
 const Games = require('../models/games')
+const axios = require('axios');
 
 const quickSort = (arr, compareFn) => {
 	if (arr.length <= 1) return arr;
@@ -73,7 +74,8 @@ const calculateScore = async () => {
 			leagueBoards[league] = quickSort(boardArray, (a, b) => b.points - a.points);
 		});
 
-		return leagueBoards;
+		const send = await axios.post('http://localhost:3000/showScoreBoard', {data: leagueBoards});
+		return ({success: true, data: send.data});
 	} catch (err) {
 		console.error('Error calculating score:', err);
 		throw err;

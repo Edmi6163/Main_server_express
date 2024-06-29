@@ -5,7 +5,6 @@ const importGameLineUpController = require('../controller/gameLineUpsController'
 const importGamesController = require('../controller/gamesController');
 const queryController = require('../controller/queryController')
 const scoreBoardController = require('../controller/scoreboardsController');
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -35,6 +34,8 @@ router.get('/scoreBoard', async (req,res) => {
   try {
     const result = await scoreBoardController.calculateScore();
     console.log(result);
+    //write result in to route /showScoreBoard so it receive the scoreboard and it will show it in front end
+    await axios.post('http://localhost:3000/showScoreBoard', {data: result});
     res.json(result);
   } catch (err) {
     console.error(err);
