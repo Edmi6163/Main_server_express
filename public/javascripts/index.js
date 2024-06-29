@@ -1,6 +1,6 @@
-import axios from "axios";
+document.addEventListener('DOMContentLoaded', init);
 
-function init(){
+function init() {
     try {
         loadScoreboards();
     } catch (e) {
@@ -10,13 +10,13 @@ function init(){
         const loginBtn = document.getElementById('LoginBtn');
         loginBtn.onclick = onLogin;
 
-    } catch (e){
+    } catch (e) {
         console.error(e);
     }
     try {
-    const  signBtn = document.getElementById('CredentialBtn')
-    signBtn.onclick = onSignUp;
-    } catch(e) {
+        const signBtn = document.getElementById('CredentialBtn');
+        signBtn.onclick = onSignUp;
+    } catch (e) {
         console.error(e);
     }
     try {
@@ -32,7 +32,7 @@ function init(){
         console.error(e);
     }
     try {
-        const closeSignupBtn = document.getElementById('CloseSignupModal');
+        const closeSignupBtn = document.getElementById('SignupCloseModal');
         closeSignupBtn.onclick = closeSignupModal;
     } catch (e) {
         console.error(e);
@@ -49,29 +49,20 @@ function init(){
     } catch (e) {
         console.error(e);
     }
-
 }
 
-
-
-function saveCredentials(url,data){
-    axios.post(url,data)
-      .then(response => {
-          console.log(response.data);
-      })
-      .catch(error => {
-          console.error(error);
-      });
-
-
+function saveCredentials(url, data) {
+    axios.post(url, data)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
-/**
- * query the server for the login credentials
- * @param event
- * @param url
- * @returns {Promise<void>}
- */
-async function onLoginAux(event, url){
+
+async function onLoginAux(event, url) {
+    event.preventDefault();
     const username = document.getElementById("emailUsername").value;
     const password = document.getElementById("password").value;
     const userData = {
@@ -80,7 +71,7 @@ async function onLoginAux(event, url){
     };
 
     try {
-        const response = await axios.post(url,userData);
+        const response = await axios.post(url, userData);
         //TODO return a visual thing that the user logged successfully
     } catch (error) {
         console.error(error);
@@ -88,43 +79,30 @@ async function onLoginAux(event, url){
     }
 }
 
- function onLogin(event) {
-     onLoginAux(event, '/login')
+function onLogin(event) {
+    onLoginAux(event, '/login')
 }
 
-/**
- * called when the Sign-up  button is pressed
- * @param event the submission event
- */
-function onSignUp(event){
-    onSignUpAux(event,'/insert')
+function onSignUp(event) {
+    event.preventDefault();
+    onSignUpAux(event, '/insert')
 }
 
-
-/**
- * called when the submit button is pressed
- * @param event
- * @param url
- * @returns {Promise<void>}
- */
-async function onSignUpAux(event,url) {
+async function onSignUpAux(event, url) {
     const labels = document.querySelectorAll("#SignupForm .form-label");
 
     const data = {};
 
     labels.forEach(label => {
-        const inputId = label.getAttribute('for')
+        const inputId = label.getAttribute('for');
         data[inputId] = document.getElementById(inputId).value;
     });
 
-
-    saveCredentials(url,data);
-    // event.preventDefault();
+    saveCredentials(url, data);
 }
 
-
-
 function loadDataAux(event, url) {
+    event.preventDefault();
     const data = {
         "collection": "games",
         "query": {
@@ -133,60 +111,53 @@ function loadDataAux(event, url) {
             "home_club_goals": 4
         },
         "type": "nosql"
-    }
-    axios.post(url,data)
-      .then(response => {
-          console.log(response.data);
-          const div = document.getElementById('dataRequest');
-          div.innerText = JSON.stringify(response.data);
-      })
-      .catch(error => {
-          console.error(error);
-      });
-    event.preventDefault();
-
+    };
+    axios.post(url, data)
+        .then(response => {
+            console.log(response.data);
+            const div = document.getElementById('dataRequest');
+            div.innerText = JSON.stringify(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
-/**
- * ask for data to routes /data and the json returned will be displayed in div with id dataRequest, use this json as body for the request:
- * {
- *     "collection": "games",
- *     "query": {
- *         "away_club_name": "Olympique de Marseille",
- *         "competition_type": "domestic_league",
- *         "home_club_goals": 4
- *     },
- *     "type": "nosql"
- * }
- */
 
-async function loadData(event){
-    loadDataAux(event,'/query')
+async function loadData(event) {
+    loadDataAux(event, '/query')
 }
 
 function openSignupModal() {
-    var modal = new bootstrap.Modal(document.getElementById('OpenSignupModal'), {
-        backdrop: true
+    var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
+        backdrop: 'static', // Disallow closing by clicking on the backdrop
+        keyboard: true // Allow closing by pressing ESC
     });
     modal.show();
 }
 
-function closeSignupModal() {
-    var modal = bootstrap.Modal.getInstance(document.getElementById('OpenSignupModal'));
-    modal.hide();
+function closeSignupModal(event) {
+    if (event) event.preventDefault();
+    var modal = bootstrap.Modal.getInstance(document.getElementById('SignupModalSignin'));
+    if (modal) {
+        modal.hide();
+    }
 }
 
-function openLoginModal(id) {
-    var modal = new bootstrap.Modal(document.getElementById('CloseLoginModal'), {
-        backdrop: true
+function openLoginModal() {
+    var modal = new bootstrap.Modal(document.getElementById('LoginModalSignin'), {
+        backdrop: 'static', // Disallow closing by clicking on the backdrop
+        keyboard: true // Allow closing by pressing ESC
     });
     modal.show();
 }
 
-function closeLoginModal() {
-    var modal = bootstrap.Modal.getInstance(document.getElementById('CloseLoginModal'));
-    modal.hide();
+function closeLoginModal(event) {
+    if (event) event.preventDefault();
+    var modal = bootstrap.Modal.getInstance(document.getElementById('LoginModalSignin'));
+    if (modal) {
+        modal.hide();
+    }
 }
-
 
 async function loadScoreboards() {
     try {
