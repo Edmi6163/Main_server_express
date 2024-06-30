@@ -7,12 +7,33 @@ a {
   color: #00B7FF;
 }
 
-.test
-{
+.test {
   color: red;
-
 }
 
+.navbar .nav-link {
+  display: inline-block;
+  position: relative;
+  color: #00B7FF;
+}
+
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #00B7FF;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar .nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 
 .dark-mode {
   background-color: #000000;
@@ -26,6 +47,7 @@ a {
 .dark-mode .text-body-secondary {
   color: #ffffff !important;
 }
+
 .dork-mode .text-body-primary {
   color: #ffffff !important;
 }
