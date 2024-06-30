@@ -14,3 +14,20 @@ a {
 }
 
 
+.dark-mode {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.dark-mode .bg-white {
+  background-color: #121212 !important;
+}
+
+.dark-mode .text-body-secondary {
+  color: #ffffff !important;
+}
+.dork-mode .text-body-primary {
+  color: #ffffff !important;
+}
+
+/* Aggiungi qui ulteriori stili per la dark mode */

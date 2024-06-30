@@ -49,6 +49,25 @@ function init() {
     } catch (e) {
         console.error(e);
     }
+    document.getElementById('light-mode-btn').addEventListener('click', function() {
+        document.body.classList.remove('dark-mode');
+        setActiveTheme('light-mode-btn');
+    });
+
+    document.getElementById('dark-mode-btn').addEventListener('click', function() {
+        document.body.classList.add('dark-mode');
+        setActiveTheme('dark-mode-btn');
+    });
+
+    function setActiveTheme(activeBtnId) {
+        document.querySelectorAll('.dropdown-item').forEach(function(button) {
+            button.classList.remove('active');
+            button.setAttribute('aria-pressed', 'false');
+        });
+        const activeBtn = document.getElementById(activeBtnId);
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-pressed', 'true');
+    }
 }
 
 function saveCredentials(url, data) {
