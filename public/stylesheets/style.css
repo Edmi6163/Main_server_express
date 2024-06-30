@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ffffff; /* Colore di sfondo predefinito */
+  color: #292929; /* Colore del testo predefinito */
 }
 
 a {
@@ -35,21 +37,48 @@ a {
   transform-origin: bottom left;
 }
 
+/* Stili per la dark mode */
 .dark-mode {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #181818; /* Nuovo colore di sfondo per la dark mode */
+  color: #ffffff; /* Colore del testo per la dark mode */
 }
 
-.dark-mode .bg-white {
-  background-color: #121212 !important;
+.dark-mode .navbar-light .navbar-nav .nav-link {
+  color: #ffffff !important; /* Cambia il colore del testo per la dark mode */
+}
+
+.dark-mode .navbar-light .navbar-toggler-icon {
+  background-color: #ffffff; /* Cambia il colore dell'icona del toggler per la dark mode */
+}
+
+.dark-mode .navbar-light .navbar-nav .nav-link::after {
+  background-color: #ffffff; /* Cambia il colore della linea sottostante per la dark mode */
+}
+
+.dark-mode .nav-link {
+  color: #ffffff !important; /* Cambia il colore del testo dei link per la dark mode */
+}
+
+.dark-mode .bg-light {
+  background-color: #181818 !important; /* Colore di sfondo alternativo per la dark mode */
 }
 
 .dark-mode .text-body-secondary {
-  color: #ffffff !important;
+  color: #ffffff !important; /* Cambia il colore del testo secondario per la dark mode */
 }
 
-.dork-mode .text-body-primary {
-  color: #ffffff !important;
+.dark-mode .text-body-primary {
+  color: #ffffff !important; /* Cambia il colore del testo primario per la dark mode */
+}
+.dark-mode .dropdown-menu {
+  background-color: #121212; /* Colore di sfondo per il dropdown menu in dark mode */
+  color: #ffffff; /* Colore del testo per il dropdown menu in dark mode */
 }
 
-/* Aggiungi qui ulteriori stili per la dark mode */
+.dark-mode .dropdown-menu .dropdown-item {
+  color: #ffffff; /* Colore del testo per il dropdown menu in dark mode */
+}
+
+.dark-mode .dropdown-menu .dropdown-item:hover {
+  background-color: #262626;
+}

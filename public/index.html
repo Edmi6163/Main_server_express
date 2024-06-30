@@ -109,7 +109,7 @@
                             class="rounded-circle"/>
                 </a> <!--foto profile call-->
 
-                <ul class="dropdown-menu text-small shadow bg-white rounded p-2 ">
+                <ul class="dropdown-menu text-small shadow rounded p-2 ">
                     <li><a class="dropdown-item text-body-secondary" href="#">Profile</a></li>
                     <li><hr class="dropdown-divider"  /></li>
                     <li><a id="OpenSignupModal" class="dropdown-item text-body-secondary" onclick="openSignupModal()">Sign up</a></li>
@@ -120,22 +120,46 @@
         </nav>
     </div>
 </header>
-<div class="container border-bottom" id="teams">
-    <div class="position-relative overflow-hidden">
-        <div class="position-relative overflow-hidden">
-            <ul class="list-inline">
-                <li class="list-inline-item ms-5 "><a href="#SerieA"> Serie A  </a></li>
-                <li class="list-inline-item ms-5"><a href="#SerieB"> Serie B</a></li>
-                <li class="list-inline-item ms-5"><a href="#Liga1"> Liga 1 </a></li>
-                <li class="list-inline-item ms-5"><a href="#Budesliga"> Bundesliga </a></li>
-                <li class="list-inline-item ms-5"><a href="#PremierLeague"> Premier League </a></li>
-                <li class="list-inline-item ms-5"><a href="#ChampionsLeague"> Champions League </a></li>
-                <li class="list-inline-item ms-5"><a href="#EuropaLeague"> Europa League </a></li>
-                <li class="list-inline-item ms-5"><a href="#WorldCup"> World Cup </a></li>
-                <li class="list-inline-item ms-5"><a href="#Others"> Others </a></li>
-            </ul>
+<div class="container border-bottom " id="teams">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid bg">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse bg" id="navbarSupportedContent">
+                <ul class="nav col-5 col-lg-auto me-lg-auto mb-2 justify-content align-items-center mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary " href="#SerieA">Serie A</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary"  href="#SerieB">Serie B</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary" href="#Liga1">Liga 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary" href="#Budesliga">Bundesliga</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary" href="#PremierLeague">Premier League</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary" href="#ChampionsLeague">Champions League</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary" href="#EuropaLeague">Europa League</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary" href="#WorldCup">World Cup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 link-body-emphasis fs-4 text-body-secondary" href="#Others">Others</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+
+    </nav>
 </div>
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary border border-primary" id="phrase">
@@ -234,8 +258,6 @@
             </div>
         </div>
     </div>
-</div>
-
 <div class="position-relative" id="Leagues">
     <div class="position-relative border border-primary" id="SerieA" >
         <h1> Here SerieA</h1>
