@@ -53,11 +53,12 @@
                     class="dropdown-item d-flex align-items-center"
                     data-bs-theme-value="light"
                     aria-pressed="false"
-                    id="light-mode-btn">
+                    id="light-mode-btn"
+                    onclick="toggleLightMode()">
                 <svg class="bi me-2 opacity-50" width="1em" height="1em">
                     <use href="#sun-fill"></use>
                 </svg>
-                Light
+                Light Mode
                 <svg class="bi ms-auto d-none" width="1em" height="1em">
                     <use href="#check2"></use>
                 </svg>
@@ -70,12 +71,11 @@
                     data-bs-theme-value="dark"
                     aria-pressed="false"
                     id="dark-mode-btn"
-                    onclick="toggleDarkMode()"
-            >
+                    onclick="toggleDarkMode()">
                 <svg class="bi me-2 opacity-50" width="1em" height="1em">
                     <use href="#moon-stars-fill"></use>
                 </svg>
-                Dark
+                Dark Mode
                 <svg class="bi ms-auto d-none" width="1em" height="1em">
                     <use href="#check2"></use>
                 </svg>
@@ -94,7 +94,7 @@
             </a>
             <ul class="nav col-5 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0">
                 <li>
-                    <a href="#" class="nav-link px-2 link-body-emphasis  text-body-secondary fs-4" style="color: #000000;">Statistics</a>
+                    <a href="#" class="nav-link px-2 link-body-emphasis fs-4 light-theme" id="navText1">Statistics</a>
                 </li>
             </ul>
 

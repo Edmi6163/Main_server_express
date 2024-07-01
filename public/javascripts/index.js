@@ -6,6 +6,7 @@ function init() {
     } catch (e) {
         console.error(e);
     }
+
     try {
         const loginBtn = document.getElementById('LoginBtn');
         loginBtn.onclick = onLogin;
@@ -54,6 +55,7 @@ function init() {
     } catch (e) {
         console.error(e);
     }
+    // Codice per gestire il click sui pulsanti di tema
     document.getElementById('light-mode-btn').addEventListener('click', function() {
         document.body.classList.remove('dark-mode');
         setActiveTheme('light-mode-btn');
@@ -64,17 +66,24 @@ function init() {
         setActiveTheme('dark-mode-btn');
     });
 
-    function setActiveTheme(activeBtnId) {
-        document.querySelectorAll('.dropdown-item').forEach(function(button) {
-            button.classList.remove('active');
-            button.setAttribute('aria-pressed', 'false');
-        });
-        const activeBtn = document.getElementById(activeBtnId);
-        activeBtn.classList.add('active');
-        activeBtn.setAttribute('aria-pressed', 'true');
+    // Funzione per impostare il tema attivo
+    function setActiveTheme(theme) {
+        localStorage.setItem('activeTheme', theme);
+    }
+}
+function loadActiveTheme() {
+    const activeTheme = localStorage.getItem('activeTheme');
+    if (activeTheme === 'dark-mode-btn') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
     }
 }
 
+// Caricare il tema al caricamento della pagina
+document.addEventListener('DOMContentLoaded', function() {
+    loadActiveTheme();
+});
 function onlyOneRole(){
     const checkBoxes = document.querySelectorAll(".user-role");
     checkBoxes.forEach((checkbox) => {

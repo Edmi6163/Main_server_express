@@ -38,6 +38,19 @@ body.dark-mode {
     border-bottom: 1px solid #333;
 }
 
+
+#navText1 {
+    color: #000;
+}
+{
+    color: #000;
+
+}
+.dark-mode #navText1
+{
+    color: #e0e0e0;
+}
+
 .dark-mode input,
 .dark-mode textarea {
     background-color: #333;
