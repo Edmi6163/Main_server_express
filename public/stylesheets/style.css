@@ -82,3 +82,7 @@ a {
 .dark-mode .dropdown-menu .dropdown-item:hover {
   background-color: #262626;
 }
+
+.underline {
+  text-decoration: underline;
+}
