@@ -117,3 +117,35 @@ a {
   background-color: #0056b3;
   border-color: #0056b3;
 }
+/* Apply hover animation to dropdown items */
+.dropdown-menu .dropdown-item {
+  position: relative;
+  color: #00B7FF;
+}
+
+.dropdown-menu .dropdown-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #00B7FF;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.dropdown-menu .dropdown-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Dark mode styles for dropdown items */
+.dark-mode .dropdown-menu .dropdown-item {
+  color: #ffffff !important;
+}
+
+.dark-mode .dropdown-menu .dropdown-item::after {
+  background-color: #ffffff;
+}
