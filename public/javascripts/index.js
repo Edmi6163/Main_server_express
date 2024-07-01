@@ -54,19 +54,6 @@ function init() {
     } catch (e) {
         console.error(e);
     }
-    try {
-        document.querySelector('.userRole').addEventListener('change', function(e) {
-            if (e.target.checked) {
-                document.querySelectorAll('.userRole input[type="checkbox"]').forEach((cb) => {
-                    if (cb !== e.target) {
-                        cb.checked = false;
-                    }
-                });
-            }
-        });
-    } catch (e) {
-        console.error(e);
-    }
     document.getElementById('light-mode-btn').addEventListener('click', function() {
         document.body.classList.remove('dark-mode');
         setActiveTheme('light-mode-btn');
