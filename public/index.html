@@ -81,6 +81,43 @@
     </ul>
 </div>
 
+<!--Profile model-->
+<div class="modal fade" id="userProfileModal" tabindex="-1" aria-labelledby="userProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userProfileModalLabel">User Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5 pt-0">
+                <form class="">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3 text-body-secondary" id="username" placeholder="Username">
+                        <label>Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-3 text-body-secondary" id="userEmail" placeholder="name@example.com">
+                        <label>Email address</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="userPhoto" class="form-label">Upload Photo</label>
+                        <input class="form-control" type="file" id="userPhoto">
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="userRole">
+                        <label class="form-check-label" for="userRole">Fan</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="userRole2">
+                        <label class="form-check-label" for="userRole2">Expert</label>
+                    </div>
+                    <div class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="SaveProfileBtn">Save</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <header class=" mb-3 border-bottom">
     <div class="container border border-primary">
         <a href="" class=" navbar-brand col-1 d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
@@ -112,7 +149,7 @@
                 </a> <!--foto profile call-->
 
                 <ul class="dropdown-menu text-small shadow rounded p-2 ">
-                    <li><a class="dropdown-item text-body-secondary" href="#">Profile</a></li>
+                    <li><a class="dropdown-item text-body-secondary" href="#" data-bs-toggle="modal" data-bs-target="#userProfileModal">Profile</a></li>
                     <li><hr class="dropdown-divider"  /></li>
                     <li><a id="OpenSignupModal" class="dropdown-item text-body-secondary" onclick="openSignupModal()">Sign up</a></li>
                     <li><a id="OpenLoginModal" class="dropdown-item text-body-secondary" onclick="openLoginModal()">Login</a></li>

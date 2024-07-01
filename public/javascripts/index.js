@@ -169,6 +169,23 @@ function openLoginModal() {
     });
     modal.show();
 }
+function openProfileModel()
+{
+    var model= new bootstrap.Modal(document.getElementById('userProfileModal'), {
+        backdrop: 'static', // Disallow closing by clicking on the backdrop
+        keyboard: true // Allow closing by pressing ESC
+    });
+}
+function closeProfileModel(event)
+{
+    if(event) event.preventDefault();
+    var modal = bootstrap.Modal.getInstance(document.getElementById('userProfileModal'));
+    if(modal)
+    {
+        modal.hide();
+    }
+}
+
 
 function closeLoginModal(event) {
     if (event) event.preventDefault();
@@ -177,6 +194,34 @@ function closeLoginModal(event) {
         modal.hide();
     }
 }
+/*
+document.addEventListener('DOMContentLoaded', function() {
+    // Funzione per gestire il click sul pulsante Save nel modal del profilo
+    document.getElementById('SaveProfileBtn').addEventListener('click', function() {
+        // Esegue una richiesta per salvare il profilo, incluso l'upload dell'immagine
+        // Puoi usare Axios o un'altra libreria per effettuare la richiesta POST
+        let formData = new FormData();
+        formData.append('username', document.getElementById('username').value);
+        formData.append('userEmail', document.getElementById('userEmail').value);
+        formData.append('userPhoto', document.getElementById('userPhoto').files[0]); // L'immagine caricata
+
+        axios.post('/login', formData)
+            .then(function(response) {
+                // Se la richiesta ha successo, aggiorna l'immagine nel dropdown menu
+                let profileImage = document.getElementById('profileImage');
+                profileImage.src = URL.createObjectURL(document.getElementById('userPhoto').files[0]);
+
+                // Chiudi il modal del profilo
+                let userProfileModal = new bootstrap.Modal(document.getElementById('userProfileModal'));
+                userProfileModal.hide();
+            })
+            .catch(function(error) {
+                console.error('Errore durante il salvataggio del profilo:', error);
+                // Gestisci l'errore, ad esempio mostrando un messaggio all'utente
+            });
+    });
+});
+ */
 async function loadScoreboards() {
     try {
         console.log('Fetching scoreboards...');
