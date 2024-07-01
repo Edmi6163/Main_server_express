@@ -1,4 +1,58 @@
-.body {
+/* Stili di base per la modalità dark */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .navbar,
+.dark-mode .dropdown-menu {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+.dark-mode .logo-container {
+  background-color: #1f1f1f; /* Use your preferred shade of gray */
+}
+.dark-mode .navbar a,
+.dark-mode .dropdown-menu a {
+  color: #e0e0e0;
+}
+
+.dark-mode .card {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+.dark-mode .list-group-item {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  border-color: #333;
+}
+
+.dark-mode .border-bottom {
+  border-bottom: 1px solid #333;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+.dark-mode .btn {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+.dark-mode .Cname {
+  color: #e0e0e0;
+}
+
+/* Aggiungi ulteriori stili specifici per altri elementi della pagina se necessario */
+
+body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #ffffff; /* Colore di sfondo predefinito */
@@ -70,6 +124,7 @@ a {
 .dark-mode .text-body-primary {
   color: #ffffff !important; /* Cambia il colore del testo primario per la dark mode */
 }
+
 .dark-mode .dropdown-menu {
   background-color: #121212; /* Colore di sfondo per il dropdown menu in dark mode */
   color: #ffffff; /* Colore del testo per il dropdown menu in dark mode */
@@ -91,15 +146,18 @@ a {
   background-color: #181818;
   color: #ffffff;
 }
+
 /* Dark mode styles for the login form */
 .dark-mode .modal-body {
   background-color: #181818;
   color: #ffffff;
 }
-.dark-mode .modal-footer{
+
+.dark-mode .modal-footer {
   background-color: #181818;
   color: #ffffff;
 }
+
 .dark-mode .form-control {
   background-color: #2c2c2c;
   color: #ffffff;
@@ -109,14 +167,17 @@ a {
 .dark-mode .form-floating label {
   color: #b0b0b0;
 }
+
 .dark-mode .btn-secondary {
   background-color: #0056b3;
   border-color: #0056b3;
 }
+
 .dark-mode .btn-primary {
   background-color: #0056b3;
   border-color: #0056b3;
 }
+
 /* Apply hover animation to dropdown items */
 .dropdown-menu .dropdown-item {
   position: relative;

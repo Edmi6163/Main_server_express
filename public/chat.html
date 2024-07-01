@@ -13,6 +13,7 @@
     <script src= "javascripts/chat.js"></script>
     <title>FootballOurPassion</title>
     <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="stylesheets/chat.css">
     <title>Chat</title>
 </head>
 <body onload="init_chat()">
@@ -32,7 +33,7 @@
     </symbol>
 </svg>
 
-<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle z-3" >
+<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle z-3 border border-primary" >
     <button
             class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center shadow p-3 mb-5 bg-white rounded"
             id="bd-theme"
@@ -51,7 +52,8 @@
                     type="button"
                     class="dropdown-item d-flex align-items-center"
                     data-bs-theme-value="light"
-                    aria-pressed="false">
+                    aria-pressed="false"
+                    id="light-mode-btn">
                 <svg class="bi me-2 opacity-50" width="1em" height="1em">
                     <use href="#sun-fill"></use>
                 </svg>
@@ -66,7 +68,10 @@
                     type="button"
                     class="dropdown-item d-flex align-items-center"
                     data-bs-theme-value="dark"
-                    aria-pressed="false">
+                    aria-pressed="false"
+                    id="dark-mode-btn"
+                    onclick="toggleDarkMode()"
+            >
                 <svg class="bi me-2 opacity-50" width="1em" height="1em">
                     <use href="#moon-stars-fill"></use>
                 </svg>
@@ -76,23 +81,10 @@
                 </svg>
             </button>
         </li>
-        <li>
-            <button
-                    type="button"
-                    class="dropdown-item d-flex align-items-center active"
-                    data-bs-theme-value="auto"
-                    aria-pressed="true">
-                <svg class="bi me-2 opacity-50" width="1em" height="1em">
-                    <use href="#circle-half"></use>
-                </svg>
-                Auto
-                <svg class="bi ms-auto d-none" width="1em" height="1em">
-                    <use href="#check2"></use>
-                </svg>
-            </button>
-        </li>
+
     </ul>
 </div>
+
 
 <header class=" mb-3 border-bottom">
     <div class="container">
@@ -102,7 +94,7 @@
             </a>
             <ul class="nav col-5 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0">
                 <li>
-                    <a href="#" class="nav-link px-2 link-body-emphasis fs-4" style="color: #000000;">Statistics</a>
+                    <a href="#" class="nav-link px-2 link-body-emphasis  text-body-secondary fs-4" style="color: #000000;">Statistics</a>
                 </li>
             </ul>
 
@@ -144,7 +136,7 @@
                         <div class="flex-grow-1 border-bottom Cname"></div>
                         <a href="#" class="list-group-item list-group-item-action border-0">
                             <div class="d-flex align-items-start">
-                                <div class="flex-grow-1 ml-3 h5 Cname">
+                                <div class="flex-grow-1 ml-3 h5 Cname text-body-secondary">
                                     Fifa club wm
                                 </div>
                             </div>

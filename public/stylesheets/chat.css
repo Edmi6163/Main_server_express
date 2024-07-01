@@ -1,0 +1,81 @@
+/* Stili di base per la modalità dark */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .navbar,
+.dark-mode .dropdown-menu {
+    color: #e0e0e0;
+    background-color: #1f1f1f;
+
+}
+
+.dark-mode .navbar a,
+.dark-mode .dropdown-menu a {
+    color: #e0e0e0;
+}
+.dark-mode .dropdown-item {
+    color: #e0e0e0;
+    background-color: #1f1f1f;
+}
+.dropdown-item.dropdown-item :hover {
+    background-color: #333;
+}
+.dark-mode .card {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+.dark-mode .list-group-item {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+.dark-mode .border-bottom {
+    border-bottom: 1px solid #333;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+.dark-mode .btn {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+.dark-mode .Cname {
+    color: #e0e0e0;
+}
+/* Stili per la scritta "STATISTICS" nella header */
+.dark-mode .navbar-brand {
+    color: #ffffff; /* Bianco */
+}
+
+/* Stili per il menù di selezione della dark-mode e light-mode in dark-mode */
+.dark-mode .custom-select,
+.dark-mode .custom-select option {
+    background-color: #333; /* Sfondo grigio scuro */
+    color: #ffffff; /* Testo bianco */
+    border: 1px solid #555; /* Bordo grigio scuro */
+}
+
+/* Stili per i link nel menù di selezione */
+.dark-mode .custom-select option:hover,
+.dark-mode .custom-select option:focus {
+    background-color: #555; /* Sfondo grigio più scuro al passaggio del mouse o al focus */
+    color: #ffffff; /* Testo bianco */
+}
+
+/* Stili per la freccia nell'elemento di selezione */
+.dark-mode .custom-select::after {
+    color: #ffffff; /* Freccia bianca */
+}
+/* Aggiungi ulteriori stili specifici per altri elementi della pagina se necessario */
