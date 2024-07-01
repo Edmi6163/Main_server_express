@@ -49,6 +49,24 @@ function init() {
     } catch (e) {
         console.error(e);
     }
+    try {
+        onlyOneRole();
+    } catch (e) {
+        console.error(e);
+    }
+    try {
+        document.querySelector('.userRole').addEventListener('change', function(e) {
+            if (e.target.checked) {
+                document.querySelectorAll('.userRole input[type="checkbox"]').forEach((cb) => {
+                    if (cb !== e.target) {
+                        cb.checked = false;
+                    }
+                });
+            }
+        });
+    } catch (e) {
+        console.error(e);
+    }
     document.getElementById('light-mode-btn').addEventListener('click', function() {
         document.body.classList.remove('dark-mode');
         setActiveTheme('light-mode-btn');
@@ -68,6 +86,21 @@ function init() {
         activeBtn.classList.add('active');
         activeBtn.setAttribute('aria-pressed', 'true');
     }
+}
+
+function onlyOneRole(){
+    const checkBoxes = document.querySelectorAll(".user-role");
+    checkBoxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                checkBoxes.forEach((cb) => {
+                    if (cb !== e.target) {
+                        cb.checked = false;
+                    }
+                });
+            }
+        });
+    });
 }
 
 function saveCredentials(url, data) {
