@@ -1,4 +1,4 @@
-body {
+.body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #ffffff; /* Colore di sfondo predefinito */
@@ -60,7 +60,7 @@ a {
 }
 
 .dark-mode .bg-light {
-  background-color: #181818 !important; /* Colore di sfondo alternativo per la dark mode */
+  background-color: #181819 !important; /* Colore di sfondo alternativo per la dark mode */
 }
 
 .dark-mode .text-body-secondary {
@@ -85,4 +85,29 @@ a {
 
 .underline {
   text-decoration: underline;
+}
+
+.dark-mode .modal-header {
+  background-color: #181818;
+  color: #ffffff;
+}
+/* Dark mode styles for the login form */
+.dark-mode .modal-body {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+.dark-mode .form-control {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+.dark-mode .form-floating label {
+  color: #b0b0b0;
+}
+
+.dark-mode .btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
 }
