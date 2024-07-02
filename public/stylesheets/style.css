@@ -210,3 +210,15 @@ a {
 .dark-mode .dropdown-menu .dropdown-item::after {
   background-color: #ffffff;
 }
+
+.card:hover{
+  transform: scale(1.1);
+}
+.card{
+    transition: transform 0.2s ease;
+}
+.card{
+  box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+  border-radius: 0;
+  border: 0;
+}
