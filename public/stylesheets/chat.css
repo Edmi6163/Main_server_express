@@ -103,3 +103,28 @@ body.dark-mode {
     color: #e0e0e0;
     border: 1px solid #333;
 }
+
+/* Stile di base per la linea sottostante */
+.nav-link {
+    position: relative;
+    #color: #00B7FF;
+    text-decoration: none; /* Rimuovi il sottolineato di default */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px; /* Posiziona la linea sotto l'elemento */
+    left: 0;
+    background-color: #00B7FF; /* Colore della linea */
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
