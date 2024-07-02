@@ -6,7 +6,6 @@ function init() {
     } catch (e) {
         console.error(e);
     }
-
     try {
         const loginBtn = document.getElementById('LoginBtn');
         loginBtn.onclick = onLogin;
@@ -20,6 +19,7 @@ function init() {
     } catch (e) {
         console.error(e);
     }
+
     try {
         const dataBtn = document.getElementById('DataBtn');
         dataBtn.onclick = loadData;
@@ -150,7 +150,6 @@ async function onSignUpAux(event, url) {
 }
 
 function loadDataAux(event, url) {
-    event.preventDefault();
     const data = {
         "collection": "games",
         "query": {
@@ -169,6 +168,8 @@ function loadDataAux(event, url) {
         .catch(error => {
             console.error(error);
         });
+
+
 }
 
 async function loadData(event) {
@@ -251,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
  */
+/*
 async function loadScoreboards() {
     try {
         console.log('Fetching scoreboards...');
@@ -346,4 +348,48 @@ async function loadScoreboards() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
+}*/
+
+async function loadScoreboards() {
+    try {
+        console.log('Fetching scoreboards...');
+        const response = await axios.get('/getScoreBoard');
+        console.log('Data fetched:', response.data);
+
+        const { success, data } = response.data;
+        if (!success || !data || !data.data) {
+            console.error('Failed to fetch scoreboards or data is missing.');
+            return;
+        }
+
+        const games = data.data; // Assuming data.data is an array of game objects
+
+        const carouselInner = document.getElementById('carousel-inner');
+        if (!carouselInner) {
+            console.error('Element with ID "carousel-inner" not found.');
+            return;
+        }
+
+        carouselInner.innerHTML = '';
+
+        games.forEach((game, gameIndex) => {
+            const { home_club_name, away_club_name, home_club_goals, away_club_goals, competition_type } = game;
+
+            const gameDiv = document.createElement('div');
+            gameDiv.className = 'game-item';
+
+            const gameInfo = document.createElement('p');
+            gameInfo.innerHTML = `
+                <strong>${home_club_name} ${home_club_goals} - ${away_club_goals} ${away_club_name}</strong><br>
+                Competition: ${competition_type}
+            `;
+
+            gameDiv.appendChild(gameInfo);
+            carouselInner.appendChild(gameDiv);
+        });
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
+

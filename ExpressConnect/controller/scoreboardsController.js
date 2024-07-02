@@ -72,6 +72,7 @@ const calculateScore = async () => {
 
 			const boardArray = Object.values(board);
 			leagueBoards[league] = quickSort(boardArray, (a, b) => b.points - a.points);
+			leagueBoards[league] = boardArray.slice(0,10);
 		});
 
 		const send = await axios.post('http://localhost:3000/showScoreBoard', {data: leagueBoards});
