@@ -92,3 +92,14 @@ body.dark-mode {
     color: #ffffff; /* Freccia bianca */
 }
 /* Aggiungi ulteriori stili specifici per altri elementi della pagina se necessario */
+#form_container
+{
+    background-color:#f6f8f9; border-radius:3%;
+}
+
+.dark-mode #form_container
+{
+    background-color: #181818;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
