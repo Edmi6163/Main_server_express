@@ -9,7 +9,7 @@ function init_chat() {
     if (theme === 'dark') {
         toggleDarkMode();
     } else {
-        toggleLightMode(); // Default to light mode
+        toggleLightMode(); 
     }
     const messageButton = document.getElementById('messageButton');
     messageButton.addEventListener('click', () => {
@@ -23,7 +23,7 @@ function init_chat() {
         document.getElementById('form_container').style.display = 'block';
         document.getElementById('message_container').style.display = 'none';
         document.getElementById('welcome').innerHTML = " ";
-        socket.emit('leave room', currentRoom, getMyFullName()); // Send a leave room event
+        socket.emit('leave room', currentRoom, getMyFullName());
         currentRoom = null;
     });
 
@@ -125,19 +125,14 @@ function setChannel(text)
 
 
 
-//////////
 
 function toggleLightMode() {
-    // Remove dark mode class from body
     document.body.classList.remove('dark-mode');
-    // Update local storage or any other state management
     localStorage.setItem('theme', 'light');
 }
 
 function toggleDarkMode() {
-    // Add dark mode class to body
     document.body.classList.add('dark-mode');
-    // Update local storage or any other state management
     localStorage.setItem('theme', 'dark');
 }
 
