@@ -282,3 +282,45 @@ function closeLoginModal(event) {
         modal.hide();
     }
 }
+const userRole = {
+    Fan: 'fan',
+    Expert: 'expert',
+};
+
+function saveUserRole(role) {
+    if (role === userRole.Expert) {
+        updateNavbarForExpert();
+    } else {
+        updateNavbarForFan();
+    }
+}
+
+function updateNavbarForExpert() {
+    const expertLinkContainer = document.getElementById('expertLinkContainer');
+    if (expertLinkContainer) {
+        expertLinkContainer.style.display = 'block';
+    }
+}
+
+function updateNavbarForFan() {
+    const expertLinkContainer = document.getElementById('expertLinkContainer');
+    if (expertLinkContainer) {
+        expertLinkContainer.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const profileForm = document.getElementById('profileForm');
+    if (profileForm) {
+        profileForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Previene il ricaricamento della pagina
+            const expertRoleChecked = document.getElementById('expertRole').checked;
+
+            if (expertRoleChecked) {
+                saveUserRole(userRole.Expert);
+            } else {
+                saveUserRole(userRole.Fan);
+            }
+        });
+    }
+});

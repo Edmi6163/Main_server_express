@@ -104,7 +104,7 @@
         </div>
     </div>
 </div>
-<!--Profile model-->
+<!-- Profile modal -->
 <div class="modal fade" id="userProfileModal" tabindex="-1" aria-labelledby="userProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -113,28 +113,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-5 pt-0">
-                <form class="">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control rounded-3 text-body-secondary" id="username" placeholder="Username">
-                        <label>Username</label>
-                    </div>
+                <form id="profileForm">
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control rounded-3 text-body-secondary" id="userEmail" placeholder="name@example.com">
-                        <label>Email address</label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="userPhoto" class="form-label">Upload Photo</label>
-                        <input class="form-control" type="file" id="userPhoto">
+                        <label for="userEmail">Email address</label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input user-role" type="checkbox" value="" id="userRole">
-                        <label class="form-check-label" for="userRole">Casual user</label>
+                        <input class="form-check-input user-role" type="checkbox" value="fan" id="fanRole">
+                        <label class="form-check-label" for="fanRole">Casual user</label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input user-role" type="checkbox" value="" id="userRole2">
-                        <label class="form-check-label" for="userRole2">Expert user</label>
+                        <input class="form-check-input user-role" type="checkbox" value="expert" id="expertRole">
+                        <label class="form-check-label" for="expertRole">Expert user</label>
                     </div>
-                    <div class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="SaveProfileBtn">Save</div>
+                    <button type="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="SaveProfileBtn">Save</button>
                 </form>
             </div>
         </div>
@@ -142,45 +134,37 @@
 </div>
 
 
-<header class=" mb-3 border-bottom border-bottom flex  ">
-    <div class="container logo-container border border-primary bg-light ">
-        <a href="" class="navbar-brand col-1 d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"> </a>
+<!-- Navbar -->
+<header class="mb-3 border-bottom border-bottom flex">
+    <div class="container logo-container border border-primary bg-light">
+        <a href="" class="navbar-brand col-1 d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
             <img src="assets/logo.png" class="img-fluid" width="90" height="90" role="img" alt="logo">
+        </a>
         <nav class="navbar navbar-expand-lg align-items-center justify-content-between justify-content-center pippo border border-primary">
             <ul class="nav col-5 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0">
                 <li>
                     <a href="chat.html" class="nav-link px-5 link-body-emphasis fs-4 text-body-secondary">Chat</a>
                 </li>
+                <li id="expertLinkContainer" style="display:none;">
+                    <a id="expertLink" href="/expert-page" class="nav-link px-5 link-body-emphasis fs-4 text-body-secondary">EXPERT</a>
+                </li>
             </ul>
-
-            <form class="col-lg-4 col-3 me-lg-4  d-lg-inline-flex text-body-secondary " role="search" id="search">
-                <input
-                        type="search "
-                        class="form-control shadow-sm p-2 bg-white rounded align-items-center text-body-secondary"
-                        placeholder="Search..."
-                        aria-label="Search "/>
+            <form class="col-lg-4 col-3 me-lg-4 d-lg-inline-flex text-body-secondary" role="search" id="search">
+                <input type="search" class="form-control shadow-sm p-2 bg-white rounded align-items-center text-body-secondary" placeholder="Search..." aria-label="Search" />
             </form>
-
-            <div class="dropdown col-lg-auto col-2 " id="dropDownProfile">
+            <div class="dropdown col-lg-auto col-2" id="dropDownProfile">
                 <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img
-                            src=""
-                            alt="mdo"
-                            width="32"
-                            height="32"
-                            class="rounded-circle"/>
-                </a> <!--foto profile call-->
-
-                <ul class="dropdown-menu text-small shadow rounded p-2 ">
+                    <img src="" alt="mdo" width="32" height="32" class="rounded-circle" />
+                </a>
+                <ul class="dropdown-menu text-small shadow rounded p-2">
                     <li><a class="dropdown-item text-body-secondary" href="#" data-bs-toggle="modal" data-bs-target="#userProfileModal">Profile</a></li>
-                    <li><hr class="dropdown-divider"  /></li>
+                    <li><hr class="dropdown-divider" /></li>
                     <li><a id="OpenSignupModal" class="dropdown-item text-body-secondary" onclick="openSignupModal()">Sign up</a></li>
                     <li><a id="OpenLoginModal" class="dropdown-item text-body-secondary" onclick="openLoginModal()">Login</a></li>
                     <li><a class="dropdown-item text-body-secondary" href="#">Sign out</a></li>
                 </ul>
             </div>
         </nav>
-
     </div>
 </header>
 <div class="container border-bottom" id="teams">
