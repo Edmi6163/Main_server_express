@@ -298,11 +298,3 @@ a {
   transform: scale(1.1); /* Scala l'immagine del 10% */
 }
 
-#dropDownProfile
-{
-  transition: transform 0.3s ease-in-out; /* Durata e tipo di transizione */
-
-}
-#dropDownProfile:hover {
-   transform: scale(1.1); /* Scala l'immagine del 10% */
- }
