@@ -3,14 +3,13 @@ body.dark-mode {
   background-color: #121212;
   color: #e0e0e0;
 }
-
 .dark-mode .navbar,
 .dark-mode .dropdown-menu {
   background-color: #1f1f1f;
   color: #e0e0e0;
 }
 .dark-mode .logo-container {
-  background-color: #1f1f1f; /* Use your preferred shade of gray */
+  background-color: #2c2c2c; /* Use your preferred shade of gray */
 }
 .dark-mode .navbar a,
 .dark-mode .dropdown-menu a {
@@ -284,3 +283,26 @@ a {
   box-sizing: border-box;
   padding: 10px;
 }
+.custom-container {
+  max-width: 880px; /* Puoi regolare questo valore in base alle tue necessità */
+  margin: 0 auto; /* Centra il container orizzontalmente */
+  padding: 0 15px; /* Aggiungi un po' di padding per migliorare l'aspetto su dispositivi mobili */
+}
+
+/* Effetto di zoom fluido */
+#search {
+  transition: transform 0.3s ease-in-out; /* Durata e tipo di transizione */
+}
+
+#search:hover {
+  transform: scale(1.1); /* Scala l'immagine del 10% */
+}
+
+#dropDownProfile
+{
+  transition: transform 0.3s ease-in-out; /* Durata e tipo di transizione */
+
+}
+#dropDownProfile:hover {
+   transform: scale(1.1); /* Scala l'immagine del 10% */
+ }

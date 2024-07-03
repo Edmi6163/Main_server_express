@@ -169,7 +169,7 @@ body.dark-mode {
     background-color: #f0f0f0;
 }
 #room:hover {
-     transform: scale(1.05);
+     transform: scale(1.5);
      background-color: #f0f0f0;
  }
 .btn{
