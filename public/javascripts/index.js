@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
     try {
+        loadMostValuedPlayers();
+    } catch (e) {
+        console.error(e);
+    }
+    try {
         loadScoreboards();
     } catch (e) {
         console.error(e);
@@ -417,5 +422,30 @@ async function loadScoreboards() {
 
     } catch (error) {
         console.error('Error fetching data:', error);
+    }
+}
+
+async function loadMostValuedPlayers() {
+    try {
+    console.log("Loading most valued players...");
+    let response = await axios.get('/getMostValuedPlayers');
+    console.log("Most valued players loaded:", response.data);
+
+    const {success,data} = response.data;
+
+    if (!success || !data) {
+        console.error("Failed to load most valued players or data is missing.");
+        return;
+    }
+
+    const playersValueDiv = document.getElementById('players-value');
+    if (!playersValueDiv) {
+        console.error("Element with ID 'players-value' not found.");
+        return;
+    }
+    playersValueDiv.innerHTML += '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+    } catch (e) {
+        console.error("Error loading most valued players:", e);
+
     }
 }

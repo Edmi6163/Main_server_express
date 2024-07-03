@@ -75,7 +75,7 @@ const calculateScore = async () => {
 			leagueBoards[league] = boardArray.slice(0,10);
 		});
 
-		const send = await axios.post('http://localhost:3000/showScoreBoard', {data: leagueBoards});
+		let send = await axios.post('http://localhost:3000/showScoreBoard', {data: leagueBoards});
 		return ({success: true, data: send.data});
 	} catch (err) {
 		console.error('Error calculating score:', err);
