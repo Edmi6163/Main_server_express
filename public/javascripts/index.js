@@ -226,6 +226,31 @@ function loadDataAux(event, url) {
         });
 }
 
+async function loadMostValuedPlayers() {
+    axios.get('/getMostValuedPlayers')
+        .then(response => {
+            console.log(response.data);
+            const div = document.getElementById('players-value');
+            div.innerText = JSON.stringify(response.data);
+        })
+        .catch(error => {
+            console.error('Errore durante il caricamento dei dati:', error);
+        });
+}
+
+async function loadScoreboards() {
+    axios.get('/getScoreBoard')
+        .then(response => {
+            console.log(response.data);
+            const div = document.getElementById('world-cup');
+            div.innerText = JSON.stringify(response.data);
+        })
+        .catch(error => {
+            console.error('Errore durante il caricamento dei dati:', error);
+        });
+}
+
+
 function openSignupModal() {
     var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
         backdrop: 'static', // Disallow closing by clicking on the backdrop
