@@ -105,7 +105,7 @@ router.get('/getScoreBoard', async (req,res) => {
 	try {
 
 		const response = await axios.get('http://localhost:3001/scoreBoard');
-		console.log('Data fetched:', response.data);
+		console.log('Scoreboard fetched:', response.data);
 		res.json(response.data);
 	} catch(err) {
 		console.error(err);
@@ -116,7 +116,7 @@ router.get('/getScoreBoard', async (req,res) => {
 router.get('/getMostValuedPlayers',async (req,res) => {
 	try {
 		const response = await axios.get('http://localhost:3001/mostValuedPlayers');
-		console.log('Data fetched:', response.data);
+		console.log('Most valued player fetched:', response.data);
 		res.json(response.data);
 	} catch(err) {
 		console.error(err);
@@ -129,19 +129,22 @@ router.get('/getMostValuedPlayers',async (req,res) => {
 router.post('/showScoreBoard', async (req,res) => {
 	try {
 		const data = req.body;
+		console.log('Scoreboard fetched:', data);
 		res.json(data);
 	} catch(err) {
 		res.status(500).send(err.message);
 	}
 });
-module.exports = router;
 
 
 router.post('showValuedPlayer', async (req,res) => {
 	try {
 		const data = req.body;
+		console.log('Most valued player fetched:', data);
 		res.json(data);
 	} catch(err) {
 		res.status(500).send(err.message);
 	}
 });
+
+module.exports = router;
