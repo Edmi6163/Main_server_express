@@ -14,7 +14,6 @@ function init() {
     try {
         const loginBtn = document.getElementById('LoginBtn');
         loginBtn.onclick = onLogin;
-
     } catch (e) {
         console.error(e);
     }
@@ -44,8 +43,8 @@ function init() {
         console.error(e);
     }
     try {
-        const loginBtn = document.getElementById('OpenLoginModal');
-        loginBtn.onclick = openLoginModal;
+        const openLoginBtn = document.getElementById('OpenLoginModal');
+        openLoginBtn.onclick = openLoginModal;
     } catch (e) {
         console.error(e);
     }
@@ -60,6 +59,7 @@ function init() {
     } catch (e) {
         console.error(e);
     }
+
     // Codice per gestire il click sui pulsanti di tema
     document.getElementById('light-mode-btn').addEventListener('click', function() {
         document.body.classList.remove('dark-mode');
@@ -75,7 +75,11 @@ function init() {
     function setActiveTheme(theme) {
         localStorage.setItem('activeTheme', theme);
     }
+
+    // Caricare il tema al caricamento della pagina
+    loadActiveTheme();
 }
+
 function loadActiveTheme() {
     const activeTheme = localStorage.getItem('activeTheme');
     if (activeTheme === 'dark-mode-btn') {
@@ -85,11 +89,7 @@ function loadActiveTheme() {
     }
 }
 
-// Caricare il tema al caricamento della pagina
-document.addEventListener('DOMContentLoaded', function() {
-    loadActiveTheme();
-});
-function onlyOneRole(){
+function onlyOneRole() {
     const checkBoxes = document.querySelectorAll(".user-role");
     checkBoxes.forEach((checkbox) => {
         checkbox.addEventListener('change', (e) => {
@@ -108,27 +108,55 @@ function saveCredentials(url, data) {
     axios.post(url, data)
         .then(response => {
             console.log(response.data);
+            // Mostra l'alert di successo
+            const successAlert = document.getElementById('successAlert');
+            if (successAlert) {
+                successAlert.style.display = 'block';
+            }
         })
         .catch(error => {
-            console.error(error);
+            console.error('Errore durante la registrazione:', error);
+            // TODO: Gestire visivamente che c'è stato un errore durante la registrazione
         });
 }
 
 async function onLoginAux(event, url) {
     event.preventDefault();
-    const username = document.getElementById("emailUsername").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("mailLog").value;
+    const password = document.getElementById("passwordLog").value;
     const userData = {
-        usernameToLog: username,
-        passwordToLog: password
+        email: email,
+        password: password
     };
 
     try {
         const response = await axios.post(url, userData);
-        //TODO return a visual thing that the user logged successfully
+        console.log('Login successful:', response.data);
+
+        // Mostra alert di successo
+        const loginSuccessAlert = document.getElementById('loginSuccessAlert');
+        if (loginSuccessAlert) {
+            loginSuccessAlert.style.display = 'block';
+        }
+
+        // Chiudi il modal di login dopo un breve ritardo
+        setTimeout(() => {
+            closeLoginModal();
+        }, 2000); // Chiude dopo 2 secondi (2000 millisecondi)
+
+        // Pulisci i campi del form
+        document.getElementById("mailLog").value = "";
+        document.getElementById("passwordLog").value = "";
+
+        // TODO: Aggiungi il nome utente nel form del profilo
+        const usernameField = document.getElementById('username');
+        if (usernameField) {
+            usernameField.value = response.data.username; // Supponendo che la risposta contenga il campo username
+        }
+
     } catch (error) {
-        console.error(error);
-        // TODO return a visual error that the user isn't logged
+        console.error('Errore durante il login:', error);
+        // TODO: Gestire visivamente che c'è stato un errore durante il login
     }
 }
 
@@ -136,22 +164,44 @@ function onLogin(event) {
     onLoginAux(event, '/login')
 }
 
-function onSignUp(event) {
+async function onSignUp(event) {
     event.preventDefault();
     onSignUpAux(event, '/insert')
 }
 
 async function onSignUpAux(event, url) {
-    const labels = document.querySelectorAll("#SignupForm .form-label");
+    // Assicurati che il form esista nel DOM prima di procedere
+    const form = document.getElementById('SignupForm');
+    if (!form) {
+        console.error('SignupForm not found in DOM');
+        return;
+    }
 
+    // Seleziona tutti i label con la classe .form-label all'interno del form
+    const labels = form.querySelectorAll('.form-label');
+
+    // Oggetto per salvare i dati
     const data = {};
 
+    // Itera su ogni label per ottenere l'id dell'input associato e il suo valore
     labels.forEach(label => {
         const inputId = label.getAttribute('for');
-        data[inputId] = document.getElementById(inputId).value;
+        const inputElement = document.getElementById(inputId);
+
+        // Verifica se l'elemento esiste prima di accedere alla proprietà value
+        if (inputElement) {
+            data[inputId] = inputElement.value;
+        } else {
+            console.error(`Element with id ${inputId} not found`);
+        }
     });
 
+    // Salva i dati chiamando la tua funzione saveCredentials
     saveCredentials(url, data);
+}
+
+async function loadData(event) {
+    loadDataAux(event, '/query')
 }
 
 function loadDataAux(event, url) {
@@ -171,14 +221,9 @@ function loadDataAux(event, url) {
             div.innerText = JSON.stringify(response.data);
         })
         .catch(error => {
-            console.error(error);
+            console.error('Errore durante il caricamento dei dati:', error);
+            // TODO: Gestire visivamente che c'è stato un errore durante il caricamento dei dati
         });
-
-
-}
-
-async function loadData(event) {
-    loadDataAux(event, '/query')
 }
 
 function openSignupModal() {
@@ -204,248 +249,11 @@ function openLoginModal() {
     });
     modal.show();
 }
-function openProfileModel()
-{
-    var model= new bootstrap.Modal(document.getElementById('userProfileModal'), {
-        backdrop: 'static', // Disallow closing by clicking on the backdrop
-        keyboard: true // Allow closing by pressing ESC
-    });
-}
-function closeProfileModel(event)
-{
-    if(event) event.preventDefault();
-    var modal = bootstrap.Modal.getInstance(document.getElementById('userProfileModal'));
-    if(modal)
-    {
-        modal.hide();
-    }
-}
-
 
 function closeLoginModal(event) {
     if (event) event.preventDefault();
     var modal = bootstrap.Modal.getInstance(document.getElementById('LoginModalSignin'));
     if (modal) {
         modal.hide();
-    }
-}
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    // Funzione per gestire il click sul pulsante Save nel modal del profilo
-    document.getElementById('SaveProfileBtn').addEventListener('click', function() {
-        // Esegue una richiesta per salvare il profilo, incluso l'upload dell'immagine
-        // Puoi usare Axios o un'altra libreria per effettuare la richiesta POST
-        let formData = new FormData();
-        formData.append('username', document.getElementById('username').value);
-        formData.append('userEmail', document.getElementById('userEmail').value);
-        formData.append('userPhoto', document.getElementById('userPhoto').files[0]); // L'immagine caricata
-
-        axios.post('/login', formData)
-            .then(function(response) {
-                // Se la richiesta ha successo, aggiorna l'immagine nel dropdown menu
-                let profileImage = document.getElementById('profileImage');
-                profileImage.src = URL.createObjectURL(document.getElementById('userPhoto').files[0]);
-
-                // Chiudi il modal del profilo
-                let userProfileModal = new bootstrap.Modal(document.getElementById('userProfileModal'));
-                userProfileModal.hide();
-            })
-            .catch(function(error) {
-                console.error('Errore durante il salvataggio del profilo:', error);
-                // Gestisci l'errore, ad esempio mostrando un messaggio all'utente
-            });
-    });
-});
- */
-/*
-async function loadScoreboards() {
-    try {
-        console.log('Fetching scoreboards...');
-        const response = await axios.get('/getScoreBoard');
-        console.log('Data fetched:', response.data);
-
-        const { success, data } = response.data;
-        if (!success || !data) {
-            console.error('Failed to fetch scoreboards or data is missing.');
-            return;
-        }
-
-        const leagueData = data; // Accedere ai dati delle leghe correttamente
-        console.log('Parsed data:', leagueData);
-
-        const carouselInner = document.getElementById('carousel-inner');
-        if (!carouselInner) {
-            console.error('Element with ID "carousel-inner" not found.');
-            return;
-        }
-
-        carouselInner.innerHTML = '';
-
-        Object.keys(leagueData).forEach((league, leagueIndex) => {
-            const leagueTeams = leagueData[league];
-            console.log(`League: ${league}, Data:`, leagueTeams);
-
-            if (!Array.isArray(leagueTeams)) {
-                console.error(`Data for league ${league} is not an array:`, leagueTeams);
-                return;
-            }
-
-            const carouselItem = document.createElement('div');
-            carouselItem.className = `carousel-item ${leagueIndex === 0 ? 'active' : ''}`;
-
-            const table = document.createElement('table');
-            table.className = 'table table-striped';
-
-            const thead = document.createElement('thead');
-            thead.innerHTML = `
-                <tr>
-                  <th>Position</th>
-                  <th>Team</th>
-                  <th>Played</th>
-                  <th>Won</th>
-                  <th>Drawn</th>
-                  <th>Lost</th>
-                  <th>Points</th>
-                </tr>
-            `;
-            table.appendChild(thead);
-
-            const tbody = document.createElement('tbody');
-
-            leagueTeams.forEach((team, index) => {
-                const row = document.createElement('tr');
-
-                const positionCell = document.createElement('td');
-                positionCell.textContent = index + 1;
-                row.appendChild(positionCell);
-
-                const teamCell = document.createElement('td');
-                teamCell.textContent = team.team;
-                row.appendChild(teamCell);
-
-                const playedCell = document.createElement('td');
-                playedCell.textContent = team.played;
-                row.appendChild(playedCell);
-
-                const wonCell = document.createElement('td');
-                wonCell.textContent = team.won;
-                row.appendChild(wonCell);
-
-                const drawnCell = document.createElement('td');
-                drawnCell.textContent = team.drawn;
-                row.appendChild(drawnCell);
-
-                const lostCell = document.createElement('td');
-                lostCell.textContent = team.lost;
-                row.appendChild(lostCell);
-
-                const pointsCell = document.createElement('td');
-                pointsCell.textContent = team.points;
-                row.appendChild(pointsCell);
-
-                tbody.appendChild(row);
-            });
-
-            table.appendChild(tbody);
-            carouselItem.appendChild(table);
-            carouselInner.appendChild(carouselItem);
-        });
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}*/
-
-/*async function loadScoreboards() {
-    try {
-        console.log('Fetching scoreboards...');
-        const response = await axios.get('/getScoreBoard');
-        console.log('Data fetched:', response.data);
-
-        const { success, data } = response.data;
-        if (!success || !data || !data.data) {
-            console.error('Failed to fetch scoreboards or data is missing.');
-            return;
-        }
-
-        const games = data.data; // Assuming data.data is an array of game objects
-
-        const carouselInner = document.getElementById('world-cup');
-        if (!carouselInner) {
-            console.error('Element with ID "carousel-inner" not found.');
-            return;
-        }
-
-        carouselInner.innerHTML = '';
-
-        games.forEach((game, gameIndex) => {
-            const { home_club_name, away_club_name, home_club_goals, away_club_goals, competition_type } = game;
-
-            const gameDiv = document.createElement('table-div');
-            gameDiv.append('table-div');
-
-            const gameInfo = document.createElement('p');
-            gameInfo.innerHTML = `
-                <strong>${home_club_name} ${home_club_goals} - ${away_club_goals} ${away_club_name}</strong><br>
-                Competition: ${competition_type}
-            `;
-
-            gameDiv.appendChild(gameInfo);
-            carouselInner.appendChild(gameDiv);
-        });
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}*/
-
-
-async function loadScoreboards() {
-    try {
-        console.log('Fetching scoreboards...');
-        const response = await axios.get('/getScoreBoard');
-        console.log('Data fetched:', response.data);
-
-        const { success, data } = response.data;
-        if (!success || !data) {
-            console.error('Failed to fetch scoreboards or data is missing.');
-            return;
-        }
-
-        const worldCupBox = document.getElementById('world-cup');
-        if (!worldCupBox) {
-            console.error('Element with ID "world-cup" not found.');
-            return;
-        }
-
-        // Display data as plain text for testing
-        worldCupBox.innerHTML += '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-async function loadMostValuedPlayers() {
-    try {
-    console.log("Loading most valued players...");
-    let response = await axios.get('/getMostValuedPlayers');
-    console.log("Most valued players loaded:", response.data);
-
-    const {success,data} = response.data;
-
-    if (!success || !data) {
-        console.error("Failed to load most valued players or data is missing.");
-        return;
-    }
-
-    const playersValueDiv = document.getElementById('players-value');
-    if (!playersValueDiv) {
-        console.error("Element with ID 'players-value' not found.");
-        return;
-    }
-    playersValueDiv.innerHTML += '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
-    } catch (e) {
-        console.error("Error loading most valued players:", e);
-
     }
 }

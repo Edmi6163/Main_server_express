@@ -247,6 +247,10 @@
 </div>
             <div class=" justify-content-center" id="container-signup-modal">
                 <div class="modal fade" tabindex="-1" role="dialog" id="SignupModalSignin">
+                    <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                        <strong>Success!</strong> User registered successfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content rounded-4 shadow">
                             <div class="modal-header p-5 pb-4 border-bottom-0 border border-primary">
@@ -254,53 +258,56 @@
                                 <button id="CloseSignupModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeSignupModal()"></button>
                             </div>
 
-
                             <div class="modal-body p-5 pt-0">
                                 <form id="SignupForm">
                                     <div class="form-floating mb-3">
-                                        <input type="email" class="form-control rounded-3" id="mail" placeholder="name@examplecom">
-                                        <label class="form-label">Email address</label>
+                                        <input type="email" class="form-control rounded-3" id="SemailUsername" name="SemailUsername" placeholder="name@example.com" required>
+                                        <label class="form-label" for="SemailUsername">Email address</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="password" class="form-control rounded-3" id="password" placeholder="Password">
-                                        <label  class="form-label">Password</label>
+                                        <input type="password" class="form-control rounded-3" id="Spassword" name="Spassword" placeholder="Password" required>
+                                        <label class="form-label" for="Spassword">Password</label>
                                     </div>
-                                    <div class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="CredentialBtn">Sign up</div>
+                                    <button type="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="CredentialBtn">Sign up</button>
                                     <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
-
                                 </form>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="container-login-modal">
-                <div class="modal fade border border-primary" tabindex="-1" role="dialog" id="LoginModalSignin">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content rounded-4 shadow">
-                            <div class="modal-header p-5 pb-4 border-bottom-0">
-                                <h1 class="fw-bold mb-0 fs-2">Login</h1>
-                                <button id="CloseLoginModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeLoginModal()"></button>
-                            </div>
+                <div id="container-login-modal">
+                    <div class="modal fade border border-primary" tabindex="-1" role="dialog" id="LoginModalSignin">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content rounded-4 shadow">
+                                <div class="modal-header p-5 pb-4 border-bottom-0">
+                                    <h1 class="fw-bold mb-0 fs-2">Login</h1>
+                                    <button id="CloseLoginModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeLoginModal()"></button>
+                                </div>
 
-                            <div class="modal-body p-5 pt-0">
-                                <form class="">
-                                    <div class="form-floating mb-3 ">
-                                        <input type="email" class="form-control rounded-3 text-body-secondary" id="mailLog" placeholder="name@example.com">
-                                        <label>Email address</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control rounded-3" id="passwordLog" placeholder="Password">
-                                        <label>Password</label>
-                                    </div>
-                                    <div class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="LoginBtn">Login</div>
-                                </form>
+                                <div class="modal-body p-5 pt-0">
+                                    <form id="LoginForm">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control rounded-3 text-body-secondary" id="mailLog" placeholder="name@example.com">
+                                            <label>Email address</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control rounded-3" id="passwordLog" placeholder="Password">
+                                            <label>Password</label>
+                                        </div>
+                                        <div class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="LoginBtn">Login</div>
+                                    </form>
+                                </div>
+
+                                <!-- Alert di Successo -->
+                                <div id="loginSuccessAlert" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
+                                    <strong>Login successful!</strong> You are now logged in.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 <div class="position-relative" id="Leagues">
     <div class="position-relative border border-primary" id="SerieA" >
