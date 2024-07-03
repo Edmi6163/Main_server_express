@@ -297,4 +297,25 @@ a {
 #search:hover {
   transform: scale(1.1); /* Scala l'immagine del 10% */
 }
+#phrase {
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 87%; /* Larghezza massima desiderata */
+  width: 100%; /* Assicura che il div non superi la larghezza massima */
+  padding: 20px;
+  left: 54px;
+  box-sizing: border-box;
+
+}
+#Leagues {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90%; /* Larghezza massima desiderata */
+  width: 100%; /* Assicura che il div non superi la larghezza massima */
+  padding: 20px;
+  left: 50px;
+  box-sizing: border-box;
+}
