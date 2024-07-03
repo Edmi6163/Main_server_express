@@ -227,3 +227,60 @@ a {
   right: 10px;
   top: 10px;
 }
+/* Add or update these styles in your stylesheet (stylesheets/style.css) */
+
+.container-fluid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.row {
+  margin: 0 -15px;
+}
+
+.col {
+  padding: 15px;
+}
+/* CSS per gestire il wrapping degli elementi della navbar */
+.navbar-collapse {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 120px; /* Puoi regolare questo valore in base alle tue necessità */
+}
+
+/* Per migliorare l'aspetto sui dispositivi mobili */
+@media (max-width: 576px) {
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-item {
+    text-align: left;
+  }
+}
+
+/* Assicurati che gli elementi del container delle squadre vadano a capo */
+#teams .nav {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#teams .nav-item {
+  flex: 1 1 20%; /* Regola questo valore per la larghezza minima degli elementi */
+  box-sizing: border-box;
+  padding: 10px;
+}
