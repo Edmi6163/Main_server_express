@@ -350,7 +350,7 @@ async function loadScoreboards() {
     }
 }*/
 
-async function loadScoreboards() {
+/*async function loadScoreboards() {
     try {
         console.log('Fetching scoreboards...');
         const response = await axios.get('/getScoreBoard');
@@ -364,7 +364,7 @@ async function loadScoreboards() {
 
         const games = data.data; // Assuming data.data is an array of game objects
 
-        const carouselInner = document.getElementById('carousel-inner');
+        const carouselInner = document.getElementById('world-cup');
         if (!carouselInner) {
             console.error('Element with ID "carousel-inner" not found.');
             return;
@@ -375,8 +375,8 @@ async function loadScoreboards() {
         games.forEach((game, gameIndex) => {
             const { home_club_name, away_club_name, home_club_goals, away_club_goals, competition_type } = game;
 
-            const gameDiv = document.createElement('div');
-            gameDiv.className = 'game-item';
+            const gameDiv = document.createElement('table-div');
+            gameDiv.append('table-div');
 
             const gameInfo = document.createElement('p');
             gameInfo.innerHTML = `
@@ -391,5 +391,31 @@ async function loadScoreboards() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-}
+}*/
 
+
+async function loadScoreboards() {
+    try {
+        console.log('Fetching scoreboards...');
+        const response = await axios.get('/getScoreBoard');
+        console.log('Data fetched:', response.data);
+
+        const { success, data } = response.data;
+        if (!success || !data) {
+            console.error('Failed to fetch scoreboards or data is missing.');
+            return;
+        }
+
+        const worldCupBox = document.getElementById('world-cup');
+        if (!worldCupBox) {
+            console.error('Element with ID "world-cup" not found.');
+            return;
+        }
+
+        // Display data as plain text for testing
+        worldCupBox.innerHTML += '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
