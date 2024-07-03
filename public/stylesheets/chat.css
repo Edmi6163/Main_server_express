@@ -185,3 +185,40 @@ body.dark-mode {
     background-color: #1f1f1f;
     color: #e0e0e0;
 }
+
+ul#messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul#messages li {
+    clear: both;
+    overflow: auto;
+    padding: 8px 12px;
+}
+
+ul#messages li.sent {
+    text-align: right;
+}
+
+ul#messages li.received {
+    text-align: left;
+}
+
+ul#messages li .message {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #dcf8c6; 
+}
+
+ul#messages li.received .message {
+    background-color: #e1ffc7;
+}
+
+ul#messages li.system-message {
+    font-style: italic;
+    text-align: center;
+    color: #999;
+}

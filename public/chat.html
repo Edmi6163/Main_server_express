@@ -504,9 +504,10 @@
                                     <input type="text" id="room" name="room" required class="form-control shadow-sm p-2 bg-white rounded align-items-center"><br><br>
                                 </div>
                             </form>
+
                         </div>
                     </div>
-                    <div id="message_container" style="display:none;">
+                    <!-- <div id="message_container" style="display:none;">
                         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3" style="background-color:#f6f8f9; border-radius:3%;">
                             <ul id="messages"></ul>
                             <input type="text" id="messageInput" placeholder="Type your message...">
@@ -515,7 +516,19 @@
                             <div>
                             </div>
 
+                        </div> -->
+
+                        <div id="message_container" style="display:none;">
+                            <div class="chat-box">
+                                <ul id="messages"></ul>
+                                <div class="input-area">
+                                    <input type="text" id="messageInput" placeholder="Type your message...">
+                                    <button id="messageButton">Send</button>
+                                </div>
+                                <button id="logout">Logout</button>
+                            </div>
                         </div>
+                        
 
 
                     </div>
