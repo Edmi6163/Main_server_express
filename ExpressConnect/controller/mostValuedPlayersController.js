@@ -6,7 +6,11 @@ async function mostValuedPlayers(req, res) {
 		const players = await PlayerValuations.find({
 			last_season: 2023}).sort({valuation: -1}).limit(10);
 		const playersIds = players.map(player => player.player_id);
-		const springBootResponse = await axios.get('http://localhost:8080/Player/findByIds', { params: { ids: playerIds } });
+		const springBootResponse = await axios.get('http://localhost:8082/Player/findByIds', { params: { ids: playersIds },
+		auth: {
+			username: 'your-username',
+			password: ' '
+		} });
 		console.log("Spring boot response: ", springBootResponse.data);
 
         const playerDetails = {};
