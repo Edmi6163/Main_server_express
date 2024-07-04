@@ -38,7 +38,7 @@ router.post('/executeQuery', async (req, res, next) =>{
 router.get('/scoreBoard', async (req,res) => {
   try {
     const result = await scoreBoardController.calculateScore();
-    console.log(result);
+    console.log("Score board",result);
     res.json(result);
   } catch (err) {
     console.error(err);
@@ -49,7 +49,7 @@ router.get('/scoreBoard', async (req,res) => {
 router.get('/mostValuedPlayers', async (req,res) => {
   try {
     const valuedPlayer = await mostValuedPlayerController.mostValuedPlayers();
-    console.log(valuedPlayer);
+    console.log("Console log", valuedPlayer);
     res.json(valuedPlayer);
   } catch (err) {
     console.error(err);

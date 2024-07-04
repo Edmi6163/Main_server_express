@@ -1,3 +1,5 @@
+const { Cookie } = require("express-session");
+
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
@@ -170,25 +172,20 @@ async function onSignUp(event) {
 }
 
 async function onSignUpAux(event, url) {
-    // Assicurati che il form esista nel DOM prima di procedere
     const form = document.getElementById('SignupForm');
     if (!form) {
         console.error('SignupForm not found in DOM');
         return;
     }
 
-    // Seleziona tutti i label con la classe .form-label all'interno del form
     const labels = form.querySelectorAll('.form-label');
 
-    // Oggetto per salvare i dati
     const data = {};
 
-    // Itera su ogni label per ottenere l'id dell'input associato e il suo valore
     labels.forEach(label => {
         const inputId = label.getAttribute('for');
         const inputElement = document.getElementById(inputId);
 
-        // Verifica se l'elemento esiste prima di accedere alla proprietà value
         if (inputElement) {
             data[inputId] = inputElement.value;
         } else {
@@ -229,7 +226,7 @@ function loadDataAux(event, url) {
 async function loadMostValuedPlayers() {
     axios.get('/getMostValuedPlayers')
         .then(response => {
-            console.log(response.data);
+            console.log("Most valued players: ", response.data);
             const div = document.getElementById('players-value');
             div.innerText = JSON.stringify(response.data);
         })
@@ -241,7 +238,7 @@ async function loadMostValuedPlayers() {
 async function loadScoreboards() {
     axios.get('/getScoreBoard')
         .then(response => {
-            console.log(response.data);
+            console.log("Score boards:  ",response.data);
             const div = document.getElementById('world-cup');
             div.innerText = JSON.stringify(response.data);
         })
@@ -253,8 +250,8 @@ async function loadScoreboards() {
 
 function openSignupModal() {
     var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
-        backdrop: 'static', // Disallow closing by clicking on the backdrop
-        keyboard: true // Allow closing by pressing ESC
+        backdrop: 'static', 
+        keyboard: true 
     });
     modal.show();
 }
@@ -269,8 +266,8 @@ function closeSignupModal(event) {
 
 function openLoginModal() {
     var modal = new bootstrap.Modal(document.getElementById('LoginModalSignin'), {
-        backdrop: 'static', // Disallow closing by clicking on the backdrop
-        keyboard: true // Allow closing by pressing ESC
+        backdrop: 'static', 
+        keyboard: true 
     });
     modal.show();
 }
@@ -328,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileForm = document.getElementById('profileForm');
     if (profileForm) {
         profileForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Previene il ricaricamento della pagina
+            event.preventDefault();
             const expertRoleChecked = document.getElementById('expertRole').checked;
 
             if (expertRoleChecked) {
@@ -339,6 +336,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Carica il ruolo dell'utente dal localStorage al caricamento della pagina
     loadUserRole();
 });
