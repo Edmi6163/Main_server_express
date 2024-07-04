@@ -229,35 +229,71 @@ function init() {
             });
     }
 
+async function loadMostValuedPlayers() {
+    try {
+        const response = await axios.get('/getMostValuedPlayers');
+        console.log("Most valued players: ", response.data);
 
-    async function loadMostValuedPlayers() {
-        try {
-            const response = await axios.get('/getMostValuedPlayers');
-            console.log("Most valued players: ", response.data);
-            const div = document.getElementById('players-value');
-            div.innerHTML = '';
+        const leaguePlayers = response.data.data;
+        const carouselInner = document.querySelector('#playersCarousel .carousel-inner');
 
-            const players = response.data.data.data;
-            players.forEach(player => {
-                const playerCard = document.createElement('div');
-                playerCard.classList.add('col-md-4', 'mb-3');
+        // Clear the carousel content
+        carouselInner.innerHTML = '';
 
-                playerCard.innerHTML = `
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Player ID: ${player.player_id}</h5>
-                        <p class="card-text">Market Value: €${player.market_value_in_eur}</p>
-                        <p class="card-text">Club ID: ${player.current_club_id}</p>
+        let isActive = true;
+
+        // For each league in the response, create and fill the corresponding table
+        for (const league in leaguePlayers) {
+            const playersData = leaguePlayers[league];
+            const tableId = `${league}PlayersTable`;
+
+            const carouselItem = document.createElement('div');
+            carouselItem.className = `carousel-item ${isActive ? 'active' : ''}`;
+            isActive = false;
+
+            const tableHTML = `
+                <div class="card mb-3 border border-secondary mx-auto" style="max-width: 500px;">
+                    <h3 class="card-header text-center">${league}</h3>
+                    <div class="card-body text-center">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover mx-auto" id="${tableId}">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">#</th>
+                                    <th scope="col" class="text-center">Player ID</th>
+                                    <th scope="col" class="text-center">Market Value (€)</th>
+                                    <th scope="col" class="text-center">Club ID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                ${playersData.map((player, index) => `
+                                    <tr>
+                                        <th scope="row" class="text-center">${index + 1}</th>
+                                        <td class="text-center">${player.player_id}</td>
+                                        <td class="text-center">€${player.market_value_in_eur}</td>
+                                        <td class="text-center">${player.current_club_id}</td>
+                                    </tr>
+                                `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             `;
 
-                div.appendChild(playerCard);
-            });
-        } catch (error) {
-            console.error('Error during data loading: ', error);
+            carouselItem.innerHTML = tableHTML;
+            carouselInner.appendChild(carouselItem);
         }
+    } catch (error) {
+        console.error('Error during data loading: ', error);
     }
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', loadMostValuedPlayers);
+
+// Call the function when the page loads
+
 async function loadScoreboards() {
     try {
         const response = await axios.get('/getScoreBoard');
