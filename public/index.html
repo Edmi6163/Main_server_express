@@ -32,7 +32,7 @@
     </symbol>
 </svg>
 
-<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle z-3 border border-primary" aria-label="Theme toggle dropdown">
+<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle z-3 border " aria-label="Theme toggle dropdown">
     <button
             class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center shadow p-3 mb-5 bg-white rounded"
             id="bd-theme"
@@ -114,10 +114,6 @@
             </div>
             <div class="modal-body p-5 pt-0">
                 <form id="profileForm">
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-3 text-body-secondary" id="userEmail" placeholder="name@example.com">
-                        <label for="userEmail">Email address</label>
-                    </div>
                     <div class="form-check mb-3">
                         <input class="form-check-input user-role" type="checkbox" value="fan" id="fanRole">
                         <label class="form-check-label" for="fanRole">Casual user</label>
@@ -136,11 +132,11 @@
 
 <!-- Navbar -->
 <header class="mb-3 border-bottom border-bottom flex">
-    <div class="container logo-container border border-primary bg-light">
+    <div class="container logo-container border  bg-light">
         <a href="" class="navbar-brand col-1 d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
             <img src="assets/logo.png" class="img-fluid" width="90" height="90" role="img" alt="logo">
         </a>
-        <nav class="navbar navbar-expand-lg align-items-center justify-content-between justify-content-center pippo border border-primary">
+        <nav class="navbar navbar-expand-lg align-items-center justify-content-between justify-content-center pippo border ">
             <ul class="nav col-5 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0">
                 <li>
                     <a href="chat.html" class="nav-link px-5 link-body-emphasis fs-4 text-body-secondary">Chat</a>
@@ -190,24 +186,16 @@
                     <li class="nav-item">
                         <a class="nav-link px-3 col-auto link-body-emphasis fs-4 text-body-secondary underline" href="#PremierLeague">Premier League</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 col-auto link-body-emphasis fs-4 text-body-secondary underline" href="#ChampionsLeague">Champions League</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link px-3 col-auto link-body-emphasis fs-4 text-body-secondary underline" href="#EuropaLeague">Europa League</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 col-auto link-body-emphasis fs-4 text-body-secondary underline" href="#WorldCup">World Cup</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 col-auto link-body-emphasis fs-4 text-body-secondary underline" href="#Others">Others</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
-<div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center darkContainer bg-body-tertiary border border-primary" id="phrase">
+<div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center darkContainer bg-body-tertiary border " id="phrase">
     <div class="col-md-12 p-lg-5 mx-auto my-5">
         <div class="container" id="containerCarousel" style="max-width: 800px;">
             <h1 class="text-center my-4">Football League Scoreboard</h1>
@@ -235,7 +223,7 @@
                     </div>
                     <div class="modal-dialog" role="document">
                         <div class="modal-content rounded-4 shadow">
-                            <div class="modal-header p-5 pb-4 border-bottom-0 border border-primary">
+                            <div class="modal-header p-5 pb-4 border-bottom-0 border ">
                                 <h1 class="fw-bold mb-0 fs-2">Sign up</h1>
                                 <button id="CloseSignupModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeSignupModal()"></button>
                             </div>
@@ -259,12 +247,12 @@
             </div>
 
                 <div id="container-login-modal">
-                    <div class="modal fade border border-primary" tabindex="-1" role="dialog" id="LoginModalSignin">
+                    <div class="modal fade border " tabindex="-1" role="dialog" id="LoginModalSignin">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content rounded-4 shadow">
                                 <div class="modal-header p-5 pb-4 border-bottom-0">
                                     <h1 class="fw-bold mb-0 fs-2">Login</h1>
-                                    <h2 class="fw-bold mb-0 fs-3">Please enter your details</h2>
+                                    <h2 class="fw-bold mb-0 fs-3"> </h2>
                                     <button id="CloseLoginModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeLoginModal()"></button>
                                 </div>
 
@@ -293,25 +281,16 @@
                 </div>
 
 <div class="position-relative" id="Leagues">
-    <div class="position-relative border border-primary" id="SerieA" >
-        <p class="text-center fs-1">Serie A</p>
+    <div class="position-relative border " id="SerieA" >
+        <p class="text-center-left fs-1">Serie A</p>
         <div class="logo-container" style="position: absolute; top: 10px; right: 10px;">
             <img src="assets/Serie_A.png" class="img-fluid" width="90" height="90" role="img" alt="logo">
         </div>
 
         <div class="container-box d-flex flex-column">
             <!-- Container per la classifica -->
-            <div class="box border border-secondary mb-3">
-                <h3>Classifica Serie A </h3>
-                <ul>
-                    <li>Squadra A - Punti</li>
-                    <li>Squadra B - Punti</li>
-                    <li>Squadra C - Punti</li>
-                    <!-- Aggiungi altre squadre secondo necessità -->
-                </ul>
-            </div>
 
-            <div class="box border border-secondary mb-3">
+            <div class="box border  mb-3">
                 <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
@@ -421,34 +400,20 @@
                     </div>
                 </div>
             </div>
-            <!-- Container per il top market team -->
-            <div class="box border border-secondary">
-                <h3>Top Market Team</h3>
-                <p>Squadra con maggiori movimenti di mercato.</p>
-            </div>
+
         </div>
 
-    <div class="position-relative border border-primary" id="SerieB">
-        <p class="text-center fs-1">Serie B</p>
+    <div class="position-relative border " id="SerieB">
+        <p class="text-center-left fs-1">Serie B</p>
 
         <div class="logo-container" style="position: absolute; top: 10px; right: 10px;">
             <img src="assets/Serie_b.png" class="img-fluid" width="90" height="90" role="img" alt="serie b logo">
         </div>
 
-        <div class="container-box d-flex flex-column">
-            <!-- Container per la classifica -->
-            <div class="box border border-secondary mb-3">
-                <h3>Classifica Bundesliga</h3>
-                <ul>
-                    <li>Squadra A - Punti</li>
-                    <li>Squadra B - Punti</li>
-                    <li>Squadra C - Punti</li>
-                    <!-- Aggiungi altre squadre secondo necessità -->
-                </ul>
-            </div>
+
 
             <!-- Container per le news -->
-            <div class="box border border-secondary mb-3">
+            <div class="box border  mb-3">
                 <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
@@ -538,33 +503,18 @@
             </div>
 
 
-
-            <!-- Container per il top market team -->
-            <div class="box border border-secondary">
-                <h3>Top Market Team</h3>
-                <p>Squadra con maggiori movimenti di mercato.</p>
-            </div>
         </div>
-    <div class="position-relative border border-primary" id="Liga1">
-        <p class="text-center fs-1">Ligue 1 </p>
+    <div class="position-relative border " id="Liga1">
+        <p class="text-center-left fs-1">Ligue 1 </p>
 
         <div class="logo-container" style="position: absolute; top: 10px; right: 10px;">
             <img src="assets/Ligue1_Uber_Eats_logo.png" class="img-fluid" width="70" height="90" role="img" alt="ligue1 logo">
         </div>
 
         <div class="container-box d-flex flex-column">
-            <!-- Container per la classifica -->
-            <div class="box border border-secondary mb-3">
-                <h3>Classifica Bundesliga</h3>
-                <ul>
-                    <li>Squadra A - Punti</li>
-                    <li>Squadra B - Punti</li>
-                    <li>Squadra C - Punti</li>
-                    <!-- Aggiungi altre squadre secondo necessità -->
-                </ul>
-            </div>
 
-            <div class="box border border-secondary mb-3">
+
+            <div class="box border  mb-3">
                 <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
@@ -725,57 +675,19 @@
                 </div>
             </div>
             <!-- Container per il top market team -->
-            <div class="card mb-3 border border-secondary" style="max-width: 18rem;">
-                <h3 class="card-header">Top Market Team</h3>
-                <div class="card-body">
-                    <p class="card-text">Squadra con maggiori movimenti di mercato.</p>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="tableValue" >
-                            <thead >
-                            <tr>
-                                <th headers="num" scope="col" class="text-center">#</th>
-                                <th headers="Club" scope="col" class="text-center">Club</th>
-                                <th headers="Value" scope="col" class="text-center">Value</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th headers="num-1-row" scope="row" class="text-center">1</th>
-                                <th headers="club-row" scope="row" class="text-center">Nome Club 1</th>
-                                <td headers="value-row" class="text-end text-center" >Valore Club 1</td>
-                            </tr>
-                            <tr>
-                                <th headers="num2-row" scope="row" class="text-center">2</th>
-                                <th headers="club2-row" scope="row" class="text-center">Nome Club 2</th>
-                                <td headers="value2-row" class="text-end text-center">Valore Club 2</td>
-                            </tr>
-                            <!-- Aggiungi altre righe secondo necessità -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        <div class="position-relative border border-primary" id="Bundesliga">
-            <p class="text-center fs-1">Bundesliga</p>
+
+        <div class="position-relative border " id="Bundesliga">
+            <p class="text-center-left fs-1">Bundesliga</p>
 
             <div class="logo-container" style="position: absolute; top: 10px; right: 10px;">
                 <img src="assets/Bundesliga_-_Logo_2017.svg" class="img-fluid" width="90" height="90" role="img" alt="bundesliga logo">
             </div>
 
             <div class="container-box d-flex flex-column">
-                <!-- Container per la classifica -->
-                <div class="box border border-secondary mb-3">
-                    <h3>Classifica Bundesliga</h3>
-                    <ul>
-                        <li>Squadra A - Punti</li>
-                        <li>Squadra B - Punti</li>
-                        <li>Squadra C - Punti</li>
-                        <!-- Aggiungi altre squadre secondo necessità -->
-                    </ul>
-                </div>
+
 
                 <!-- Container per le news -->
-                <div class="box border border-secondary mb-3">
+                <div class="box border  mb-3">
                     <h3>Ultime News</h3>
                     <div class="row g-4">
                         <div class="col-12 col-md-6 col-lg-4">
@@ -853,34 +765,21 @@
                                 </div>
                             </div>
                         </div>
-                <!-- Container per il top market team -->
-                <div class="box border border-secondary">
-                    <h3>Top Market Team</h3>
-                    <p>Squadra con maggiori movimenti di mercato.</p>
-                </div>
             </div>
         </div>
-    <div class="position-relative border border-primary" id="PremierLeague">
-        <p class="text-center fs-1">Premier League</p>
+    <div class="position-relative border " id="PremierLeague">
+        <p class="text-center-left fs-1">Premier League</p>
 
         <div class="logo-container" style="position: absolute; top: 10px; right: 10px;">
             <img src="assets/Premier-League.png" class="img-fluid" width="90" height="90" role="img" alt="logo">
         </div>
 
         <div class="container-box d-flex flex-column">
-            <!-- Container per la classifica -->
-            <div class="box border border-secondary mb-3">
-                <h3>Classifica Bundesliga</h3>
-                <ul>
-                    <li>Squadra A - Punti</li>
-                    <li>Squadra B - Punti</li>
-                    <li>Squadra C - Punti</li>
-                    <!-- Aggiungi altre squadre secondo necessità -->
-                </ul>
+
             </div>
 
             <!-- Container per le news -->
-            <div class="box border border-secondary mb-3">
+            <div class="box border  mb-3">
                 <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
@@ -1009,127 +908,72 @@
                         </div>
                     </div>
 
-            <!-- Container per il top market team -->
-            <div class="box border border-secondary">
+            <!-- Container per il top market team --
+            <div class="box border ">
                 <h3>Top Market Team</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
+            -->
         </div>
-    <div class="position-relative border border-primary" id="EuropaLeague">
-        <p class="text-center fs-1">Europa League</p>
+    <div class="position-relative border " id="EuropaLeague">
+        <p class="text-center-left fs-1">Europa League</p>
 
         <div class="logo-container" style="position: absolute; top: 10px; right: 10px;">
             <img src="assets/Europa_League_2021.svg" class="img-fluid" width="90" height="90" role="img" alt="Europa league logo">
         </div>
 
         <div class="container-box d-flex flex-column">
-            <!-- Container per la classifica -->
-            <div class="box border border-secondary mb-3">
-                <h3>Classifica Bundesliga</h3>
-                <ul>
-                    <li>Squadra A - Punti</li>
-                    <li>Squadra B - Punti</li>
-                    <li>Squadra C - Punti</li>
-                    <!-- Aggiungi altre squadre secondo necessità -->
-                </ul>
-            </div>
+
 
             <!-- Container per le news -->
-            <div class="box border border-secondary mb-3">
+            <div class="box border  mb-3">
                 <h3>Ultime News</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec accumsan rutrum.</p>
-                <!-- Aggiungi altre news secondo necessità -->
-            </div>
-
-            <!-- Container per il top market team -->
-            <div class="box border border-secondary">
-                <h3>Top Market Team</h3>
-                <p>Squadra con maggiori movimenti di mercato.</p>
-            </div>
-        </div>
-    </div>
-    <div class="position-relative border border-primary" id="ChampionsLeague">
-        <p class="text-center fs-1">Champions League</p>
-
-        <div class="logo-container" style="position: absolute; top: 10px; right: 10px;">
-            <img src="assets/Logo_UEFA_Champions_League.png" class="img-fluid" width="90" height="90" role="img" alt="UEFA Champions league logo">
-        </div>
-
-        <div class="container-box d-flex flex-column">
-            <!-- Container per la classifica -->
-            <div class="box border border-secondary mb-3">
-                <h3>Classifica Bundesliga</h3>
-                <ul>
-                    <li>Squadra A - Punti</li>
-                    <li>Squadra B - Punti</li>
-                    <li>Squadra C - Punti</li>
-                    <!-- Aggiungi altre squadre secondo necessità -->
-                </ul>
-            </div>
-
-            <!-- Container per le news -->
-            <div class="box border border-secondary mb-3">
-                <h3>Ultime News</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec accumsan rutrum.</p>
-                <!-- Aggiungi altre news secondo necessità -->
-            </div>
-
-            <!-- Container per il top market team -->
-            <div class="box border border-secondary">
-                <h3>Top Market Team</h3>
-                <p>Squadra con maggiori movimenti di mercato.</p>
-            </div>
-        </div>
-
-        <!-- Container per le news -->
-        <div class="box border border-secondary mb-3">
-            <h3>Ultime News</h3>
-            <div class="row g-4">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" data-bs-toggle="modal" data-bs-target="#modalFormat">
-                        <img src="assets/antonio_napoli.jpg" class="card-img-top" alt="last news">
-                        <div class="card-body">
-                            <h5 class="card-title">Nuovo formato per la stagione 2024/25</h5>
-                            <p class="card-text"> La nuova stagione dell’Europa League vedrà un formato...</p>
+                <div class="row g-4">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card" data-bs-toggle="modal" data-bs-target="#modalFormat">
+                            <img src="assets/antonio_napoli.jpg" class="card-img-top" alt="last news">
+                            <div class="card-body">
+                                <h5 class="card-title">Nuovo formato per la stagione 2024/25</h5>
+                                <p class="card-text"> La nuova stagione dell’Europa League vedrà un formato...</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" data-bs-toggle="modal" data-bs-target="#modalAtalanta">
-                        <img src="assets/antonio_napoli.jpg" class="card-img-top" alt="last news">
-                        <div class="card-body">
-                            <h5 class="card-title">Vittoria dell’Atalanta</h5>
-                            <p class="card-text">L’Atalanta ha vinto la finale di Europa League...</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card" data-bs-toggle="modal" data-bs-target="#modalAtalanta">
+                            <img src="assets/antonio_napoli.jpg" class="card-img-top" alt="last news">
+                            <div class="card-body">
+                                <h5 class="card-title">Vittoria dell’Atalanta</h5>
+                                <p class="card-text">L’Atalanta ha vinto la finale di Europa League...</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" data-bs-toggle="modal" data-bs-target="#modalCalendarioP">
-                        <img src="assets/antonio_napoli.jpg" class="card-img-top" alt="last news">
-                        <div class="card-body">
-                            <h5 class="card-title">Calendario delle qualificazioni</h5>
-                            <p class="card-text">Le qualificazioni per la stagione 2024/25 inizieranno...</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card" data-bs-toggle="modal" data-bs-target="#modalCalendarioP">
+                            <img src="assets/antonio_napoli.jpg" class="card-img-top" alt="last news">
+                            <div class="card-body">
+                                <h5 class="card-title">Calendario delle qualificazioni</h5>
+                                <p class="card-text">Le qualificazioni per la stagione 2024/25 inizieranno...</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" data-bs-toggle="modal" data-bs-target="#modalSorteggio">
-                        <img src="assets/grafica.thiago..jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">	Sorteggio delle qualificazioni</h5>
-                            <p class="card-text">I sorteggi per le varie fasi di qualificazione si terranno tra giugno e agosto...</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card" data-bs-toggle="modal" data-bs-target="#modalSorteggio">
+                            <img src="assets/grafica.thiago..jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">	Sorteggio delle qualificazioni</h5>
+                                <p class="card-text">I sorteggi per le varie fasi di qualificazione si terranno tra giugno e agosto...</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" data-bs-toggle="modal" data-bs-target="#modalFinale">
-                        <img src="assets/pallone_seriA.jpg" class="card-img-top img-fluid align-self-center" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Finale a Bilbao</h5>
-                            <p class="card-text"> La finale della stagione 2024/25 si terrà allo Stadio di San Mamés...</p>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card" data-bs-toggle="modal" data-bs-target="#modalFinale">
+                            <img src="assets/pallone_seriA.jpg" class="card-img-top img-fluid align-self-center" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Finale a Bilbao</h5>
+                                <p class="card-text"> La finale della stagione 2024/25 si terrà allo Stadio di San Mamés...</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 </div>
                 <div class="modal fade " id="modalFormat" tabindex="-1" aria-labelledby="modalFormatLabel" aria-hidden="true">
@@ -1196,47 +1040,51 @@
                         </div>
                     </div>
                 </div>
-            <div class="modal fade " id="modalFinale" tabindex="-1" aria-labelledby="modalFinaleLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalFinaleLabel">	Finale a Bilbao</h5>
-                            <button type="button" class="btn  modal-close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="assets/Aversa.jpg" class="card-img-top mb-3" alt="...">
-                            <p> La finale della stagione 2024/25 si terrà allo Stadio di San Mamés a Bilbao, Spagna, il 21 maggio 2025</p>
+                <div class="modal fade " id="modalFinale" tabindex="-1" aria-labelledby="modalFinaleLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalFinaleLabel">	Finale a Bilbao</h5>
+                                <button type="button" class="btn  modal-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="assets/Aversa.jpg" class="card-img-top mb-3" alt="...">
+                                <p> La finale della stagione 2024/25 si terrà allo Stadio di San Mamés a Bilbao, Spagna, il 21 maggio 2025</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Container per le news -->
-            <div class="box border border-secondary mb-3">
-                <h3>Ultime News</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec accumsan rutrum.</p>
-                <!-- Aggiungi altre news secondo necessità -->
-            </div>
 
-            <!-- Container per il top market team -->
-            <div class="box border border-secondary" id="players-value">
+            <!-- Container per il top market team -
+            <div class="box border ">
+                <h3>Top Market Team</h3>
+                <p>Squadra con maggiori movimenti di mercato.</p>
+            </div>
+            -->
+        </div>
+    </div>
+
+
+
+            <!-- Container per il top market team -
+            <div class="box border " id="players-value">
                 <h3>Top Market Players</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
+            -->
         </div>
     </div>
-    <div class="position-relative border border-primary" id="Others">
-<h1> Here Other </h1>
-     </div>
 </div>
-            <div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center darkContainer bg-body-tertiary border border-primary" >
+                <!---
+            <div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center darkContainer bg-body-tertiary border " >
                 <div class="col-md-12 p-lg-5 mx-auto my-5">
                     <div class="container" id="containerCarousel2" style="max-width: 800px;">
                         <h1 class="text-center my-4">Most Valued Players</h1>
                         <div id="playersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
                             <div class="carousel-inner">
-                                <!-- Le tabelle verranno aggiunte dinamicamente qui -->
+                                 Le tabelle verranno aggiunte dinamicamente qui
                             </div>
                             <a class="carousel-control-prev" href="#playersCarousel" role="button" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -1249,12 +1097,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                !--->
+
 <div id="dataRequest">
 
 </div>
-
-
     </div>
         </div>
     </div>
@@ -1262,7 +1109,7 @@
     </div>
 </div>
 <footer>
-<div class="container border border-primary">
+<div class="container border ">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bg-light" >
         <div class="col-md-4 d-flex align-items-center">
             <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
@@ -1276,5 +1123,5 @@
     </footer>
 </div>
     </footer>
- </body>>
+ </body>
 </html>
