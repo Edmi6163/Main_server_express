@@ -72,10 +72,8 @@ router.route('/query').post(
 //TODO a good comment of this route using swagger style
 
 router.post('/queryReceived', async (req, res) => {
-
-	console.log("Query received is: ", req.body);
-
 	try {
+		console.log("Query received: ", req.body);
 		res.status(200).json(req.body);
 	} catch (error) {
 		res.status(500).json({error: error.message});
@@ -103,9 +101,7 @@ router.post('/askJava', async (req,res) => {
 
 router.get('/getScoreBoard', async (req,res) => {
 	try {
-
 		const response = await axios.get('http://localhost:3001/scoreBoard');
-		console.log('Scoreboard fetched:', response.data);
 		res.json(response.data);
 	} catch(err) {
 		console.error(err);
@@ -116,7 +112,6 @@ router.get('/getScoreBoard', async (req,res) => {
 router.get('/getMostValuedPlayers',async (req,res) => {
 	try {
 		const response = await axios.get('http://localhost:3001/mostValuedPlayers');
-		console.log('Most valued player fetched:', response.data);
 		res.json(response.data);
 	} catch(err) {
 		console.error(err);
@@ -129,7 +124,6 @@ router.get('/getMostValuedPlayers',async (req,res) => {
 router.post('/showScoreBoard', async (req,res) => {
 	try {
 		const data = req.body;
-		console.log('Scoreboard fetched:', data);
 		res.json(data);
 	} catch(err) {
 		res.status(500).send(err.message);
@@ -140,7 +134,6 @@ router.post('/showScoreBoard', async (req,res) => {
 router.post('/showValuedPlayers', async (req,res) => {
 	try {
 		const data = req.body;
-		console.log('Most valued player fetched:', data);
 		res.json(data);
 	} catch(err) {
 		res.status(500).send(err.message);

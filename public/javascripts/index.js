@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
     try {
-        loadMostValuedPlayers();
+        // loadMostValuedPlayers();
+        loadData();
     } catch (e) {
         console.error(e);
     }
@@ -199,21 +200,20 @@ function init() {
             }
         });
 
-        // Salva i dati chiamando la tua funzione saveCredentials
         saveCredentials(url, data);
     }
 
-    async function loadData(event) {
-        loadDataAux(event, '/query')
+    async function loadData() {
+        await loadDataAux( '/query')
     }
 
-    function loadDataAux(event, url) {
+ /* async function loadDataAux(event, url) {
         const data = {
             "collection": "games",
             "query": {
                 "away_club_name": "Olympique de Marseille",
+
                 "competition_type": "domestic_league",
-                "home_club_goals": 4
             },
             "type": "nosql"
         };
@@ -225,9 +225,101 @@ function init() {
             })
             .catch(error => {
                 console.error('Errore durante il caricamento dei dati:', error);
-                // TODO: Gestire visivamente che c'è stato un errore durante il caricamento dei dati
             });
     }
+ */
+
+async function loadDataAux(url) {
+    const rivalTeams = [
+      //asked chatGpt which are the team historical rivals
+        ["Paris Saint-Germain", "Olympique de Marseille"],
+        ["Olympique Lyonnais", "AS Saint-Étienne"],
+        ["Borussia Dortmund", "Schalke 04"],
+        ["Bayern Monaco", "Borussia Dortmund"],
+        ["Inter", "Milan"],
+        ["Roma", "Lazio"],
+        ["Manchester United", "Liverpool"],
+        ["Arsenal", "Tottenham Hotspur"]
+    ];
+
+    try {
+        const requests = rivalTeams.map(async ([team1, team2]) => {
+            const data = {
+                "collection": "games",
+                "query": {
+                    "$or": [
+                        { "home_club_name": team1, "away_club_name": team2 },
+                        { "home_club_name": team2, "away_club_name": team1 }
+                    ],
+                    "competition_type": "domestic_league"
+                },
+                "type": "nosql"
+            };
+            const response = await axios.post(url, data);
+            return response.data;
+        });
+
+        const allResponses = await Promise.all(requests);
+        const combinedResults = allResponses.flat();
+        console.log("These are all responses: ", combinedResults);
+
+        const dateGroupedResults = combinedResults.reduce((acc, game) => {
+            const gameDate = new Date(game.date.$date).toISOString().split('T')[0];
+            if (!acc[gameDate]) {
+                acc[gameDate] = [];
+            }
+            acc[gameDate].push(game);
+            return acc;
+        }, {});
+
+        const sameDateMatches = Object.values(dateGroupedResults).filter(matches => matches.length > 1);
+
+        const filteredData = sameDateMatches.map(matches => matches.map(game => ({
+            date: new Date(game.date.$date).toISOString().split('T')[0],
+            homeTeam: game.home_club_name,
+            awayTeam: game.away_club_name,
+            homeGoals: game.home_club_goals,
+            awayGoals: game.away_club_goals,
+            stadium: game.stadium,
+            attendance: game.attendance
+        })));
+
+        const div = document.getElementById('dataRequest');
+        div.innerHTML = '';
+        const table = document.createElement('table');
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const headers = ['Date', 'Home Team', 'Away Team', 'Home Goals', 'Away Goals', 'Stadium', 'Attendance'];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.appendChild(document.createTextNode(headerText));
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        filteredData.forEach(matchDay => {
+            matchDay.forEach(game => {
+                const row = document.createElement('tr');
+                Object.values(game).forEach(text => {
+                    const cell = document.createElement('td');
+                    cell.appendChild(document.createTextNode(text));
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            });
+        });
+        table.appendChild(tbody);
+
+        div.appendChild(table);
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+}
+
+
 
 async function loadMostValuedPlayers() {
     try {
@@ -289,10 +381,9 @@ async function loadMostValuedPlayers() {
     }
 }
 
-// Call the function when the page loads
 document.addEventListener('DOMContentLoaded', loadMostValuedPlayers);
+document.addEventListener('DOMContentLoaded', loadData);
 
-// Call the function when the page loads
 
 async function loadScoreboards() {
     try {
@@ -302,7 +393,6 @@ async function loadScoreboards() {
         const leagueBoards = response.data.data.data;
         const carouselInner = document.querySelector('.carousel-inner');
 
-        // Pulisce il contenuto del carosello
         carouselInner.innerHTML = '';
 
         let isActive = true;
@@ -369,15 +459,9 @@ async function loadScoreboards() {
     }
 }
 
-// Chiamare la funzione quando la pagina è caricata
 document.addEventListener('DOMContentLoaded', loadScoreboards);
-// Chiamare la funzione quando la pagina è caricata
-    document.addEventListener('DOMContentLoaded', loadScoreboards);
+document.addEventListener('DOMContentLoaded', loadData)
 
-// Chiamare la funzione quando la pagina è caricata
-    document.addEventListener('DOMContentLoaded', loadScoreboards);
-
-// Chiamare la funzione quando la pagina è caricata
     function openSignupModal() {
         var modal = new bootstrap.Modal(document.getElementById('SignupModalSignin'), {
             backdrop: 'static',
