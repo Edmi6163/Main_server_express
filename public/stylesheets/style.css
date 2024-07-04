@@ -309,6 +309,11 @@ a {
   box-sizing: border-box;
 
 }
+ .dark-mode .darkContainer {
+  background-color: #181818;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
 #Leagues {
   display: flex;
   justify-content: center;
