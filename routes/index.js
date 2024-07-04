@@ -137,7 +137,7 @@ router.post('/showScoreBoard', async (req,res) => {
 });
 
 
-router.post('showValuedPlayer', async (req,res) => {
+router.post('/showValuedPlayer', async (req,res) => {
 	try {
 		const data = req.body;
 		console.log('Most valued player fetched:', data);

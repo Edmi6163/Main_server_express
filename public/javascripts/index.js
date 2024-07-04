@@ -293,6 +293,7 @@ function saveUserRole(role) {
     } else {
         updateNavbarForFan();
     }
+    localStorage.setItem('userRole', role);
 }
 
 function updateNavbarForExpert() {
@@ -300,12 +301,26 @@ function updateNavbarForExpert() {
     if (expertLinkContainer) {
         expertLinkContainer.style.display = 'block';
     }
+    expertLinkContainer.onclick = function() {
+        axios.post('')
+    }
 }
 
 function updateNavbarForFan() {
     const expertLinkContainer = document.getElementById('expertLinkContainer');
     if (expertLinkContainer) {
         expertLinkContainer.style.display = 'none';
+    }
+}
+
+function loadUserRole() {
+    const savedRole = localStorage.getItem('userRole');
+    if (savedRole === userRole.Expert) {
+        updateNavbarForExpert();
+        document.getElementById('expertRole').checked = true;
+    } else {
+        updateNavbarForFan();
+        document.getElementById('fanRole').checked = true;
     }
 }
 
@@ -323,4 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Carica il ruolo dell'utente dal localStorage al caricamento della pagina
+    loadUserRole();
 });
