@@ -1,18 +1,22 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Ium Tweb final assignment api",
+    "title": "Ium Tweb final assignment api docs",
     "description": "OpenApi swagger docs for final assignment",
     "version": "1.0.0"
   },
   "servers": [
     {
       "url": "http://localhost:3000/",
-      "description": "Main server express"
+      "description": "Main Express server containing the frontend and routes that call the other servers, which communicate with the databases."
     },
     {
       "url": "http://localhost:3001/",
-      "description": "Express server to connect to mongodb that stores data"
+      "description": "Express server connected to MongoDB, which stores data that changes frequently."
+    },
+    {
+      "url": "http://localhost:8082/",
+      "description": "Spring Boot server communicating with PostgreSQL, containing data that does not change frequently."
     }
   ],
   "paths": {
@@ -50,10 +54,10 @@
                 "type": "object",
                 "properties": {
                   "usernameToLog": {
-                    "example": "any"
+                    "example": "usernameToLogTest"
                   },
                   "passwordToLog": {
-                    "example": "any"
+                    "example": "passwordToLogTest"
                   }
                 }
               }
@@ -82,11 +86,11 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "type": {
-                    "example": "any"
+                  "collection": {
+                    "example": "games"
                   },
                   "query": {
-                    "example": "any"
+                    "example": "away_club_name"
                   }
                 }
               }
@@ -97,7 +101,7 @@
     },
     "/queryReceived": {
       "post": {
-        "description": "",
+        "description": "Here the server receive the query from the server that communicate with mongodb",
         "responses": {
           "200": {
             "description": "OK"
