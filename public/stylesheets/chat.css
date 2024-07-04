@@ -1,0 +1,222 @@
+/* Stili di base per la modalità dark */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .navbar,
+.dark-mode .dropdown-menu {
+    color: #e0e0e0;
+    background-color: #1f1f1f;
+
+}
+
+.dark-mode .navbar a,
+.dark-mode .dropdown-menu a {
+    color: #e0e0e0;
+}
+.dark-mode .dropdown-item {
+    color: #e0e0e0;
+    background-color: #1f1f1f;
+}
+.dropdown-item.dropdown-item :hover {
+    background-color: #333;
+}
+.dark-mode .card {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+.dark-mode .list-group-item {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+.dark-mode .border-bottom {
+    border-bottom: 1px solid #333;
+}
+
+
+#navText1
+{
+    color: #000000;
+
+}
+.dark-mode #navText1
+{
+    color: #e0e0e0;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+.dark-mode .btn {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+.dark-mode .Cname {
+    color: #e0e0e0;
+}
+/* Stili per la scritta "STATISTICS" nella header */
+.dark-mode .navbar-brand {
+    color: #ffffff; /* Bianco */
+}
+
+/* Stili per il menù di selezione della dark-mode e light-mode in dark-mode */
+.dark-mode .custom-select,
+.dark-mode .custom-select option {
+    background-color: #333; /* Sfondo grigio scuro */
+    color: #ffffff; /* Testo bianco */
+    border: 1px solid #555; /* Bordo grigio scuro */
+}
+
+/* Stili per i link nel menù di selezione */
+.dark-mode .custom-select option:hover,
+.dark-mode .custom-select option:focus {
+    background-color: #555; /* Sfondo grigio più scuro al passaggio del mouse o al focus */
+    color: #ffffff; /* Testo bianco */
+}
+
+/* Stili per la freccia nell'elemento di selezione */
+.dark-mode .custom-select::after {
+    color: #ffffff; /* Freccia bianca */
+}
+/* Aggiungi ulteriori stili specifici per altri elementi della pagina se necessario */
+#form_container
+{
+    background-color:#f6f8f9; border-radius:3%;
+}
+
+.dark-mode #form_container
+{
+    background-color: #181818;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+/* Stile di base per la linea sottostante */
+.nav-link {
+    position: relative;
+    #color: #00B7FF;
+    text-decoration: none; /* Rimuovi il sottolineato di default */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px; /* Posiziona la linea sotto l'elemento */
+    left: 0;
+    background-color: #00B7FF; /* Colore della linea */
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+#search {
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 0;
+    border-color: #181818;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.dark-mode #search {
+    background-color: #181818;
+    color: black;
+    border-color:#f0f0f0;
+}
+#search:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+#name {
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border-color: #1f1f1f;
+}
+#surname {
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border-color: #1f1f1f;
+}#room {
+     box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+     border-radius: 5px;
+     transition: transform 0.2s ease, background-color 0.2s ease;
+     border-color: #1f1f1f;
+ }
+#name:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+#surname:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+#room:hover {
+     transform: scale(1.5);
+     background-color: #f0f0f0;
+ }
+.btn{
+    border-color: #1f1f1f;
+}
+.btn:hover{
+    background-color: #f0f0f0;
+}
+.dark-mode .btn:hover {
+    background-color: #333;
+}
+.dark-mode .btn {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+}
+
+ul#messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul#messages li {
+    clear: both;
+    overflow: auto;
+    padding: 8px 12px;
+}
+
+ul#messages li.sent {
+    text-align: right;
+}
+
+ul#messages li.received {
+    text-align: left;
+}
+
+ul#messages li .message {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #dcf8c6; 
+}
+
+ul#messages li.received .message {
+    background-color: #e1ffc7;
+}
+
+ul#messages li.system-message {
+    font-style: italic;
+    text-align: center;
+    color: #999;
+}

@@ -1,6 +1,7 @@
 const GameLineUps = require('../models/gameLineups')
 const Games = require('../models/games')
 const GamesEvents = require('../models/gamesEvents')
+const PlayerValuations = require('../models/playerValuations')
 
 async function queryIdentifier(req) {
 	try {
@@ -15,6 +16,9 @@ async function queryIdentifier(req) {
 				break;
 			case 'gameEvents':
 				res = await GamesEvents.find(query);
+				break;
+				case 'playerValuations':
+				res = await PlayerValuations.find(query);
 				break;
 			default:
 				throw  new Error('Invalid query type');

@@ -1,4 +1,3 @@
-const passport = require('passport');
 const AuthService = require('../services/auth');
 
 async function login(req, res) {
@@ -8,25 +7,20 @@ async function login(req, res) {
 		const user = await AuthService.login(usernameToLog, passwordToLog);
 
 		if (!user) {
-			return res.status(401).json({ success: false, message: 'Invalid credentials' });
+			return { success: false, message: 'Invalid credentials' };
 		}
 
+		// Autenticazione utente tramite Passport.js
 		req.logIn(user, (err) => {
 			if (err) {
-				return res.status(500).json({ success: false, message: 'An error occurred' });
+				throw new Error('An error occurred during login');
 			}
 
-			return {
-				success:true,
-				message:'Login successful'
-			};
+			res.json({ success: true, message: 'Login successful' });
 		});
 	} catch (error) {
-		return {
-			success: false,
-			message: err.message
-		};
+		return { success: false, message: error.message };
 	}
 }
 
-module.exports =  { login };
+module.exports = { login };

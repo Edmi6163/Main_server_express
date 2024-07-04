@@ -1,0 +1,708 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ium Tweb final assignment api docs",
+    "description": "OpenApi swagger docs for final assignment, there are 3 servers and each server has its own routes, here you can find all",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Main Express server containing the frontend and routes that call the other servers, which communicate with the databases."
+    },
+    {
+      "url": "http://localhost:3001/",
+      "description": "Express server connected to MongoDB, which stores data that changes frequently."
+    },
+    {
+      "url": "http://localhost:8082/",
+      "description": "Spring Boot server communicating with PostgreSQL, containing data that does not change frequently."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Main Server",
+      "description": "Routes from the main Express server."
+    },
+    {
+      "name": "MongoDB Server",
+      "description": "Routes from the Express server connected to MongoDB."
+    },
+    {
+      "name": "Springboot Server",
+      "description": "Routes from the Spring Boot server communicating with PostgreSQL."
+    }
+  ],
+  "paths": {
+    "/insert": {
+      "post": {
+        "tags": ["Main Server"],
+        "description": "Insert a new user in the database",
+        "responses": {
+          "200": {
+            "description": "OK, new user saved in database"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Main Server"],
+        "description": "Route to login a user",
+        "responses": {
+          "200": {
+            "description": "OK, user logged in"
+          },
+          "500": {
+            "description": "Internal Server Error, can't login user"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usernameToLog": {
+                    "example": "usernameToLogTest"
+                  },
+                  "passwordToLog": {
+                    "example": "passwordToLogTest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/query": {
+      "post": {
+        "tags": ["MongoDB Server"],
+        "description": "Send the query to the server that communicates with MongoDB",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "collection": {
+                    "example": "games"
+                  },
+                  "query": {
+                    "example": "away_club_name"
+                  },
+                  "value": {
+                    "example": "Olympique de Marseille"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/queryReceived": {
+      "post": {
+        "tags": ["MongoDB Server"],
+        "description": "Here the server receives the query from the Express server that communicates with MongoDB",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/askJava": {
+      "post": {
+        "tags": ["MongoDB Server"],
+        "description": "Route to query data in PostgreSQL database passing through the Spring Boot server",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "example": "http://localhost:8082/Player/findByName?name=Lionel+Messi"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/importGamesEvents": {
+      "post": {
+        "tags": ["Main Server"],
+        "description": "Route to import games_events.csv from the API to the MongoDB database, at the moment path is hard coded with an absolute path",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "File not found error"
+          }
+        }
+      }
+    },
+    "/importGameLineUp": {
+      "post": {
+        "tags": ["Main Server"],
+        "description": "Route to import game_lineup.csv from the API to the MongoDB database, at the moment path is hard coded with an absolute path",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "File not found error"
+          }
+        }
+      }
+    },
+    "/importGames": {
+      "post": {
+        "tags": ["Main Server"],
+        "description": "Route to import games.csv from the API to the MongoDB database, at the moment path is hard coded with an absolute path",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "File not found error"
+          }
+        }
+      }
+    },
+    "/importPlayerValuations": {
+      "post": {
+        "tags": ["Main Server"],
+        "description": "Route to import player_valuations.csv from the API to the MongoDB database, at the moment path is hard coded with an absolute path",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "File not found error"
+          }
+        }
+      }
+    },
+    "/executeQuery": {
+      "post": {
+        "tags": ["Main Server"],
+        "description": "Route to actually execute a query in the MongoDB database",
+        "responses": {
+          "200": {
+            "description": "OK, query executed successfully"
+          },
+          "500": {
+            "description": "Internal server error, query not executed"
+          }
+        }
+      }
+    },
+    "/scoreBoard": {
+      "get": {
+        "tags": ["Main Server"],
+        "description": "Route to get the scoreboard from the MongoDB database, it calculate dynamically the points of each team and the position in the league",
+        "responses": {
+          "200": {
+            "description": "OK, scoreboard retrieved"
+          },
+          "500": {
+            "description": "Internal server error, scoreboard not retrieved"
+          }
+        }
+      }
+    },
+    "/mostValuedPlayers": {
+      "get": {
+        "tags": ["Main Server"],
+        "description": "Route to get the 10 most valued players from the MongoDB database,as in the mongodb collection it call the Spring Boot server to get name",
+        "responses": {
+          "200": {
+            "description": "OK, most valued players retrieved"
+          },
+          "500": {
+            "description": "Internal server error, most valued players not retrieved"
+          }
+        }
+      }
+    },
+    "/Competition/insert": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Insert a new competition from CSV into the PostgreSQL database",
+        "responses": {
+          "200": {
+            "description": "OK, competitions inserted successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Competition/insertAll": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Insert all competitions from CSV into the PostgreSQL database",
+        "responses": {
+          "200": {
+            "description": "OK, all competitions inserted successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Competition/delete": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Delete a competition by ID from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the competition to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, competition deleted successfully"
+          },
+          "404": {
+            "description": "Not Found, competition not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Competition/findByName": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Find a competition by name from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the competition to find"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, competition found"
+          },
+          "404": {
+            "description": "Not Found, competition not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Competition/load": {
+      "get": {
+        "tags": ["Springboot Server"],
+        "description": "Load competitions from CSV into the PostgreSQL database",
+        "responses": {
+          "200": {
+            "description": "OK, competitions loaded successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/insert": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Insert a new game into the PostgreSQL database",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "gameId": {
+                    "type": "integer",
+                    "example": 12345
+                  },
+                  "homeClubName": {
+                    "type": "string",
+                    "example": "Real Madrid"
+                  },
+                  "awayClubName": {
+                    "type": "string",
+                    "example": "Barcelona"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created, game inserted successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/insertAll": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Insert all games from CSV into the PostgreSQL database",
+        "responses": {
+          "201": {
+            "description": "Created, all games inserted successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/delete/{id}": {
+      "delete": {
+        "tags": ["Springboot Server"],
+        "description": "Delete a game by ID from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the game to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, game deleted successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/findByHomeClubName": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Find a game by home club name from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Home club name of the game to find"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, game found"
+          },
+          "404": {
+            "description": "Not Found, game not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/findByStadium": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Find a game by stadium from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "stadium",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Stadium of the game to find"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, game found"
+          },
+          "404": {
+            "description": "Not Found, game not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/findByGameId": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Find a game by ID from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the game to find"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, game found"
+          },
+          "404": {
+            "description": "Not Found, game not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/findByHomeClubManagerName": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Find a game by home club manager name from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "homeClubManagerName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Home club manager name of the game to find"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, game found"
+          },
+          "404": {
+            "description": "Not Found, game not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Games/load": {
+      "get": {
+        "tags": ["Springboot Server"],
+        "description": "Load games from CSV into the PostgreSQL database",
+        "responses": {
+          "200": {
+            "description": "OK, games loaded successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Player/insert": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Insert a new player into the PostgreSQL database",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "playerId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "playerName": {
+                    "type": "string",
+                    "example": "Lionel Messi"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created, player inserted successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Player/insertAll": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Insert all players from CSV into the PostgreSQL database",
+        "responses": {
+          "201": {
+            "description": "Created, all players inserted successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Player/delete/{id}": {
+      "delete": {
+        "tags": ["Springboot Server"],
+        "description": "Delete a player by ID from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the player to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, player deleted successfully"
+          },
+          "404": {
+            "description": "Not Found, player not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Player/findByName": {
+      "post": {
+        "tags": ["Springboot Server"],
+        "description": "Find a player by name from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the player to find"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, player found"
+          },
+          "404": {
+            "description": "Not Found, player not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Player/findByIds": {
+      "get": {
+        "tags": ["Springboot Server"],
+        "description": "Find players by a list of IDs from the PostgreSQL database",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "List of player IDs to find"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, players found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/Player/load": {
+      "get": {
+        "tags": ["Springboot Server"],
+        "description": "Load players from CSV into the PostgreSQL database",
+        "responses": {
+          "200": {
+            "description": "OK, players loaded successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

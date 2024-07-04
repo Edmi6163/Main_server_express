@@ -2,18 +2,536 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" a href="stylesheets/style.css">
+    <link rel="stylesheet" a href="stylesheets/chat.css">
     <!--Bootstrap Css and Js links-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
- <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+
+    <!--<script src="../socket.io/socket.io.js"></script>-->
+
     <script src= "javascripts/chat.js"></script>
     <title>FootballOurPassion</title>
-    <link rel="icon" href="assets/logo.jpeg">
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="stylesheets/chat.css">
     <title>Chat</title>
 </head>
 <body onload="init_chat()">
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+    <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+    </symbol>
+    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+    </symbol>
+    <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+    </symbol>
+</svg>
+
+<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle z-3 border border-primary" >
+    <button
+            class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center shadow p-3 mb-5 bg-white rounded"
+            id="bd-theme"
+            type="button"
+            aria-expanded="false"
+            data-bs-toggle="dropdown"
+            aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+            <use href="#circle-half"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+            <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center"
+                    data-bs-theme-value="light"
+                    aria-pressed="false"
+                    id="light-mode-btn"
+                    onclick="toggleLightMode()">
+                <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#sun-fill"></use>
+                </svg>
+                Light Mode
+                <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                </svg>
+            </button>
+        </li>
+        <li>
+            <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center"
+                    data-bs-theme-value="dark"
+                    aria-pressed="false"
+                    id="dark-mode-btn"
+                    onclick="toggleDarkMode()">
+                <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#moon-stars-fill"></use>
+                </svg>
+                Dark Mode
+                <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                </svg>
+            </button>
+        </li>
+
+    </ul>
+</div>
+
+
+<header class=" mb-3 border-bottom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg align-items-center justify-content-between justify-content-center">
+            <a href="index.html" class=" navbar-brand col-1 d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                <img src="assets/logo.png" class="img-fluid" width="90" height="90" role="img">
+            </a>
+            <ul class="nav col-5 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0">
+                <li>
+                    <a href="#" class="nav-link px-2 link-body-emphasis fs-4 light-theme" id="navText1">Statistics</a>
+                </li>
+            </ul>
+
+            <div class="dropdown col-lg-auto col-2">
+                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img
+                            src=""
+                            alt="mdo"
+                            width="32"
+                            height="32"
+                            class="rounded-circle"/>
+                </a>
+
+                <ul class="dropdown-menu text-small shadow bg-white rounded p-2 ">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="content">
+    <div class="container">
+        <h1 class="h3 mb-0 col-2 alig">Chat</h1>
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-12 col-lg-5 col-xl-3" style="border-right: 1px solid #dfdfdf;">
+                    <div class="px-4 d-none d-md-block">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <input type="text" id="search" class="form-control my-3  shadow-sm p-2 bg-white rounded align-items-center " placeholder="Search..." oninput="search()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <span class="mx-2 Cname">World</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname text-body-secondary" onclick="setChannel('Fifa club vm')">
+                                    Fifa club wm
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname Cname">Europe</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Uefa super cup')">
+                                    Uefa super cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel('Europa league')">
+                                    Europa league
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel('Europa league qualification')">
+                                    Europa league qualification
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel('Uefa Europa conference league qualification')">
+                                    Uefa Europa conference league qualification
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel(' Uefa champions league')">
+                                    Uefa champions league
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel('Uefa champions league qualification')">
+                                    Uefa champions league qualification
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname Cname">Italy</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel('Italy cup')">
+                                    Italy cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel('Serie a')">
+                                    Serie a
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname Cname" onclick="setChannel('Supercoppa italiana')">
+                                    Supercoppa italiana
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Portugal</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Supertaca candido de oliveira')">
+                                    Supertaca candido de oliveira
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Liga Portugal bwin')">
+                                    Liga Portugal bwin
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Allianz cup')">
+                                    Allianz cup
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Netherlands</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Johan cruijff schaal')">
+                                    Johan cruijff schaal
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Eredivisie')">
+                                    Eredivisie
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Toto knvb beker')">
+                                    Toto knvb beker
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Greece</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Kypello elladas super league 1')">
+                                    Kypello elladas super league 1
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Super league 1')">
+                                    Super league 1
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">France</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Ligue 1')">
+                                    Ligue 1
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Trophee des champions')">
+                                    Trophee des champions
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Germany</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Bundesliga')">
+                                    Bundesliga
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Dfl supercup')">
+                                    Dfl supercup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Dfb pokal')">
+                                    Dfb pokal
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Russia</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Russian super cup')">
+                                    Russian super cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Russian cup')">
+                                    Russian cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Premier liga')">
+                                    Premier liga
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Ukraine</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Ukrainian super cup')">
+                                    Ukrainian super cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Ukrainian cup')">
+                                    Ukrainian cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Premier liga')">
+                                    Premier liga
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Scotland</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Scottish premiership')">
+                                    Scottish premiership
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Sfa cup')">
+                                    Sfa cup
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Belgium</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Belgian supercup')">
+                                    Belgian supercup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Jupiler pro league')">
+                                    Jupiler pro league
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">England</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Premier league')">
+                                    Premier league
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Efl cup')">
+                                    Efl cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Fa cup')">
+                                    Fa cup
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Cumminity shield')">
+                                    Community shield
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Spain</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Supercopa')">
+                                    Supercopa
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Laliga')">
+                                    Laliga
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname " onclick="setChannel('Copa del rey')">
+                                    Copa del rey
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Denmark</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Superligaen')">
+                                    Superligaen
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Sydbank pokalen')">
+                                    Sydbank pokalen
+                                </div>
+                            </div>
+                        </a>
+                        <span class="mx-2 Cname">Turkey</span>
+                        <div class="flex-grow-1 border-bottom Cname"></div>
+                        <a href="#" class="list-group-item list-group-item-action border-0 nav-link">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1 ml-3 h5 Cname" onclick="setChannel('Super lig')">
+                                    Super lig
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="d-block d-lg-none mt-1 mb-0">
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-7 col-xl-9">
+                    <div class="py-2 px-4 border-bottom Cname d-none d-lg-block">
+                        <div class="d-flex align-items-center py-1">
+                            <div class="flex-grow-1 pl-3">
+                                <h4 id="welcome"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-absolute overflow-hidden p-3 p-md-5 m-md-3"  id="form_container">
+                        <h1 class="display-3 fw-bold">Hi!</h1>
+                        <h3 class="fw-normal text-muted mb-3">Please enter your Information</h3>
+                        <div class="container col-6 d-flex justify-content-center col-md-12 p-lg-5 mx-auto my-5">
+                            <form class="row g-3 align-items-center text-center" onsubmit="room_generate()">
+                                <div class="col-md-2">
+                                    <label for="name" class="col-form-label">Name:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input id="name" name="name" type="text" class="form-control shadow-sm p-2 bg-white rounded align-items-center">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="surname" class="col-form-label">Surname:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input id="surname" name="surname" type="text" class="form-control shadow-sm p-2 bg-white rounded align-items-center">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit"  class="btn text-nowrap shadow-sm p-2  rounded ">Join chat</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="room">Room:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="room" name="room" required class="form-control shadow-sm p-2 bg-white rounded align-items-center"><br><br>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+         
+
+
+                         <div class="container mt-4">
+                            <div id="message_container" style="display:none;">
+                                <div class="chat-box border rounded p-3">
+                                    <ul id="messages" class="list-unstyled"></ul>
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" id="messageInput" placeholder="Type your message...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button" id="messageButton">Send</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-danger mt-3" id="logout">Logout</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
 
 <div class="container mt-5 w-100">
     <div class="row">

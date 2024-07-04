@@ -15,6 +15,7 @@
     "mongoose": "^8.3.0",
     "swagger-ui-express": "^5.0.0",
     "csvtojson": "^2.0.10",
+    "socket.io": "^4.7.4",
     "axios": "^0.24.0"
   }
 }

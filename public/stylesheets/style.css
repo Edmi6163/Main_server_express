@@ -1,16 +1,330 @@
+/* Stili di base per la modalità dark */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+.dark-mode .navbar,
+.dark-mode .dropdown-menu {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+.dark-mode .logo-container {
+  background-color: #2c2c2c; /* Use your preferred shade of gray */
+}
+.dark-mode .navbar a,
+.dark-mode .dropdown-menu a {
+  color: #e0e0e0;
+}
+
+.dark-mode .card {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+.dark-mode .list-group-item {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  border-color: #333;
+}
+
+.dark-mode .border-bottom {
+  border-bottom: 1px solid #333;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+.dark-mode .btn {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+.dark-mode .Cname {
+  color: #e0e0e0;
+}
+
+/* Aggiungi ulteriori stili specifici per altri elementi della pagina se necessario */
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ffffff; /* Colore di sfondo predefinito */
+  color: #292929; /* Colore del testo predefinito */
 }
 
 a {
   color: #00B7FF;
 }
 
-.test
-{
+.test {
   color: red;
-
 }
 
+.navbar .nav-link {
+  display: inline-block;
+  position: relative;
+  color: #00B7FF;
+}
 
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #00B7FF;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar .nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Stili per la dark mode */
+.dark-mode {
+  background-color: #181818; /* Nuovo colore di sfondo per la dark mode */
+  color: #ffffff; /* Colore del testo per la dark mode */
+}
+
+.dark-mode .navbar-light .navbar-nav .nav-link {
+  color: #ffffff !important; /* Cambia il colore del testo per la dark mode */
+}
+
+.dark-mode .navbar-light .navbar-toggler-icon {
+  background-color: #ffffff; /* Cambia il colore dell'icona del toggler per la dark mode */
+}
+
+.dark-mode .navbar-light .navbar-nav .nav-link::after {
+  background-color: #ffffff; /* Cambia il colore della linea sottostante per la dark mode */
+}
+
+.dark-mode .nav-link {
+  color: #ffffff !important; /* Cambia il colore del testo dei link per la dark mode */
+}
+
+.dark-mode .bg-light {
+  background-color: #181819 !important; /* Colore di sfondo alternativo per la dark mode */
+}
+
+.dark-mode .text-body-secondary {
+  color: #ffffff !important; /* Cambia il colore del testo secondario per la dark mode */
+}
+
+.dark-mode .text-body-primary {
+  color: #ffffff !important; /* Cambia il colore del testo primario per la dark mode */
+}
+
+.dark-mode .dropdown-menu {
+  background-color: #121212; /* Colore di sfondo per il dropdown menu in dark mode */
+  color: #ffffff; /* Colore del testo per il dropdown menu in dark mode */
+}
+
+.dark-mode .dropdown-menu .dropdown-item {
+  color: #ffffff; /* Colore del testo per il dropdown menu in dark mode */
+}
+
+.dark-mode .dropdown-menu .dropdown-item:hover {
+  background-color: #262626;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.dark-mode .modal-header {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+/* Dark mode styles for the login form */
+.dark-mode .modal-body {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+.dark-mode .modal-footer {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+.dark-mode .form-control {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+.dark-mode .form-floating label {
+  color: #b0b0b0;
+}
+
+.dark-mode .btn-secondary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.dark-mode .btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Apply hover animation to dropdown items */
+.dropdown-menu .dropdown-item {
+  position: relative;
+  color: #00B7FF;
+}
+
+.dropdown-menu .dropdown-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #00B7FF;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.dropdown-menu .dropdown-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Dark mode styles for dropdown items */
+.dark-mode .dropdown-menu .dropdown-item {
+  color: #ffffff !important;
+}
+
+.dark-mode .dropdown-menu .dropdown-item::after {
+  background-color: #ffffff;
+}
+
+.card:hover{
+  transform: scale(1.1);
+}
+.card{
+    transition: transform 0.2s ease;
+}
+.card{
+  box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+  border-radius: 0;
+  border: 0;
+}
+.modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+/* Add or update these styles in your stylesheet (stylesheets/style.css) */
+
+.container-fluid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.row {
+  margin: 0 -15px;
+}
+
+.col {
+  padding: 15px;
+}
+/* CSS per gestire il wrapping degli elementi della navbar */
+.navbar-collapse {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 120px; /* Puoi regolare questo valore in base alle tue necessità */
+}
+
+/* Per migliorare l'aspetto sui dispositivi mobili */
+@media (max-width: 576px) {
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-item {
+    text-align: left;
+  }
+}
+
+/* Assicurati che gli elementi del container delle squadre vadano a capo */
+#teams .nav {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#teams .nav-item {
+  flex: 1 1 20%; /* Regola questo valore per la larghezza minima degli elementi */
+  box-sizing: border-box;
+  padding: 10px;
+}
+.custom-container {
+  max-width: 880px; /* Puoi regolare questo valore in base alle tue necessità */
+  margin: 0 auto; /* Centra il container orizzontalmente */
+  padding: 0 15px; /* Aggiungi un po' di padding per migliorare l'aspetto su dispositivi mobili */
+}
+
+/* Effetto di zoom fluido */
+#search-form {
+  transition: transform 0.3s ease-in-out; /* Durata e tipo di transizione */
+}
+
+#search-form:hover {
+  transform: scale(1.1); /* Scala l'immagine del 10% */
+}
+#phrase {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 87%; /* Larghezza massima desiderata */
+  width: 100%; /* Assicura che il div non superi la larghezza massima */
+  padding: 20px;
+  left: 54px;
+  box-sizing: border-box;
+
+}
+ .dark-mode .darkContainer {
+  background-color: #181818;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+#Leagues {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90%; /* Larghezza massima desiderata */
+  width: 100%; /* Assicura che il div non superi la larghezza massima */
+  padding: 20px;
+  left: 50px;
+  box-sizing: border-box;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #000;
+}
