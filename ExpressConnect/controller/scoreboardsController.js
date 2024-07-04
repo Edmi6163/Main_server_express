@@ -1,4 +1,4 @@
-const Games = require('../models/games')
+const Games = require('../models/games');
 const axios = require('axios');
 
 const quickSort = (arr, compareFn) => {
@@ -11,11 +11,17 @@ const quickSort = (arr, compareFn) => {
 
 const calculateScore = async () => {
 	try {
+		console.log('Fetching games from database...');
 		const games = await Games.find();
-		const leagues = [...new Set(games.map(game => game.competition_type))]; // Get unique leagues
+		console.log(`Fetched ${games.length} games`);
+
+		const leagues = [...new Set(games.map(game => game.competition_type))]; 
+		console.log(`Found ${leagues.length} unique leagues`);
+
 		const leagueBoards = {};
 
 		leagues.forEach(league => {
+			console.log(`Processing league: ${league}`);
 			const leagueGames = games.filter(game => game.competition_type === league);
 			const board = {};
 
@@ -72,17 +78,18 @@ const calculateScore = async () => {
 
 			const boardArray = Object.values(board);
 			leagueBoards[league] = quickSort(boardArray, (a, b) => b.points - a.points);
-			leagueBoards[league] = boardArray.slice(0,10);
+			leagueBoards[league] = leagueBoards[league].slice(0, 10); // Ensure we get the top 10 teams
+			console.log(`Processed ${league} league with ${boardArray.length} teams`);
 		});
 
-		let send = await axios.post('http://localhost:3000/showScoreBoard', {data: leagueBoards});
-		return ({success: true, data: send.data});
+		console.log('Sending league boards to frontend...');
+		const send = await axios.post('http://localhost:3000/showScoreBoard', { data: leagueBoards });
+		console.log('Data sent successfully');
+		return { success: true, data: send.data };
 	} catch (err) {
 		console.error('Error calculating score:', err);
 		throw err;
 	}
 };
 
-
-
-module.exports = {calculateScore}
+module.exports = { calculateScore };

@@ -223,28 +223,75 @@ function loadDataAux(event, url) {
         });
 }
 
+
+
 async function loadMostValuedPlayers() {
-    axios.get('/getMostValuedPlayers')
-        .then(response => {
-            console.log("Most valued players: ", response.data);
-            const div = document.getElementById('players-value');
-            div.innerText = JSON.stringify(response.data);
-        })
-        .catch(error => {
-            console.error('Errore durante il caricamento dei dati:', error);
+    try {
+        const response = await axios.get('/getMostValuedPlayers');
+        console.log("Most valued players: ", response.data);
+        const div = document.getElementById('players-value');
+        div.innerHTML = ''; 
+
+        const players = response.data.data.data; 
+        players.forEach(player => {
+            const playerCard = document.createElement('div');
+            playerCard.classList.add('col-md-4', 'mb-3');
+
+            playerCard.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Player ID: ${player.player_id}</h5>
+                        <p class="card-text">Market Value: €${player.market_value_in_eur}</p>
+                        <p class="card-text">Club ID: ${player.current_club_id}</p>
+                    </div>
+                </div>
+            `;
+
+            div.appendChild(playerCard);
         });
+    } catch (error) {
+        console.error('Error during data loading: ', error);
+    }
 }
 
 async function loadScoreboards() {
-    axios.get('/getScoreBoard')
-        .then(response => {
-            console.log("Score boards:  ",response.data);
-            const div = document.getElementById('world-cup');
-            div.innerText = JSON.stringify(response.data);
-        })
-        .catch(error => {
-            console.error('Errore durante il caricamento dei dati:', error);
-        });
+    try {
+        const response = await axios.get('/getScoreBoard');
+        console.log("Score boards:  ", response.data);
+
+        const div = document.getElementById('world-cup');
+        div.innerHTML = ''; 
+
+        const leagueBoards = response.data.data;
+        for (const league in leagueBoards) {
+            const leagueTitle = document.createElement('h3');
+            leagueTitle.innerText = league;
+            div.appendChild(leagueTitle);
+
+            const leagueData = leagueBoards[league];
+            leagueData.forEach(team => {
+                const teamCard = document.createElement('div');
+                teamCard.classList.add('card', 'mb-3', 'col-md-12');
+
+                teamCard.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">${team.team}</h5>
+                        <p class="card-text"><strong>Points:</strong> ${team.points}</p>
+                        <p class="card-text"><strong>Goals:</strong> ${team.goals}</p>
+                        <p class="card-text"><strong>Goals Against:</strong> ${team.goalsAgainst}</p>
+                        <p class="card-text"><strong>Matches:</strong> ${team.matches}</p>
+                        <p class="card-text"><strong>Won:</strong> ${team.won}</p>
+                        <p class="card-text"><strong>Drawn:</strong> ${team.drawn}</p>
+                        <p class="card-text"><strong>Lost:</strong> ${team.lost}</p>
+                    </div>
+                `;
+
+                div.appendChild(teamCard);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
 }
 
 

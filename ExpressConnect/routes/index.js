@@ -49,7 +49,7 @@ router.get('/scoreBoard', async (req,res) => {
 router.get('/mostValuedPlayers', async (req,res) => {
   try {
     const valuedPlayer = await mostValuedPlayerController.mostValuedPlayers();
-    console.log("Console log", valuedPlayer);
+    console.log("Most valued players", valuedPlayer);
     res.json(valuedPlayer);
   } catch (err) {
     console.error(err);
