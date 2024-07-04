@@ -264,32 +264,69 @@ async function loadScoreboards() {
         console.log("Score boards:  ", response.data);
 
         const leagueBoards = response.data.data.data;
+        const carouselInner = document.querySelector('.carousel-inner');
 
-        // Per ogni lega nella risposta, riempi la tabella corrispondente
+        // Pulisce il contenuto del carosello
+        carouselInner.innerHTML = '';
+
+        let isActive = true;
+
+        // Per ogni lega nella risposta, crea e riempi la tabella corrispondente
         for (const league in leagueBoards) {
             const leagueData = leagueBoards[league];
             const tableId = `${league}Table`;
-            const tbody = document.querySelector(`#${tableId} tbody`);
 
-            if (tbody) {
-                tbody.innerHTML = ''; // Pulisci il contenuto della tabella
+            const carouselItem = document.createElement('div');
+            carouselItem.className = `carousel-item ${isActive ? 'active' : ''}`;
+            isActive = false;
 
-                leagueData.forEach((team, index) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <th scope="row" class="text-center">${index + 1}</th>
-                        <td class="text-center">${team.team}</td>
-                        <td class="text-center">${team.points}</td>
-                        <td class="text-center">${team.goals}</td>
-                        <td class="text-center">${team.goalsAgainst}</td>
-                        <td class="text-center">${team.matches}</td>
-                        <td class="text-center">${team.won}</td>
-                        <td class="text-center">${team.drawn}</td>
-                        <td class="text-center">${team.lost}</td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            }
+            carouselItem.innerHTML = `
+                <div class="card mb-3 border border-secondary mx-auto" style="max-width: 500px;">
+                    <h3 class="card-header text-center">${league}</h3>
+                    <div class="card-body text-center">
+                        <p class="card-text">Classifica ${league}</p>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover mx-auto" id="${tableId}">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Club</th>
+                                        <th scope="col" class="text-center">Points</th>
+                                        <th scope="col" class="text-center">Goals</th>
+                                        <th scope="col" class="text-center">Goals Against</th>
+                                        <th scope="col" class="text-center">Matches</th>
+                                        <th scope="col" class="text-center">Won</th>
+                                        <th scope="col" class="text-center">Drawn</th>
+                                        <th scope="col" class="text-center">Lost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Righe generate dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            carouselInner.appendChild(carouselItem);
+
+            const tbody = carouselItem.querySelector(`#${tableId} tbody`);
+            leagueData.forEach((team, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <th scope="row" class="text-center">${index + 1}</th>
+                    <td class="text-center">${team.team}</td>
+                    <td class="text-center">${team.points}</td>
+                    <td class="text-center">${team.goals}</td>
+                    <td class="text-center">${team.goalsAgainst}</td>
+                    <td class="text-center">${team.matches}</td>
+                    <td class="text-center">${team.won}</td>
+                    <td class="text-center">${team.drawn}</td>
+                    <td class="text-center">${team.lost}</td>
+                `;
+                tbody.appendChild(row);
+            });
         }
     } catch (error) {
         console.error('Error loading data:', error);
@@ -298,7 +335,6 @@ async function loadScoreboards() {
 
 // Chiamare la funzione quando la pagina è caricata
 document.addEventListener('DOMContentLoaded', loadScoreboards);
-
 // Chiamare la funzione quando la pagina è caricata
     document.addEventListener('DOMContentLoaded', loadScoreboards);
 
