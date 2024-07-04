@@ -54,7 +54,7 @@ router.route('/query').post(
 router.route('/query').post(
  function(req,res) {
   let body = req.body;
-  let type = body.type; // Changed from req.type to body.type
+  let type = body.type;
   if(!body.query || !type) {
    res.status(400).json({success: false, error: 'Invalid request'});
   } else {
