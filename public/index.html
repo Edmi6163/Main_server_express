@@ -32,7 +32,7 @@
     </symbol>
 </svg>
 
-<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle z-3 border border-primary" >
+<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle z-3 border border-primary" aria-label="Theme toggle dropdown">
     <button
             class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center shadow p-3 mb-5 bg-white rounded"
             id="bd-theme"
@@ -149,8 +149,9 @@
                     <a id="expertLink" href="analysis.html" class="nav-link px-5 link-body-emphasis fs-4 text-body-secondary">Expert</a>
                 </li>
             </ul>
-            <form class="col-lg-4 col-3 me-lg-4 d-lg-inline-flex text-body-secondary" role="search" id="search">
-                <input type="search" class="form-control shadow-sm p-2 bg-white rounded align-items-center text-body-secondary" placeholder="Search..." aria-label="Search" />
+            <form class="col-lg-4 col-3 me-lg-4 d-lg-inline-flex text-body-secondary" role="search" id="search-form">
+                <label for="search-input">Search</label>
+                <input type="search" class="form-control shadow-sm p-2 bg-white rounded align-items-center text-body-secondary" id="search-input" placeholder="Search..." aria-label="Search" />
             </form>
             <div class="dropdown col-lg-auto col-2" id="dropDownProfile">
                 <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -161,7 +162,6 @@
                     <li><hr class="dropdown-divider" /></li>
                     <li><a id="OpenSignupModal" class="dropdown-item text-body-secondary" onclick="openSignupModal()">Sign up</a></li>
                     <li><a id="OpenLoginModal" class="dropdown-item text-body-secondary" onclick="openLoginModal()">Login</a></li>
-                    <li><a class="dropdown-item text-body-secondary" href="#">Sign out</a></li>
                 </ul>
             </div>
         </nav>
@@ -207,28 +207,126 @@
         </div>
     </nav>
 </div>
-
-<div class="position-relative overflow-hidden   p-3 p-md-4 m-md-3 text-center  bg-body-tertiary border border-primary " id="phrase">
+<div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center bg-body-tertiary border border-primary" id="phrase">
     <div class="col-md-12 p-lg-5 mx-auto my-5">
-
-        <div class="container " id="containerCarousel">
+        <div class="container" id="containerCarousel" style="max-width: 800px;">
             <h1 class="text-center my-4">Football League Scoreboard</h1>
-            <div id="scoreboardCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner" id="carousel-inner">
-
+            <div id="scoreboardCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card mb-3 border border-secondary mx-auto" style="max-width: 500px;">
+                            <h3 class="card-header text-center">Top Market Team</h3>
+                            <div class="card-body text-center">
+                                <p class="card-text">Squadra con maggiori movimenti di mercato.</p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover mx-auto">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">#</th>
+                                            <th scope="col" class="text-center">Club</th>
+                                            <th scope="col" class="text-center">Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-center">1</th>
+                                            <td class="text-center">Nome Club 1</td>
+                                            <td class="text-center">Valore Club 1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center">2</th>
+                                            <td class="text-center">Nome Club 2</td>
+                                            <td class="text-center">Valore Club 2</td>
+                                        </tr>
+                                        <!-- Aggiungi altre righe secondo necessità -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Aggiungi qui le altre 9 tabelle -->
+                    <div class="carousel-item">
+                        <div class="card mb-3 border border-secondary mx-auto" style="max-width: 500px;">
+                            <h3 class="card-header text-center">Another Category</h3>
+                            <div class="card-body text-center">
+                                <p class="card-text">Descrizione della categoria.</p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover mx-auto">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">#</th>
+                                            <th scope="col" class="text-center">Club</th>
+                                            <th scope="col" class="text-center">Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-center">1</th>
+                                            <td class="text-center">Nome Club 3</td>
+                                            <td class="text-center">Valore Club 3</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center">2</th>
+                                            <td class="text-center">Nome Club 4</td>
+                                            <td class="text-center">Valore Club 4</td>
+                                        </tr>
+                                        <!-- Aggiungi altre righe secondo necessità -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Aggiungi qui altre 8 tabelle per un totale di 10 tabelle -->
+                    <div class="carousel-item">
+                        <div class="card mb-3 border border-secondary mx-auto" style="max-width: 500px;">
+                            <h3 class="card-header text-center">Third Category</h3>
+                            <div class="card-body text-center">
+                                <p class="card-text">Descrizione della terza categoria.</p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover mx-auto">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">#</th>
+                                            <th scope="col" class="text-center">Club</th>
+                                            <th scope="col" class="text-center">Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-center">1</th>
+                                            <td class="text-center">Nome Club 5</td>
+                                            <td class="text-center">Valore Club 5</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center">2</th>
+                                            <td class="text-center">Nome Club 6</td>
+                                            <td class="text-center">Valore Club 6</td>
+                                        </tr>
+                                        <!-- Aggiungi altre righe secondo necessità -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Aggiungi altre 7 carousel-item per un totale di 10 tabelle -->
                 </div>
-                <a class="carousel-control-prev" href="#scoreboardCarousel" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#scoreboardCarousel" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#scoreboardCarousel" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#scoreboardCarousel" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
             </div>
         </div>
+    </div>
 </div>
-</div>
+
+
             <div class=" justify-content-center" id="container-signup-modal">
                 <div class="modal fade" tabindex="-1" role="dialog" id="SignupModalSignin">
                     <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
@@ -266,6 +364,7 @@
                             <div class="modal-content rounded-4 shadow">
                                 <div class="modal-header p-5 pb-4 border-bottom-0">
                                     <h1 class="fw-bold mb-0 fs-2">Login</h1>
+                                    <h2 class="fw-bold mb-0 fs-3">Please enter your details</h2>
                                     <button id="CloseLoginModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeLoginModal()"></button>
                                 </div>
 
@@ -273,11 +372,11 @@
                                     <form id="LoginForm">
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control rounded-3 text-body-secondary" id="mailLog" placeholder="name@example.com">
-                                            <label>Email address</label>
+                                            <label for="mailLog">Email address</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input type="password" class="form-control rounded-3" id="passwordLog" placeholder="Password">
-                                            <label>Password</label>
+                                            <label for="passwordLog">Password</label>
                                         </div>
                                         <div class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" id="LoginBtn">Login</div>
                                     </form>
@@ -303,7 +402,7 @@
         <div class="container-box d-flex flex-column">
             <!-- Container per la classifica -->
             <div class="box border border-secondary mb-3">
-                <h2>Classifica Serie A </h2>
+                <h3>Classifica Serie A </h3>
                 <ul>
                     <li>Squadra A - Punti</li>
                     <li>Squadra B - Punti</li>
@@ -313,10 +412,10 @@
             </div>
 
             <div class="box border border-secondary mb-3">
-                <h2>Ultime News</h2>
+                <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card" data-bs-toggle="modal" data-bs-target="#modalConteNapoliAllenatore">
+                        <div class="card" data-bs-toggle="modal" data-bs-target="#modalConteNapoliAllenatore" tabindex="0">
                             <img src="assets/antonio_napoli.jpg" class="card-img-top" alt="last news">
                             <div class="card-body">
                                 <h5 class="card-title">Napoli-Antonio Conte è il nuovo allenatore</h5>
@@ -326,7 +425,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card" data-bs-toggle="modal" data-bs-target="#modalThiagoMotta">
-                            <img src="assets/grafica.thiago..jpg" class="card-img-top" alt="...">
+                            <img src="assets/grafica.thiago..jpg" class="card-img-top" alt="Thiago motta image " >
                             <div class="card-body">
                                 <h5 class="card-title">Juventus -Thiago Motta c'è la data per il debutto</h5>
                                 <p class="card-text">Il neo tecnico bianco nero ufficializzato lo scorso 12 giugno ora abbiamo una data per il suo esordio...</p>
@@ -424,7 +523,7 @@
             </div>
             <!-- Container per il top market team -->
             <div class="box border border-secondary">
-                <h2>Top Market Team</h2>
+                <h3>Top Market Team</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
         </div>
@@ -439,7 +538,7 @@
         <div class="container-box d-flex flex-column">
             <!-- Container per la classifica -->
             <div class="box border border-secondary mb-3">
-                <h2>Classifica Bundesliga</h2>
+                <h3>Classifica Bundesliga</h3>
                 <ul>
                     <li>Squadra A - Punti</li>
                     <li>Squadra B - Punti</li>
@@ -450,7 +549,7 @@
 
             <!-- Container per le news -->
             <div class="box border border-secondary mb-3">
-                <h2>Ultime News</h2>
+                <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card" data-bs-toggle="modal" data-bs-target="#modalRegginaEsclusa">
@@ -542,7 +641,7 @@
 
             <!-- Container per il top market team -->
             <div class="box border border-secondary">
-                <h2>Top Market Team</h2>
+                <h3>Top Market Team</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
         </div>
@@ -556,7 +655,7 @@
         <div class="container-box d-flex flex-column">
             <!-- Container per la classifica -->
             <div class="box border border-secondary mb-3">
-                <h2>Classifica Bundesliga</h2>
+                <h3>Classifica Bundesliga</h3>
                 <ul>
                     <li>Squadra A - Punti</li>
                     <li>Squadra B - Punti</li>
@@ -566,7 +665,7 @@
             </div>
 
             <div class="box border border-secondary mb-3">
-                <h2>Ultime News</h2>
+                <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card" data-bs-toggle="modal" data-bs-target="#modaMbappè">
@@ -727,28 +826,28 @@
             </div>
             <!-- Container per il top market team -->
             <div class="card mb-3 border border-secondary" style="max-width: 18rem;">
-                <h2 class="card-header">Top Market Team</h2>
+                <h3 class="card-header">Top Market Team</h3>
                 <div class="card-body">
                     <p class="card-text">Squadra con maggiori movimenti di mercato.</p>
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead>
+                        <table class="table table-striped table-hover" id="tableValue" >
+                            <thead >
                             <tr>
-                                <th scope="col" class="text-center">#</th>
-                                <th scope="col" class="text-center">Club</th>
-                                <th scope="col" class="text-center">Value</th>
+                                <th headers="num" scope="col" class="text-center">#</th>
+                                <th headers="Club" scope="col" class="text-center">Club</th>
+                                <th headers="Value" scope="col" class="text-center">Value</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row" class="text-center">1</th>
-                                <th scope="row" class="text-center">Nome Club 1</th>
-                                <td class="text-end text-center" >Valore Club 1</td>
+                                <th headers="num-1-row" scope="row" class="text-center">1</th>
+                                <th headers="club-row" scope="row" class="text-center">Nome Club 1</th>
+                                <td headers="value-row" class="text-end text-center" >Valore Club 1</td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-center">2</th>
-                                <th scope="row" class="text-center">Nome Club 2</th>
-                                <td class="text-end text-center">Valore Club 2</td>
+                                <th headers="num2-row" scope="row" class="text-center">2</th>
+                                <th headers="club2-row" scope="row" class="text-center">Nome Club 2</th>
+                                <td headers="value2-row" class="text-end text-center">Valore Club 2</td>
                             </tr>
                             <!-- Aggiungi altre righe secondo necessità -->
                             </tbody>
@@ -766,7 +865,7 @@
             <div class="container-box d-flex flex-column">
                 <!-- Container per la classifica -->
                 <div class="box border border-secondary mb-3">
-                    <h2>Classifica Bundesliga</h2>
+                    <h3>Classifica Bundesliga</h3>
                     <ul>
                         <li>Squadra A - Punti</li>
                         <li>Squadra B - Punti</li>
@@ -777,7 +876,7 @@
 
                 <!-- Container per le news -->
                 <div class="box border border-secondary mb-3">
-                    <h2>Ultime News</h2>
+                    <h3>Ultime News</h3>
                     <div class="row g-4">
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="card" data-bs-toggle="modal" data-bs-target="#modalTrasferimenti">
@@ -856,7 +955,7 @@
                         </div>
                 <!-- Container per il top market team -->
                 <div class="box border border-secondary">
-                    <h2>Top Market Team</h2>
+                    <h3>Top Market Team</h3>
                     <p>Squadra con maggiori movimenti di mercato.</p>
                 </div>
             </div>
@@ -871,7 +970,7 @@
         <div class="container-box d-flex flex-column">
             <!-- Container per la classifica -->
             <div class="box border border-secondary mb-3">
-                <h2>Classifica Bundesliga</h2>
+                <h3>Classifica Bundesliga</h3>
                 <ul>
                     <li>Squadra A - Punti</li>
                     <li>Squadra B - Punti</li>
@@ -882,7 +981,7 @@
 
             <!-- Container per le news -->
             <div class="box border border-secondary mb-3">
-                <h2>Ultime News</h2>
+                <h3>Ultime News</h3>
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card" data-bs-toggle="modal" data-bs-target="#modalMercato">
@@ -1012,7 +1111,7 @@
 
             <!-- Container per il top market team -->
             <div class="box border border-secondary">
-                <h2>Top Market Team</h2>
+                <h3>Top Market Team</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
         </div>
@@ -1026,7 +1125,7 @@
         <div class="container-box d-flex flex-column">
             <!-- Container per la classifica -->
             <div class="box border border-secondary mb-3">
-                <h2>Classifica Bundesliga</h2>
+                <h3>Classifica Bundesliga</h3>
                 <ul>
                     <li>Squadra A - Punti</li>
                     <li>Squadra B - Punti</li>
@@ -1037,14 +1136,14 @@
 
             <!-- Container per le news -->
             <div class="box border border-secondary mb-3">
-                <h2>Ultime News</h2>
+                <h3>Ultime News</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec accumsan rutrum.</p>
                 <!-- Aggiungi altre news secondo necessità -->
             </div>
 
             <!-- Container per il top market team -->
             <div class="box border border-secondary">
-                <h2>Top Market Team</h2>
+                <h3>Top Market Team</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
         </div>
@@ -1059,7 +1158,7 @@
         <div class="container-box d-flex flex-column">
             <!-- Container per la classifica -->
             <div class="box border border-secondary mb-3">
-                <h2>Classifica Bundesliga</h2>
+                <h3>Classifica Bundesliga</h3>
                 <ul>
                     <li>Squadra A - Punti</li>
                     <li>Squadra B - Punti</li>
@@ -1070,14 +1169,14 @@
 
             <!-- Container per le news -->
             <div class="box border border-secondary mb-3">
-                <h2>Ultime News</h2>
+                <h3>Ultime News</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec accumsan rutrum.</p>
                 <!-- Aggiungi altre news secondo necessità -->
             </div>
 
             <!-- Container per il top market team -->
             <div class="box border border-secondary">
-                <h2>Top Market Team</h2>
+                <h3>Top Market Team</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
         </div>
@@ -1093,13 +1192,13 @@
                 <div id="world-cup-container" class="container-box d-flex flex-column">
                     <!-- Container per la classifica -->
                     <div id="world-cup" class="box border border-secondary mb-3">
-                        <h2>Classifica World Cup</h2>
+                        <h3>Classifica World Cup</h3>
                     </div>
                 </div>
             </div>
         <!-- Container per le news -->
         <div class="box border border-secondary mb-3">
-            <h2>Ultime News</h2>
+            <h3>Ultime News</h3>
             <div class="row g-4">
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card" data-bs-toggle="modal" data-bs-target="#modalFormat">
@@ -1230,14 +1329,14 @@
             </div>
             <!-- Container per le news -->
             <div class="box border border-secondary mb-3">
-                <h2>Ultime News</h2>
+                <h3>Ultime News</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec accumsan rutrum.</p>
                 <!-- Aggiungi altre news secondo necessità -->
             </div>
 
             <!-- Container per il top market team -->
             <div class="box border border-secondary" id="players-value">
-                <h2>Top Market Players</h2>
+                <h3>Top Market Players</h3>
                 <p>Squadra con maggiori movimenti di mercato.</p>
             </div>
         </div>
@@ -1263,7 +1362,7 @@
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bg-light" >
         <div class="col-md-4 d-flex align-items-center">
             <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                <img src="assets/logo.png" class="bi " width="50" height="50" alt="web site logo">
+                <img src="assets/logo.png" class="bi imf-fluid" width="90" height="90"  role="img" alt="FootballOurPassion logo">
             </a>
             <span class="mb-3 mb-md-0 text-body-secondary">&copy;Riccardo oro & Francesco Mauro  2024 </span>
         </div>

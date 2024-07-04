@@ -385,3 +385,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadUserRole();
 });
+document.addEventListener('DOMContentLoaded', function () {
+    var carouselElement = document.getElementById('scoreboardCarousel');
+    carouselElement.addEventListener('slide.bs.carousel', function (e) {
+        var $carousel = $(this);
+        $('html, body').animate({
+            scrollTop: $carousel.offset().top
+        }, 0);
+    });
+});
