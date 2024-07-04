@@ -77,6 +77,11 @@ function appendMessage(senderName, message) {
     messages.appendChild(li);
 }
 
+function setChannel(text){
+    const box = document.getElementById('room');
+    box.value = text;
+}
+
 function appendSystemMessage(message) {
     const li = document.createElement('li');
     li.textContent = message;
