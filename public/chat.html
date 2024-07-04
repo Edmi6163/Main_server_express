@@ -509,18 +509,21 @@
                     </div>
          
 
-                        <div id="message_container" style="display:none;">
-                            <div class="chat-box">
-                                <ul id="messages"></ul>
-                                <div class="input-area">
-                                    <input type="text" id="messageInput" placeholder="Type your message...">
-                                    <button id="messageButton">Send</button>
+
+                         <div class="container mt-4">
+                            <div id="message_container" style="display:none;">
+                                <div class="chat-box border rounded p-3">
+                                    <ul id="messages" class="list-unstyled"></ul>
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" id="messageInput" placeholder="Type your message...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button" id="messageButton">Send</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-danger mt-3" id="logout">Logout</button>
                                 </div>
-                                <button id="logout">Logout</button>
                             </div>
                         </div>
-                        
-
 
                     </div>
 
