@@ -1,4 +1,4 @@
-const { Cookie } = require("express-session");
+//const { Cookie } = require("express-session");
 
 document.addEventListener('DOMContentLoaded', init);
 
