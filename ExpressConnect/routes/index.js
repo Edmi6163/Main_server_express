@@ -26,8 +26,7 @@ router.post('/importPlayerValuations',importPlayerValuationsController.importDat
 
 router.post('/executeQuery', async (req, res, next) =>{
   try {
-    const result = await  queryController.executeQuery(req,res);
-    res.status(200).json(result);
+    await  queryController.executeQuery(req,res);
   } catch (err) {
     console.error(err);
     res.status(500).json({success: false, error: err.message});

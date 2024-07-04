@@ -30,6 +30,27 @@ router.post('/login', async (req, res) => {
 	}
 });
 
+
+
+router.route('/query').post(
+	function(req,res) {
+		let body = req.body;
+		let type = body.type;
+		if(!body.query || !type) {
+			res.status(400).json({success: false, error: 'Invalid request'});
+		} else {
+			axios.post('http://localhost:3001/executeQuery', {query: body, type: type})
+				.then(response => {
+					res.json(response.data);
+				})
+				.catch(error => {
+					res.status(500).json({success: false, error: error.message});
+				});
+		}
+	}
+);
+
+
 /*
 router.route('/query').post(
 	function(req,res) {
@@ -48,7 +69,6 @@ router.route('/query').post(
 		}
 	}
 );
-*/
 
 //TODO a good comment of this route using swagger style
 router.route('/query').post(
@@ -69,9 +89,13 @@ router.route('/query').post(
  }
 );
 
+
 //TODO a good comment of this route using swagger style
 
 router.post('/queryReceived', async (req, res) => {
+
+
+
 	try {
 		console.log("Query received: ", req.body);
 		res.status(200).json(req.body);
