@@ -10,7 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 
     <!--<script src="../socket.io/socket.io.js"></script>-->
-
     <script src= "javascripts/chat.js"></script>
     <title>FootballOurPassion</title>
     <link rel="icon" href="assets/logo.png">
@@ -508,67 +507,32 @@
 
                         </div>
                     </div>
-         
 
 
-                         <div class="container mt-4">
-                            <div id="message_container" style="display:none;">
-                                <div class="chat-box border rounded p-3">
-                                    <ul id="messages" class="list-unstyled"></ul>
-                                    <div class="input-group mt-3">
-                                        <input type="text" class="form-control" id="messageInput" placeholder="Type your message...">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button" id="messageButton">Send</button>
-                                        </div>
+
+                    <div class="container mt-4">
+                        <div id="message_container" style="display:none;">
+                            <div class="chat-box border rounded p-3">
+                                <ul id="messages" class="list-unstyled"></ul>
+                                <div class="input-group mt-3">
+                                    <input type="text" class="form-control" id="messageInput" placeholder="Type your message...">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button" id="messageButton">Send</button>
                                     </div>
-                                    <button class="btn btn-danger mt-3" id="logout">Logout</button>
                                 </div>
+                                <button class="btn btn-danger mt-3" id="logout">Logout</button>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
 
             </div>
 
+        </div>
 
-<div class="container mt-5 w-100">
-    <div class="row">
-        <h1 id="welcome" class="col-md-10">Welcome!</h1>
-        <button id="logout" class="btn btn-small btn-danger col-md-2">Logout</button>
-    </div>
-</div>
 
-<div class="container mt-5 w-100" id="form_container">
-    <form id="form">
-        <div class="row">
-            <label for="name">Name:</label>
-            <input id="name" name="name" type="text" class="w-75">
-        </div>
-        <div class="row">
-            <label for="surname">Surname:</label>
-            <input id="surname" name="surname" type="text" class="w-75">
-        </div>
-        <div id="room_buttons">
-            <button onclick="room_generate('Channel1')">Room 1</button>
-            <button>Room 2</button>
-            <button>Room 3</button>
-        </div>
-        <div class="row">
-            <button id="form-btn" class="btn btn-primary mt-4">Submit</button>
-        </div>
-    </form>
-</div>
-<div class="container mt-5 w-100" id="message_container">
-    <ul id="messages" style="background-color: bisque"></ul>
-    <div class="row">
-        <label for="messageInput" class="me-4">Chat</label>
-        <input id="messageInput" autocomplete="off" class="w-75"/>
-        <button id="messageButton" class="w-25">Send</button>
-    </div>
-</div>
-
+</main>
 
 </body>
 </html>
